@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3AA9A0CC-D927-4840-90EB-946BEABCBB64}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>presentacion</RootNamespace>
+    <AssemblyName>presentacion</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="articulos\FrmRepuestos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="articulos\FrmRepuestos.Designer.cs">
+      <DependentUpon>FrmRepuestos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="choferes\FrmAgregarChofer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="choferes\FrmAgregarChofer.Designer.cs">
+      <DependentUpon>FrmAgregarChofer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="choferes\FrmChoferes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="choferes\FrmChoferes.Designer.cs">
+      <DependentUpon>FrmChoferes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="choferes\FrmChoferesInactivos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="choferes\FrmChoferesInactivos.Designer.cs">
+      <DependentUpon>FrmChoferesInactivos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="choferes\FrmFichaChofer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="choferes\FrmFichaChofer.Designer.cs">
+      <DependentUpon>FrmFichaChofer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="choferes\FrmModificarChofer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="choferes\FrmModificarChofer.Designer.cs">
+      <DependentUpon>FrmModificarChofer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="empresas\FrmClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="empresas\FrmClientes.Designer.cs">
+      <DependentUpon>FrmClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="empresas\FrmEmpresas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="empresas\FrmEmpresas.Designer.cs">
+      <DependentUpon>FrmEmpresas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="eventos\FrmAgregarEvento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="eventos\FrmAgregarEvento.Designer.cs">
+      <DependentUpon>FrmAgregarEvento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="eventos\FrmEvento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="eventos\FrmEvento.Designer.cs">
+      <DependentUpon>FrmEvento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="eventos\FrmFichaEvento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="eventos\FrmFichaEvento.Designer.cs">
+      <DependentUpon>FrmFichaEvento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="eventos\FrmModificarEvento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="eventos\FrmModificarEvento.Designer.cs">
+      <DependentUpon>FrmModificarEvento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmPrincipal.Designer.cs">
+      <DependentUpon>FrmPrincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="mecanicos\FrmMecanicos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="mecanicos\FrmMecanicos.Designer.cs">
+      <DependentUpon>FrmMecanicos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="reparaciones\FrmReparaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="reparaciones\FrmReparaciones.Designer.cs">
+      <DependentUpon>FrmReparaciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vehiculos\furgones\FrmAgregarFurgon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vehiculos\furgones\FrmAgregarFurgon.Designer.cs">
+      <DependentUpon>FrmAgregarFurgon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vehiculos\furgones\FrmFichaFurgon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vehiculos\furgones\FrmFichaFurgon.Designer.cs">
+      <DependentUpon>FrmFichaFurgon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vehiculos\furgones\FrmModificarFurgon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vehiculos\furgones\FrmModificarFurgon.Designer.cs">
+      <DependentUpon>FrmModificarFurgon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="movimientos\FrmAgregarMovimiento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="movimientos\FrmAgregarMovimiento.Designer.cs">
+      <DependentUpon>FrmAgregarMovimiento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="movimientos\FrmFichaMovimiento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="movimientos\FrmFichaMovimiento.Designer.cs">
+      <DependentUpon>FrmFichaMovimiento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="movimientos\FrmModificarMovimiento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="movimientos\FrmModificarMovimiento.Designer.cs">
+      <DependentUpon>FrmModificarMovimiento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="movimientos\FrmMovimientos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="movimientos\FrmMovimientos.Designer.cs">
+      <DependentUpon>FrmMovimientos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="vehiculos\tractores\FrmAgregarTractor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vehiculos\tractores\FrmAgregarTractor.Designer.cs">
+      <DependentUpon>FrmAgregarTractor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vehiculos\tractores\FrmFichaTractor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vehiculos\tractores\FrmFichaTractor.Designer.cs">
+      <DependentUpon>FrmFichaTractor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vehiculos\tractores\FrmModificarTractor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vehiculos\tractores\FrmModificarTractor.Designer.cs">
+      <DependentUpon>FrmModificarTractor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vehiculos\utilitarios\FrmUtilitarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vehiculos\utilitarios\FrmUtilitarios.Designer.cs">
+      <DependentUpon>FrmUtilitarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vehiculos\FrmVehiculos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vehiculos\FrmVehiculos.Designer.cs">
+      <DependentUpon>FrmVehiculos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="viajes\FrmViajes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="viajes\FrmViajes.Designer.cs">
+      <DependentUpon>FrmViajes.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="articulos\FrmRepuestos.resx">
+      <DependentUpon>FrmRepuestos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="choferes\FrmAgregarChofer.resx">
+      <DependentUpon>FrmAgregarChofer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="choferes\FrmChoferes.resx">
+      <DependentUpon>FrmChoferes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="choferes\FrmChoferesInactivos.resx">
+      <DependentUpon>FrmChoferesInactivos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="choferes\FrmFichaChofer.resx">
+      <DependentUpon>FrmFichaChofer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="choferes\FrmModificarChofer.resx">
+      <DependentUpon>FrmModificarChofer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="empresas\FrmClientes.resx">
+      <DependentUpon>FrmClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="empresas\FrmEmpresas.resx">
+      <DependentUpon>FrmEmpresas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="eventos\FrmAgregarEvento.resx">
+      <DependentUpon>FrmAgregarEvento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="eventos\FrmEvento.resx">
+      <DependentUpon>FrmEvento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="eventos\FrmFichaEvento.resx">
+      <DependentUpon>FrmFichaEvento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="eventos\FrmModificarEvento.resx">
+      <DependentUpon>FrmModificarEvento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmPrincipal.resx">
+      <DependentUpon>FrmPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="mecanicos\FrmMecanicos.resx">
+      <DependentUpon>FrmMecanicos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="reparaciones\FrmReparaciones.resx">
+      <DependentUpon>FrmReparaciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vehiculos\furgones\FrmAgregarFurgon.resx">
+      <DependentUpon>FrmAgregarFurgon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vehiculos\furgones\FrmFichaFurgon.resx">
+      <DependentUpon>FrmFichaFurgon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vehiculos\furgones\FrmModificarFurgon.resx">
+      <DependentUpon>FrmModificarFurgon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="movimientos\FrmAgregarMovimiento.resx">
+      <DependentUpon>FrmAgregarMovimiento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="movimientos\FrmFichaMovimiento.resx">
+      <DependentUpon>FrmFichaMovimiento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="movimientos\FrmModificarMovimiento.resx">
+      <DependentUpon>FrmModificarMovimiento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="movimientos\FrmMovimientos.resx">
+      <DependentUpon>FrmMovimientos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="vehiculos\tractores\FrmAgregarTractor.resx">
+      <DependentUpon>FrmAgregarTractor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vehiculos\tractores\FrmFichaTractor.resx">
+      <DependentUpon>FrmFichaTractor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vehiculos\tractores\FrmModificarTractor.resx">
+      <DependentUpon>FrmModificarTractor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vehiculos\FrmVehiculos.resx">
+      <DependentUpon>FrmVehiculos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vehiculos\utilitarios\FrmUtilitarios.resx">
+      <DependentUpon>FrmUtilitarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="viajes\FrmViajes.resx">
+      <DependentUpon>FrmViajes.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\dominio\dominio.csproj">
+      <Project>{6e4cff34-4484-4aae-b96b-1341a7f331d4}</Project>
+      <Name>dominio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\negocio\negocio.csproj">
+      <Project>{7461d29e-0ec4-4ccd-b12a-78d365c3264f}</Project>
+      <Name>negocio</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

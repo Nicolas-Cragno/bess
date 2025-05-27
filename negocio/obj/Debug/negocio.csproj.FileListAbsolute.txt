@@ -1,0 +1,9 @@
+C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\negocio\obj\Debug\negocio.csproj.AssemblyReference.cache
+C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\negocio\obj\Debug\negocio.csproj.CoreCompileInputs.cache
+C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\negocio\bin\Debug\negocio.dll
+C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\negocio\bin\Debug\negocio.pdb
+C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\negocio\bin\Debug\dominio.dll
+C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\negocio\bin\Debug\dominio.pdb
+C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\negocio\obj\Debug\negocio.csproj.Up2Date
+C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\negocio\obj\Debug\negocio.dll
+C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\negocio\obj\Debug\negocio.pdb
