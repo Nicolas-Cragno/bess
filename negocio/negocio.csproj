@@ -53,6 +53,7 @@
     <Compile Include="ReparacionNegocio.cs" />
     <Compile Include="TractorNegocio.cs" />
     <Compile Include="UtilitarioNegocio.cs" />
+    <Compile Include="Validaciones.cs" />
     <Compile Include="ViajeNegocio.cs" />
   </ItemGroup>
   <ItemGroup>

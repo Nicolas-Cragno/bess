@@ -195,30 +195,36 @@ namespace negocio
         public int buscarDniFull(string nombreCompleto) 
         {
             int dni;
-            var division = nombreCompleto.Split(',');
-            string apellido = division[0];
-            string auxNombre = division[1];
-            int largo = auxNombre.Length;
-            string nombres = "";
-
-            for (int i = 0; i < largo; i++)
+            if (nombreCompleto == "SIN ASIGNAR")
             {
-                if (i > 0)
+                dni = 0;
+            } else
+            {
+                var division = nombreCompleto.Split(',');
+                string apellido = division[0];
+                string auxNombre = division[1];
+                int largo = auxNombre.Length;
+                string nombres = "";
+
+                for (int i = 0; i < largo; i++)
                 {
-                    nombres = nombres + auxNombre[i];
+                    if (i > 0)
+                    {
+                        nombres = nombres + auxNombre[i];
+                    }
+                }
+
+                try
+                {
+                    dni = buscarDni(apellido.ToUpper(), nombres.ToUpper());
+                }
+                catch (Exception)
+                {
+                    dni = 0;
                 }
             }
 
-            try
-            {
-                dni = buscarDni(apellido.ToUpper(), nombres.ToUpper());
-            }
-            catch (Exception)
-            {
-                dni = 0;
-            }
-
-            return dni;
+                return dni;
         }
         public int buscarDni(string apellido, string nombres) 
         {
@@ -427,7 +433,7 @@ namespace negocio
         public int buscarIdTipoMovimiento(string movimiento) 
         {
             AccesoDatos datos = new AccesoDatos();
-            string query = "SELECT idTipoMovimiento FROM " + Tablas.TiposMovimientos + " WHERE nombre=" + movimiento + ";";
+            string query = "SELECT idTipoMovimiento FROM " + Tablas.TiposMovimientos + " WHERE nombre='" + movimiento + "';";
             int id;
 
             try
@@ -444,14 +450,13 @@ namespace negocio
                     id = 0;
                 }
 
+                return id;
             }
             catch (Exception ex)
             {
                 throw ex;
             }
             finally { datos.cerrarConexion(); }
-
-            return id;
         }
         public string buscarTipoMovimiento(int id) 
         {

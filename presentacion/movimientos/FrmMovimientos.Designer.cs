@@ -57,6 +57,7 @@
             this.dgvMovimientos.Size = new System.Drawing.Size(620, 298);
             this.dgvMovimientos.TabIndex = 22;
             this.dgvMovimientos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMovimientos_CellContentClick);
+            this.dgvMovimientos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMovimientos_CellDoubleClick);
             // 
             // tbxMovimientosFiltro
             // 
@@ -100,7 +101,7 @@
             this.Controls.Add(this.lblMovimientosFiltro);
             this.Controls.Add(this.lblMovimientosTitulo);
             this.Name = "FrmMovimientos";
-            this.Text = "FrmMovimientos";
+            this.Text = "Movimientos porteria";
             this.Load += new System.EventHandler(this.FrmMovimientos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMovimientos)).EndInit();
             this.ResumeLayout(false);

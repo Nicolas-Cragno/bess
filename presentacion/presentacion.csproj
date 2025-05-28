@@ -154,23 +154,11 @@
     <Compile Include="vehiculos\furgones\FrmModificarFurgon.Designer.cs">
       <DependentUpon>FrmModificarFurgon.cs</DependentUpon>
     </Compile>
-    <Compile Include="movimientos\FrmAgregarMovimiento.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="movimientos\FrmAgregarMovimiento.Designer.cs">
-      <DependentUpon>FrmAgregarMovimiento.cs</DependentUpon>
-    </Compile>
     <Compile Include="movimientos\FrmFichaMovimiento.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="movimientos\FrmFichaMovimiento.Designer.cs">
       <DependentUpon>FrmFichaMovimiento.cs</DependentUpon>
-    </Compile>
-    <Compile Include="movimientos\FrmModificarMovimiento.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="movimientos\FrmModificarMovimiento.Designer.cs">
-      <DependentUpon>FrmModificarMovimiento.cs</DependentUpon>
     </Compile>
     <Compile Include="movimientos\FrmMovimientos.cs">
       <SubType>Form</SubType>
@@ -270,14 +258,8 @@
     <EmbeddedResource Include="vehiculos\furgones\FrmModificarFurgon.resx">
       <DependentUpon>FrmModificarFurgon.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="movimientos\FrmAgregarMovimiento.resx">
-      <DependentUpon>FrmAgregarMovimiento.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="movimientos\FrmFichaMovimiento.resx">
       <DependentUpon>FrmFichaMovimiento.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="movimientos\FrmModificarMovimiento.resx">
-      <DependentUpon>FrmModificarMovimiento.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="movimientos\FrmMovimientos.resx">
       <DependentUpon>FrmMovimientos.cs</DependentUpon>

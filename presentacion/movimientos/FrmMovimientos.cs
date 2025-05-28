@@ -15,6 +15,7 @@ namespace presentacion.movimientos
     public partial class FrmMovimientos : Form
     {
         private List<Movimiento> listadoMovimientos;
+        char ficha = 'F', agregar = 'A', modificar = 'M';
         public FrmMovimientos()
         {
             InitializeComponent();
@@ -27,7 +28,7 @@ namespace presentacion.movimientos
 
         private void btnMovimientosNuevo_Click(object sender, EventArgs e)
         {
-            FrmAgregarMovimiento ventana = new FrmAgregarMovimiento();
+            FrmFichaMovimiento ventana = new FrmFichaMovimiento(agregar);
             ventana.ShowDialog();
             cargar();
         }
@@ -59,6 +60,7 @@ namespace presentacion.movimientos
 
         private void cargar()
         {
+            this.ControlBox = false;
             MovimientoNegocio negocio = new MovimientoNegocio();
             listadoMovimientos = negocio.listar();
             dgvMovimientos.DataSource = listadoMovimientos;
@@ -124,6 +126,15 @@ namespace presentacion.movimientos
             dgvMovimientos.DataSource = null;
             dgvMovimientos.DataSource = listaFiltrada;
             ocultarColumnas();
+        }
+
+        private void dgvMovimientos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Movimiento seleccion = (Movimiento)dgvMovimientos.CurrentRow.DataBoundItem;
+
+            FrmFichaMovimiento fichaMovimiento = new FrmFichaMovimiento(ficha, seleccion);
+            fichaMovimiento.ShowDialog();
+            cargar();
         }
     }
 }

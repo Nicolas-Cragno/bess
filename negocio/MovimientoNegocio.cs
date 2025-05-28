@@ -61,9 +61,31 @@ namespace negocio
 
         public List<string> listarTipos()
         {
-            List<Movimiento> movimientos = listar();
-            List<string> tipos = movimientos.Select(f => f.Tipo).ToList();
-            return tipos;
+            AccesoDatos datos = new AccesoDatos();
+            List<string> listadoTipos = new List<string>();
+            string query = "SELECT nombre FROM " + AccesoDatos.Tablas.TiposMovimientos + ";";
+
+            try
+            {
+                datos.setearConsulta(query);
+                datos.ejecutarLectura();
+
+                while(datos.Lector.Read())
+                {
+                    string auxTipo;
+
+                    auxTipo = (string)datos.Lector["nombre"];
+
+                    listadoTipos.Add(auxTipo);
+                }
+
+                return listadoTipos;
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            finally { datos.cerrarConexion(); }
         }
     }
 }
