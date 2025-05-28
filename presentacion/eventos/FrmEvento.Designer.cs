@@ -44,6 +44,7 @@
             this.btnEventosNuevo.TabIndex = 17;
             this.btnEventosNuevo.Text = "Agregar Evento";
             this.btnEventosNuevo.UseVisualStyleBackColor = true;
+            this.btnEventosNuevo.Click += new System.EventHandler(this.btnEventosNuevo_Click);
             // 
             // dgvEventos
             // 
@@ -55,6 +56,7 @@
             this.dgvEventos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvEventos.Size = new System.Drawing.Size(620, 298);
             this.dgvEventos.TabIndex = 16;
+            this.dgvEventos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEventos_CellDoubleClick);
             // 
             // tbxEventosFiltro
             // 
@@ -62,6 +64,7 @@
             this.tbxEventosFiltro.Name = "tbxEventosFiltro";
             this.tbxEventosFiltro.Size = new System.Drawing.Size(292, 20);
             this.tbxEventosFiltro.TabIndex = 15;
+            this.tbxEventosFiltro.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxEventosFiltro_KeyPress);
             // 
             // lblEventosFiltro
             // 

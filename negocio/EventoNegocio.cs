@@ -100,6 +100,34 @@ namespace negocio
             finally { datos.cerrarConexion(); }
         } // lista dependiendo si es persona, tractor o furgon
 
+        public List<string> listarTipos()
+        {
+            AccesoDatos datos = new AccesoDatos();
+            List<string> tipos = new List<string>();
+            string query = "SELECT nombre FROM " + AccesoDatos.Tablas.TiposEventos + ";";
+
+            try
+            {
+                datos.setearConsulta(query);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read()) 
+                {
+                    string auxNombre;
+
+                    auxNombre = (string)datos.Lector["nombre"];
+
+                    tipos.Add(auxNombre);
+                }
+
+                return tipos;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally { datos.cerrarConexion(); }
+        }
         public void agregar(Evento evento)
         {
             AccesoDatos datos = new AccesoDatos();

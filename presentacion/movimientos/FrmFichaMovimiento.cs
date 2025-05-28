@@ -58,7 +58,7 @@ namespace presentacion.movimientos
         {
             cargarListas();
             cargarDatos();
-            lblFichaMovimientoTitulo.Text = movimiento.Fecha.ToString();
+            lblFichaMovimientoTitulo.Text = movimiento.Fecha.ToString("dd/MM/yyyy");
             lblFichaMovimientoTitulo.TextAlign = ContentAlignment.MiddleCenter;
         }
         private void formularioFicha() 
@@ -75,7 +75,6 @@ namespace presentacion.movimientos
         private void btnFichaMovimientoOK_Click(object sender, EventArgs e)
         {
             ejecutar(modo);
-            //agregar();
             Close();
         }
 

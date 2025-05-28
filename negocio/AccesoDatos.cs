@@ -511,6 +511,30 @@ namespace negocio
             return tipo;
         }
 
+        public int buscarIdTipoEvento(string evento)
+        {
+            AccesoDatos datos = new AccesoDatos ();
+            string query = "SELECT idTipoEvento FROM " + AccesoDatos.Tablas.TiposEventos + " WHERE nombre='" + evento + "';";
+            int tipo;
+            try
+            {
+                datos.setearConsulta (query);
+                datos.ejecutarLectura ();
+
+                if (datos.Lector.Read())
+                {
+                    tipo = (int)datos.Lector["idTipoEvento"];
+                }
+                else
+                {
+                    tipo = 0;
+                }
+
+                return tipo;
+            }
+            catch (Exception ex) { throw ex; }
+            finally { datos.cerrarConexion(); }
+        }
         public string buscarTipoEvento(int id)
         {
             AccesoDatos datos =new AccesoDatos();

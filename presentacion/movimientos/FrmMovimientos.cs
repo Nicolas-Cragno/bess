@@ -64,6 +64,11 @@ namespace presentacion.movimientos
             MovimientoNegocio negocio = new MovimientoNegocio();
             listadoMovimientos = negocio.listar();
             dgvMovimientos.DataSource = listadoMovimientos;
+            formatoColumnas();
+        }
+
+        private void formatoColumnas()
+        {
             ocultarColumnas();
             nombrarColumnas();
             anchoColumnas();
@@ -116,7 +121,7 @@ namespace presentacion.movimientos
 
             if(filtro!= "")
             {
-                listaFiltrada = listadoMovimientos.FindAll(ev => ev.Tipo.ToString().Contains(filtro.ToUpper()) || ev.Fecha.ToString().Contains(filtro.ToUpper()) || ev.Persona.ToString().Contains(filtro.ToUpper()) || ev.Tractor.ToString().Contains(filtro.ToUpper()) || ev.Furgon.ToString().Contains(filtro.ToUpper()));
+                listaFiltrada = listadoMovimientos.FindAll(mv => mv.Tipo.ToString().Contains(filtro.ToUpper()) || mv.Fecha.ToString().Contains(filtro.ToUpper()) || mv.Persona.ToString().Contains(filtro.ToUpper()) || mv.Tractor.ToString().Contains(filtro.ToUpper()) || mv.Furgon.ToString().Contains(filtro.ToUpper()));
             }
             else
             {
@@ -125,7 +130,7 @@ namespace presentacion.movimientos
 
             dgvMovimientos.DataSource = null;
             dgvMovimientos.DataSource = listaFiltrada;
-            ocultarColumnas();
+            formatoColumnas();
         }
 
         private void dgvMovimientos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

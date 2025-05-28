@@ -18,10 +18,8 @@ C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\presentacion\obj\Debug\present
 C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\presentacion\obj\Debug\presentacion.choferes.FrmFichaChofer.resources
 C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\presentacion\obj\Debug\presentacion.choferes.FrmModificarChofer.resources
 C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\presentacion\obj\Debug\presentacion.choferes.FrmAgregarChofer.resources
-C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\presentacion\obj\Debug\presentacion.eventos.FrmAgregarEvento.resources
 C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\presentacion\obj\Debug\presentacion.eventos.FrmEvento.resources
 C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\presentacion\obj\Debug\presentacion.eventos.FrmFichaEvento.resources
-C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\presentacion\obj\Debug\presentacion.eventos.FrmModificarEvento.resources
 C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\presentacion\obj\Debug\presentacion.furgones.FrmAgregarFurgon.resources
 C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\presentacion\obj\Debug\presentacion.furgones.FrmFichaFurgon.resources
 C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\presentacion\obj\Debug\presentacion.furgones.FrmModificarFurgon.resources

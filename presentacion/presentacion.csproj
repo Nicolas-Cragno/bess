@@ -94,12 +94,6 @@
     <Compile Include="empresas\FrmEmpresas.Designer.cs">
       <DependentUpon>FrmEmpresas.cs</DependentUpon>
     </Compile>
-    <Compile Include="eventos\FrmAgregarEvento.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="eventos\FrmAgregarEvento.Designer.cs">
-      <DependentUpon>FrmAgregarEvento.cs</DependentUpon>
-    </Compile>
     <Compile Include="eventos\FrmEvento.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -111,12 +105,6 @@
     </Compile>
     <Compile Include="eventos\FrmFichaEvento.Designer.cs">
       <DependentUpon>FrmFichaEvento.cs</DependentUpon>
-    </Compile>
-    <Compile Include="eventos\FrmModificarEvento.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="eventos\FrmModificarEvento.Designer.cs">
-      <DependentUpon>FrmModificarEvento.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmPrincipal.cs">
       <SubType>Form</SubType>
@@ -228,17 +216,11 @@
     <EmbeddedResource Include="empresas\FrmEmpresas.resx">
       <DependentUpon>FrmEmpresas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="eventos\FrmAgregarEvento.resx">
-      <DependentUpon>FrmAgregarEvento.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="eventos\FrmEvento.resx">
       <DependentUpon>FrmEvento.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="eventos\FrmFichaEvento.resx">
       <DependentUpon>FrmFichaEvento.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="eventos\FrmModificarEvento.resx">
-      <DependentUpon>FrmModificarEvento.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmPrincipal.resx">
       <DependentUpon>FrmPrincipal.cs</DependentUpon>

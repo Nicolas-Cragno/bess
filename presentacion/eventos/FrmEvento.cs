@@ -15,6 +15,7 @@ namespace presentacion.eventos
     public partial class FrmEvento : Form
     {
         private List<Evento> listadoEventos;
+        char ficha = 'F', agregar = 'A', modificar = 'M';
         public FrmEvento()
         {
             InitializeComponent();
@@ -27,13 +28,20 @@ namespace presentacion.eventos
 
         private void cargar()
         {
+            this.ControlBox = false;
             EventoNegocio negocio = new EventoNegocio();
             listadoEventos = negocio.listar();
             dgvEventos.DataSource = listadoEventos;
+            formatoColumnas();
+        }
+
+        private void formatoColumnas()
+        {
             nombrarColumnas();
             ocultarColumnas();
             ordenarColumnas();
             anchoColumnas();
+
         }
 
         private void ocultarColumnas()
@@ -41,8 +49,6 @@ namespace presentacion.eventos
             
             //dgvEventos.Columns[""].Visible = false;
         }
-
-
 
         private void anchoColumnas()
         {
@@ -53,6 +59,46 @@ namespace presentacion.eventos
                 column.Width += 15;
             }
             dgvEventos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+        }
+
+        private void tbxEventosFiltro_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            filtrar();
+        }
+
+        private void filtrar()
+        {
+            List<Evento> listaFiltrada;
+            string filtro = tbxEventosFiltro.Text;
+
+            if(filtro != "")
+            {
+                listaFiltrada = listadoEventos.FindAll(ev => ev.Tipo.ToString().Contains(filtro.ToUpper()) || ev.Fecha.ToString().Contains(filtro.ToUpper()) || ev.Persona.ToString().Contains(filtro.ToUpper()) || ev.Tractor.ToString().Contains(filtro.ToUpper()) || ev.Furgon.ToString().Contains(filtro.ToUpper()));
+            }
+            else
+            {
+                listaFiltrada = listadoEventos;
+            }
+
+            dgvEventos.DataSource = null;
+            dgvEventos.DataSource = listaFiltrada;
+            formatoColumnas();
+        }
+
+        private void dgvEventos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Evento seleccion = (Evento)dgvEventos.CurrentRow.DataBoundItem;
+
+            FrmFichaEvento fichaEvento = new FrmFichaEvento(ficha, seleccion);
+            fichaEvento.ShowDialog();
+            cargar();
+        }
+
+        private void btnEventosNuevo_Click(object sender, EventArgs e)
+        {
+            FrmFichaEvento ventana = new FrmFichaEvento(agregar);
+            ventana.ShowDialog();
+            cargar();
         }
 
         private void ordenarColumnas()
