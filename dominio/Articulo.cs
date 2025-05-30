@@ -13,7 +13,8 @@ namespace dominio
         public string Nombre { get; set; }
         public string Detalle {  get; set; }
         public string Marca { get; set; }
-        public int Stock { get; set; }
-
+        public double Stock { get; set; }
+        public string Unidad { get; set; }
+        public double Cantidad { get; set; }
     }
 }

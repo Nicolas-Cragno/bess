@@ -80,6 +80,7 @@ namespace presentacion.reparaciones
                 case 'A':
                     formularioAgregar();
                     cargarRepuestos(dgvFichaReparacionesArticulos);
+                    
                     break;
                 case 'M':
                     formularioModificar();
@@ -109,6 +110,7 @@ namespace presentacion.reparaciones
                 btnAgregar.Text = "+";
                 btnAgregar.UseColumnTextForButtonValue = true;
                 dgv.Columns.Add(btnAgregar);
+                formatoColumnas(dgv);
             }
         }
 
@@ -118,10 +120,11 @@ namespace presentacion.reparaciones
             {
                 DataGridViewButtonColumn btnEliminar = new DataGridViewButtonColumn();
                 btnEliminar.Name = "Eliminar";
-                btnEliminar.HeaderText = "Acción";
-                btnEliminar.Text = "X";
+                btnEliminar.HeaderText = "";
+                btnEliminar.Text = "x";
                 btnEliminar.UseColumnTextForButtonValue = true;
                 dgv.Columns.Add(btnEliminar);
+                formatoColumnas(dgv);
             }
         }
         private void formularioFicha() 
@@ -271,8 +274,11 @@ namespace presentacion.reparaciones
             // grilla articulos
             dgv.Columns["Id"].Visible = false;
             dgv.Columns["Detalle"].Visible = false;
+            if(dgv == dgvFichaReparacionesArticulos)
+            {
+                dgv.Columns["Cantidad"].Visible = false;
+            }
         }
-
         private void anchoColumnas(DataGridView dgv)
         {
             // grilla articulos
@@ -291,6 +297,8 @@ namespace presentacion.reparaciones
             dgv.Columns["CodigoProveedor"].DisplayIndex = 1;
             dgv.Columns["Marca"].DisplayIndex = 2;
             dgv.Columns["Stock"].DisplayIndex = 3;
+            dgv.Columns["Unidad"].DisplayIndex = 4;
+            dgv.Columns["Cantidad"].DisplayIndex = 5;
         }
         private void nombrarColumnas(DataGridView dgv)
         {
@@ -298,7 +306,9 @@ namespace presentacion.reparaciones
             dgv.Columns["Nombre"].HeaderText = "REPUESTO";
             dgv.Columns["CodigoProveedor"].HeaderText = "CODIGO";
             dgv.Columns["Marca"].HeaderText = "MARCA";
-            dgv.Columns["Stock"].HeaderText = "DISPONIBLE";
+            dgv.Columns["Stock"].HeaderText = "STOCK";
+            dgv.Columns["Unidad"].HeaderText = "";
+            dgv.Columns["Cantidad"].HeaderText = "CANT.";
         }
 
         // ACCIONES DE AGREGAR ELIMINAR ARTICULOS/REPUESTOS
@@ -312,24 +322,34 @@ namespace presentacion.reparaciones
 
                 Articulo repuesto = listadoRepuestos[e.RowIndex];
 
-                if (!listadoRepuestosAgregados.Any(r => r.Id == repuesto.Id))
+                if (repuesto.Stock > 0)
                 {
-                    listadoRepuestosAgregados.Add(repuesto);
-                    dgvFichaReparacionesRepuestos.DataSource = null;
-                    dgvFichaReparacionesRepuestos.DataSource = listadoRepuestosAgregados;
-                    formatoColumnas(dgvFichaReparacionesRepuestos);
-                    btnEliminar(dgvFichaReparacionesRepuestos); // se agrega el boton de eliminar
+                    if (!listadoRepuestosAgregados.Any(r => r.Id == repuesto.Id))
+                    {
+                        listadoRepuestosAgregados.Add(repuesto);
+                        dgvFichaReparacionesRepuestos.DataSource = null;
+                        dgvFichaReparacionesRepuestos.DataSource = listadoRepuestosAgregados;
+                        formatoColumnas(dgvFichaReparacionesRepuestos);
+                        btnEliminar(dgvFichaReparacionesRepuestos); // se agrega el boton de eliminar
+                    }
+                    else
+                    {
+                        MessageBox.Show("Este repuesto ya fue agregado.");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Este repuesto ya fue agregado.");
+                    MessageBox.Show("Repuesto sin Stock");
                 }
+
             }
+
+            
         }
         private void dgvFichaReparacionesRepuestos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             // BOTON Eliminar DE ARTICULOS QUE SUMA EL ARTICULO A LOS REPUESTOS AGREGADOS.
-            if (e.RowIndex >= 0 && dgvFichaReparacionesRepuestos.Columns[e.ColumnIndex].Name == "Eliminar")
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0 && dgvFichaReparacionesRepuestos.Columns[e.ColumnIndex].Name == "Eliminar")
             {
                 int id = (int)dgvFichaReparacionesRepuestos.Rows[e.RowIndex].Cells["Id"].Value;
                 var item = listadoRepuestosAgregados.FirstOrDefault(r => r.Id == id);
@@ -338,8 +358,17 @@ namespace presentacion.reparaciones
                     listadoRepuestosAgregados.Remove(item);
                     dgvFichaReparacionesRepuestos.DataSource = null;
                     dgvFichaReparacionesRepuestos.DataSource = listadoRepuestosAgregados;
+                    formatoColumnas(dgvFichaReparacionesRepuestos);
                     btnEliminar(dgvFichaReparacionesRepuestos);
                 }
+            }
+
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0 && dgvFichaReparacionesRepuestos.Columns[e.ColumnIndex].Name == "Cantidad")
+            {
+                Articulo repuesto = listadoRepuestosAgregados[e.RowIndex];
+
+                FrmArticuloCantidad ventana = new FrmArticuloCantidad(repuesto);
+                ventana.ShowDialog();
             }
         }
 

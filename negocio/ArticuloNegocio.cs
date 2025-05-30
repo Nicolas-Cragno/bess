@@ -15,7 +15,7 @@ namespace negocio
             AccesoDatos datos = new AccesoDatos();
             int idSector = datos.buscarIdSector(sector);
 
-            string campos = "SELECT idArticulo, codigoProveedor, nombre, marca, detalle, stock";
+            string campos = "SELECT idArticulo, codigoProveedor, nombre, marca, detalle, stock, idUnidad";
             string database = " FROM " + AccesoDatos.Tablas.Articulos;
             string condicion = " WHERE idSector =" + idSector + ";";
             string query = campos + database + condicion;
@@ -34,7 +34,8 @@ namespace negocio
                     auxArticulo.Nombre = (string)datos.Lector["nombre"];
                     auxArticulo.Marca = (string)datos.Lector["marca"];
                     auxArticulo.Detalle = (string)datos.Lector["detalle"];
-                    auxArticulo.Stock = (int)datos.Lector["stock"];
+                    auxArticulo.Stock = (double)datos.Lector["stock"];
+                    auxArticulo.Unidad = datos.buscarUnidadMedida((int)datos.Lector["idArticulo"]);
 
                     listaArticulos.Add(auxArticulo);    
                 }

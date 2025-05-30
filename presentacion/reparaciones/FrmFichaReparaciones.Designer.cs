@@ -100,7 +100,7 @@
             // 
             // btnFichaReparacionesCerrar
             // 
-            this.btnFichaReparacionesCerrar.Location = new System.Drawing.Point(707, 376);
+            this.btnFichaReparacionesCerrar.Location = new System.Drawing.Point(798, 376);
             this.btnFichaReparacionesCerrar.Name = "btnFichaReparacionesCerrar";
             this.btnFichaReparacionesCerrar.Size = new System.Drawing.Size(74, 23);
             this.btnFichaReparacionesCerrar.TabIndex = 179;
@@ -283,7 +283,7 @@
             // 
             // btnFichaReparacionesAgregar
             // 
-            this.btnFichaReparacionesAgregar.Location = new System.Drawing.Point(725, 61);
+            this.btnFichaReparacionesAgregar.Location = new System.Drawing.Point(816, 60);
             this.btnFichaReparacionesAgregar.Name = "btnFichaReparacionesAgregar";
             this.btnFichaReparacionesAgregar.Size = new System.Drawing.Size(56, 23);
             this.btnFichaReparacionesAgregar.TabIndex = 203;
@@ -294,7 +294,7 @@
             // 
             this.cbxFichaReparacionesFiltroArticulos.Location = new System.Drawing.Point(384, 63);
             this.cbxFichaReparacionesFiltroArticulos.Name = "cbxFichaReparacionesFiltroArticulos";
-            this.cbxFichaReparacionesFiltroArticulos.Size = new System.Drawing.Size(312, 20);
+            this.cbxFichaReparacionesFiltroArticulos.Size = new System.Drawing.Size(397, 20);
             this.cbxFichaReparacionesFiltroArticulos.TabIndex = 202;
             // 
             // lblFichaReparacionesFiltroArticulos
@@ -315,7 +315,7 @@
             this.dgvFichaReparacionesRepuestos.MultiSelect = false;
             this.dgvFichaReparacionesRepuestos.Name = "dgvFichaReparacionesRepuestos";
             this.dgvFichaReparacionesRepuestos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvFichaReparacionesRepuestos.Size = new System.Drawing.Size(438, 124);
+            this.dgvFichaReparacionesRepuestos.Size = new System.Drawing.Size(529, 124);
             this.dgvFichaReparacionesRepuestos.TabIndex = 200;
             this.dgvFichaReparacionesRepuestos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFichaReparacionesRepuestos_CellClick);
             // 
@@ -337,7 +337,7 @@
             this.dgvFichaReparacionesArticulos.MultiSelect = false;
             this.dgvFichaReparacionesArticulos.Name = "dgvFichaReparacionesArticulos";
             this.dgvFichaReparacionesArticulos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvFichaReparacionesArticulos.Size = new System.Drawing.Size(438, 124);
+            this.dgvFichaReparacionesArticulos.Size = new System.Drawing.Size(529, 124);
             this.dgvFichaReparacionesArticulos.TabIndex = 204;
             this.dgvFichaReparacionesArticulos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFichaReparacionesArticulos_CellClick);
             // 
@@ -355,7 +355,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(793, 411);
+            this.ClientSize = new System.Drawing.Size(884, 411);
             this.Controls.Add(this.lblFichaReparacionesTituloRepuestos);
             this.Controls.Add(this.dgvFichaReparacionesArticulos);
             this.Controls.Add(this.btnFichaReparacionesAgregar);
