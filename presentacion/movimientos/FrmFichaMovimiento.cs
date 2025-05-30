@@ -14,6 +14,7 @@ namespace presentacion.movimientos
 {
     public partial class FrmFichaMovimiento : Form
     {
+        // Carga del Form
         private char modo;
         private Movimiento movimiento;
         int activo = 1, choferL = 1;
@@ -28,7 +29,23 @@ namespace presentacion.movimientos
         {
             configuracion(modo);
         }
-
+        private void cargarListas()
+        {
+            ChoferNegocio choferNegocio = new ChoferNegocio();
+            TractorNegocio tractorNegocio = new TractorNegocio();
+            FurgonNegocio furgonNegocio = new FurgonNegocio();
+            MovimientoNegocio movimientoNegocio = new MovimientoNegocio();
+            cbxFichaMovimientoInterno.DataSource = tractorNegocio.listarInternos(activo);
+            cbxFichaMovimientoFurgon.DataSource = furgonNegocio.listarInternos(activo);
+            cbxFichaMovimientoTipo.DataSource = movimientoNegocio.listarTipos();
+            cbxFichaMovimientoChofer.DataSource = choferNegocio.listarNombres(activo, choferL);
+            cbxFichaMovimientoInterno.SelectedIndex = -1;
+            cbxFichaMovimientoFurgon.SelectedIndex = -1;
+            cbxFichaMovimientoTipo.SelectedIndex = -1;
+            cbxFichaMovimientoChofer.SelectedIndex = -1;
+        }
+        
+        // Funciones particulares segun MODO
         private void configuracion(char mSelect)
         {
             this.ControlBox = false;
@@ -49,7 +66,11 @@ namespace presentacion.movimientos
                     break; 
             }
         }
-
+        private void formularioFicha() 
+        {
+            cargarDatos();
+            bloquearDatos();
+        }
         private void formularioAgregar() 
         {
             cargarListas();
@@ -61,39 +82,6 @@ namespace presentacion.movimientos
             lblFichaMovimientoTitulo.Text = movimiento.Fecha.ToString("dd/MM/yyyy");
             lblFichaMovimientoTitulo.TextAlign = ContentAlignment.MiddleCenter;
         }
-        private void formularioFicha() 
-        {
-            cargarDatos();
-            bloquearDatos();
-        }
-
-        private void btnFichaMovimientoCerrar_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void btnFichaMovimientoOK_Click(object sender, EventArgs e)
-        {
-            ejecutar(modo);
-            Close();
-        }
-
-        private void cargarListas()
-        {
-            ChoferNegocio choferNegocio = new ChoferNegocio();
-            TractorNegocio tractorNegocio = new TractorNegocio();
-            FurgonNegocio furgonNegocio = new FurgonNegocio();
-            MovimientoNegocio movimientoNegocio = new MovimientoNegocio();
-            cbxFichaMovimientoInterno.DataSource = tractorNegocio.listarInternos(activo);
-            cbxFichaMovimientoFurgon.DataSource = furgonNegocio.listarInternos(activo);
-            cbxFichaMovimientoTipo.DataSource = movimientoNegocio.listarTipos();
-            cbxFichaMovimientoChofer.DataSource = choferNegocio.listarNombres(activo, choferL);
-            cbxFichaMovimientoInterno.SelectedIndex = -1;
-            cbxFichaMovimientoFurgon.SelectedIndex = -1;
-            cbxFichaMovimientoTipo.SelectedIndex = -1;
-            cbxFichaMovimientoChofer.SelectedIndex = -1;
-        }
-
         private void cargarDatos()
         {
             // listados
@@ -132,6 +120,13 @@ namespace presentacion.movimientos
             tbxFichaMovimientoDetalle.ReadOnly = true;
         }
 
+        // Hacia otros Forms / cerrar
+        private void btnFichaMovimientoCerrar_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+        
+        // Acciones contra DB
         private Movimiento capturarDatos()
         {
             Movimiento auxMovimiento = new Movimiento();
@@ -154,34 +149,6 @@ namespace presentacion.movimientos
 
             return auxMovimiento;
         }
-
-        private void ejecutar(char tmodo)
-        {
-            switch (tmodo)
-            {
-                case 'F':
-                    editar();
-                    break;
-                case 'A':
-                    agregar();
-                    break;
-                case 'M':
-                    modificar(movimiento.Id);
-                    break;
-                default:
-                    MessageBox.Show("Error");
-                    break;
-            }
-        }
-        
-        private void editar()
-        {
-            char edit = 'M';
-            FrmFichaMovimiento eMovimiento = new FrmFichaMovimiento(edit, movimiento);
-            eMovimiento.ShowDialog();
-            Close();
-        }
-
         private void agregar()
         {
             AccesoDatos datos = new AccesoDatos();
@@ -239,5 +206,36 @@ namespace presentacion.movimientos
             }
             finally { datos.cerrarConexion(); }
         }
+        private void editar()
+        {
+            char edit = 'M';
+            FrmFichaMovimiento eMovimiento = new FrmFichaMovimiento(edit, movimiento);
+            eMovimiento.ShowDialog();
+            Close();
+        }
+        private void btnFichaMovimientoOK_Click(object sender, EventArgs e)
+        {
+            ejecutar(modo);
+            Close();
+        }
+        private void ejecutar(char tmodo)
+        {
+            switch (tmodo)
+            {
+                case 'F':
+                    editar();
+                    break;
+                case 'A':
+                    agregar();
+                    break;
+                case 'M':
+                    modificar(movimiento.Id);
+                    break;
+                default:
+                    MessageBox.Show("Error");
+                    break;
+            }
+        }
+        
     }
 }

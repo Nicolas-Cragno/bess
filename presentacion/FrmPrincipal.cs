@@ -119,6 +119,7 @@ namespace presentacion
 
         private void reparacionesToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            cerrarVentanas();
             FrmReparaciones ventana = new FrmReparaciones();
             ventana.MdiParent = this;
             ventana.WindowState = FormWindowState.Maximized;

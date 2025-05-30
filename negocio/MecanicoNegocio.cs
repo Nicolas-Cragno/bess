@@ -48,5 +48,14 @@ namespace negocio
             }
             finally { datos.cerrarConexion(); }
         }
+
+        public List<string> listarNombres(int activo, int puesto)
+        {
+            List<Mecanico> mecanicos = new List<Mecanico>();
+            mecanicos = listar(activo, puesto);
+            List<string> nombres = mecanicos.Select(ch => ch.Apellido + ", " + ch.Nombres).ToList();
+
+            return nombres;
+        }
     }
 }

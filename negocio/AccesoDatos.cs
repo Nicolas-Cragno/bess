@@ -36,6 +36,7 @@ namespace negocio
             public static readonly string Furgones = db + ".furgones";
             public static readonly string EstadosFurgones = db + ".estados_furgones";
             public static readonly string Utilitarios = db + ".utilitarios";
+            public static readonly string TiposVehiculos = db + ".tipos_vehiculos";
 
             // EMPRESAS / CLIENTES
             public static readonly string Empresas = db + ".empresas";
@@ -55,6 +56,7 @@ namespace negocio
             // ARTICULOS STOCK
             public static readonly string Articulos = db + ".articulos";
             public static readonly string UsoArticulos = db + ".uso_articulos";
+            public static readonly string Unidades = db + ".unidades";
         }
         public AccesoDatos()
         {
@@ -359,9 +361,116 @@ namespace negocio
 
             return idTipoEmpresa;
         }
+
+        // funciones para stock / articulos / repuestos
+
+        public string buscarArticulo(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            string articulo;
+            string query = "SELECT nombre FROM " + Tablas.Articulos + " WHERE idArticulo=" + id + ";";
+            try
+            {
+                datos.setearConsulta(query);
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    articulo = (string)datos.Lector["nombre"];
+                }
+                else
+                {
+                    articulo = "SIN ASIGNAR";
+                }
+
+                return articulo;
+            }
+            catch (Exception ex) { throw ex; }
+            finally { datos.cerrarConexion(); }
+        }
+
+        public int buscarIdUnidadMedidaArticulo(int idArticulo)
+        {
+            AccesoDatos datos = new AccesoDatos ();
+            string query = "SELECT idUnidad FROM " + Tablas.Articulos + " WHERE idArticulo=" + idArticulo + ";";
+            int id;
+
+            try
+            {
+                datos.setearConsulta (query);
+                datos.ejecutarLectura ();
+
+                if (datos.Lector.Read())
+                {
+                    id = (int)datos.Lector["idUnidad"];
+                } else
+                {
+                    id = 1;
+                }
+
+                return id;
+            }
+            catch (Exception ex) { throw ex; }
+            finally { datos.cerrarConexion(); }
+            
+        }
+
+        public string buscarUnidadMedida(int idArticulo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            int idUnidad = datos.buscarIdUnidadMedidaArticulo(idArticulo);
+            string query = "SELECT nombre FROM " + Tablas.Unidades + " WHERE id=" + idUnidad + ";";
+            string unidad;
+
+            try
+            {
+                datos.setearConsulta(query);
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    unidad = (string)datos.Lector["nombre"];
+                }
+                else
+                {
+                    unidad = "#N";
+                }
+
+                return unidad;
+            }
+            catch (Exception ex) { throw ex; }
+            finally { datos.cerrarConexion(); }
+        }
+
+        public string buscarUnidadMedidaDetalle(int idArticulo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            int idUnidad = datos.buscarIdUnidadMedidaArticulo(idArticulo);
+            string query = "SELECT detalle FROM " + Tablas.Unidades + " WHERE id=" + idUnidad + ";";
+            string detalle;
+
+            try
+            {
+                datos.setearConsulta(query);
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    detalle = (string)datos.Lector["detalle"];
+                }
+                else
+                {
+                    detalle = "NO ASIGNADO";
+                }
+
+                return detalle;
+            }
+            catch (Exception ex) { throw ex; }
+            finally { datos.cerrarConexion(); }
+        }
         
-        
-        // funciones para vehiculos
+            
+            // funciones para vehiculos
         public string buscarSatelital(int id) 
         {
             AccesoDatos datos = new AccesoDatos();
@@ -427,7 +536,53 @@ namespace negocio
 
             return idSatelital;
         }
+        public int buscarIdTipoVehiculo(string tipo) 
+        {
+            AccesoDatos datos = new AccesoDatos();
+            string query = "SELECT idVehiculo FROM " + Tablas.TiposVehiculos + " WHERE nombre='" + tipo + "';";
+            int idTipo;
+            try
+            {
+                datos.setearConsulta(query);
+                datos.ejecutarLectura();
 
+                if (Lector.Read())
+                {
+                    idTipo = (int)datos.Lector["idVehiculo"];
+                }
+                else
+                {
+                    idTipo = 0;
+                }
+
+                return idTipo;
+            }
+            catch (Exception e) { throw e; }
+            finally { datos.cerrarConexion(); }
+        }
+        public string buscarTipoVehiculo(int tipo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            string query = "SELECT nombre FROM " + Tablas.TiposVehiculos + " WHERE idVehiculo=" + tipo + ";";
+            string vehiculo;
+            try
+            {
+                datos.setearConsulta(query);
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    vehiculo = (string)datos.Lector["nombre"];
+                } else
+                {
+                    vehiculo = "SIN ASIGNAR";
+                }
+
+                return vehiculo;
+            }
+            catch(Exception e) { throw e; }
+            finally { datos.cerrarConexion();}
+        }
 
         // funciones para eventos
         public int buscarIdTipoMovimiento(string movimiento) 
@@ -595,6 +750,30 @@ namespace negocio
             return estado;
         }
 
+        public List<string> horarios(int i, int f)
+        {
+            List<string> hs = new List<string>();
+
+            DateTime inicio = DateTime.Today.AddHours(i);
+            DateTime fin = DateTime.Today.AddHours(f);
+
+            while(inicio <= fin){
+                hs.Add(inicio.ToString("HH:mm"));
+                inicio = inicio.AddMinutes(30);
+            }
+
+            return hs;
+        }
+
+        public List<string> unidadesHs()
+        {
+            return new List<string>
+            {
+                "MINUTOS",
+                "HORAS",
+                "DIAS"
+            };
+        }
 
         // funciones para empresas y relacionadas
 

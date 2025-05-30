@@ -40,5 +40,14 @@ namespace negocio
             return nValido;
         }
 
+        public DateTime dtpFecha(DateTime fecha, TimeSpan hora)
+        {
+            DateTime fechaHora;
+
+            fechaHora = fecha.Add(hora);
+
+            return fechaHora;
+        }
+
     }
 }

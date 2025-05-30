@@ -14,45 +14,14 @@ namespace presentacion.movimientos
 {
     public partial class FrmMovimientos : Form
     {
+        // Carga del Form
+
         private List<Movimiento> listadoMovimientos;
         char ficha = 'F', agregar = 'A', modificar = 'M';
         public FrmMovimientos()
         {
             InitializeComponent();
         }
-
-        private void btnMovimientosClose_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnMovimientosNuevo_Click(object sender, EventArgs e)
-        {
-            FrmFichaMovimiento ventana = new FrmFichaMovimiento(agregar);
-            ventana.ShowDialog();
-            cargar();
-        }
-
-        private void dgvMovimientos_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void tbxMovimientosFiltro_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblMovimientosFiltro_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblMovimientosTitulo_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void FrmMovimientos_Load(object sender, EventArgs e)
         {
             cargar();
@@ -60,13 +29,58 @@ namespace presentacion.movimientos
 
         private void cargar()
         {
-            this.ControlBox = false;
+            this.ControlBox = false; // oculta el manejo de la ventana superior
             MovimientoNegocio negocio = new MovimientoNegocio();
             listadoMovimientos = negocio.listar();
             dgvMovimientos.DataSource = listadoMovimientos;
             formatoColumnas();
         }
 
+        // Hacia otros Forms / cerrar
+
+        private void btnMovimientosNuevo_Click(object sender, EventArgs e)
+        {
+            FrmFichaMovimiento ventana = new FrmFichaMovimiento(agregar);
+            ventana.ShowDialog();
+            cargar();
+        }
+        private void btnMovimientosClose_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        // Formato de dgv
+
+        private void filtrar()
+        {
+            List<Movimiento> listaFiltrada;
+            string filtro = tbxMovimientosFiltro.Text;
+
+            if(filtro!= "")
+            {
+                listaFiltrada = listadoMovimientos.FindAll(mv => mv.Tipo.ToString().Contains(filtro.ToUpper()) || mv.Fecha.ToString().Contains(filtro.ToUpper()) || mv.Persona.ToString().Contains(filtro.ToUpper()) || mv.Tractor.ToString().Contains(filtro.ToUpper()) || mv.Furgon.ToString().Contains(filtro.ToUpper()));
+            }
+            else
+            {
+                listaFiltrada = listadoMovimientos;
+            }
+
+            dgvMovimientos.DataSource = null;
+            dgvMovimientos.DataSource = listaFiltrada;
+            formatoColumnas();
+        }
+        private void tbxMovimientosFiltro_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            filtrar();
+        }
+        private void dgvMovimientos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Movimiento seleccion = (Movimiento)dgvMovimientos.CurrentRow.DataBoundItem;
+
+            FrmFichaMovimiento fichaMovimiento = new FrmFichaMovimiento(ficha, seleccion);
+            fichaMovimiento.ShowDialog();
+            cargar();
+        }
         private void formatoColumnas()
         {
             ocultarColumnas();
@@ -109,37 +123,25 @@ namespace presentacion.movimientos
             dgvMovimientos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
         }
 
-        private void tbxMovimientosFiltro_KeyPress(object sender, KeyPressEventArgs e)
+        // Sin uso
+        private void dgvMovimientos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            filtrar();
+
         }
 
-        private void filtrar()
+        private void tbxMovimientosFiltro_TextChanged(object sender, EventArgs e)
         {
-            List<Movimiento> listaFiltrada;
-            string filtro = tbxMovimientosFiltro.Text;
 
-            if(filtro!= "")
-            {
-                listaFiltrada = listadoMovimientos.FindAll(mv => mv.Tipo.ToString().Contains(filtro.ToUpper()) || mv.Fecha.ToString().Contains(filtro.ToUpper()) || mv.Persona.ToString().Contains(filtro.ToUpper()) || mv.Tractor.ToString().Contains(filtro.ToUpper()) || mv.Furgon.ToString().Contains(filtro.ToUpper()));
-            }
-            else
-            {
-                listaFiltrada = listadoMovimientos;
-            }
-
-            dgvMovimientos.DataSource = null;
-            dgvMovimientos.DataSource = listaFiltrada;
-            formatoColumnas();
         }
 
-        private void dgvMovimientos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void lblMovimientosFiltro_Click(object sender, EventArgs e)
         {
-            Movimiento seleccion = (Movimiento)dgvMovimientos.CurrentRow.DataBoundItem;
 
-            FrmFichaMovimiento fichaMovimiento = new FrmFichaMovimiento(ficha, seleccion);
-            fichaMovimiento.ShowDialog();
-            cargar();
+        }
+
+        private void lblMovimientosTitulo_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

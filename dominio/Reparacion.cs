@@ -9,5 +9,9 @@ namespace dominio
     public class Reparacion : Evento
     {
         public string Mecanico {  get; set; }
+        public string TipoVehiculo { get; set; }
+        public int InternoAfectado { get; set; }
+        public DateTime FechaFin {  get; set; }
+        public bool Estado {  get; set; }
     }
 }
