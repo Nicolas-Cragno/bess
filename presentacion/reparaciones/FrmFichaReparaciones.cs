@@ -346,7 +346,8 @@ namespace presentacion.reparaciones
 
             
         }
-        private void dgvFichaReparacionesRepuestos_CellClick(object sender, DataGridViewCellEventArgs e)
+
+        private void dgvFichaReparacionesRepuestos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             // BOTON Eliminar DE ARTICULOS QUE SUMA EL ARTICULO A LOS REPUESTOS AGREGADOS.
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0 && dgvFichaReparacionesRepuestos.Columns[e.ColumnIndex].Name == "Eliminar")
@@ -370,6 +371,11 @@ namespace presentacion.reparaciones
                 FrmArticuloCantidad ventana = new FrmArticuloCantidad(repuesto);
                 ventana.ShowDialog();
             }
+        }
+
+        private void dgvFichaReparacionesRepuestos_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
         }
 
 

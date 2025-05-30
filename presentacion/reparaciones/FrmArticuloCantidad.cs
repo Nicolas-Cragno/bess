@@ -24,16 +24,28 @@ namespace presentacion.reparaciones
 
         private void btnFichaReparacionesOK_Click(object sender, EventArgs e)
         {
-            cantidad = float.Parse(tbxArticuloCantidad.Text);
+            // ingreso
+            if (string.IsNullOrWhiteSpace(tbxArticuloCantidad.Text))
+            {
+                // en caso de que deje la celda vacia
+                MessageBox.Show("Ingrese un valor válido.");
+            } else
+            {
+                cantidad = float.Parse(tbxArticuloCantidad.Text);   
+            }
 
-            if(cantidad > articulo.Stock)
-            {
+            // Validar
+             if(cantidad > articulo.Stock)
+             {
                 MessageBox.Show("No alcanza el stock");
-            }
-            else
-            {
+             }
+             else if (cantidad > 0)
+             {
                 Close();
-            }
+             } 
+             else {
+                MessageBox.Show("Ingrese un valor valido");
+             }
         }
 
         private void FrmArticuloCantidad_Load(object sender, EventArgs e)
@@ -50,6 +62,7 @@ namespace presentacion.reparaciones
             lblArticuloCantidadCodigo.Text = articulo.CodigoProveedor.ToString();
             lblArticuloCantidadStock.Text = articulo.Stock.ToString() + " " + articulo.Unidad;
             cantidad = 1;
+            tbxArticuloCantidad.Text = cantidad.ToString();
         }
 
         private void tbxArticuloCantidad_KeyPress(object sender, KeyPressEventArgs e)

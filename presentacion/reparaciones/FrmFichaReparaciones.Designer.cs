@@ -318,6 +318,7 @@
             this.dgvFichaReparacionesRepuestos.Size = new System.Drawing.Size(529, 124);
             this.dgvFichaReparacionesRepuestos.TabIndex = 200;
             this.dgvFichaReparacionesRepuestos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFichaReparacionesRepuestos_CellClick);
+            this.dgvFichaReparacionesRepuestos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFichaReparacionesRepuestos_CellDoubleClick);
             // 
             // lblFichaReparacionesTituloArticulos
             // 
