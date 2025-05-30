@@ -17,11 +17,13 @@ using presentacion.empresas;
 using presentacion.mecanicos;
 using presentacion.reparaciones;
 using presentacion.articulos;
+using negocio;
 
 namespace presentacion
 {
     public partial class FrmPrincipal : Form
     {
+        int sector;
         public FrmPrincipal()
         {
             InitializeComponent();
@@ -117,21 +119,44 @@ namespace presentacion
             ventana.Show();
         }
 
-        private void reparacionesToolStripMenuItem1_Click(object sender, EventArgs e)
+
+
+        private void tsmReparacionesCamiones_Click(object sender, EventArgs e)
         {
             cerrarVentanas();
-            FrmReparaciones ventana = new FrmReparaciones();
+            sector = AccesoDatos.Sectores.TallerCamiones;
+            FrmReparaciones ventana = new FrmReparaciones(sector);
             ventana.MdiParent = this;
             ventana.WindowState = FormWindowState.Maximized;
             ventana.Show();
         }
 
-        private void tsmRepuestos_Click(object sender, EventArgs e)
+        private void tsmRepuestosCamiones_Click(object sender, EventArgs e)
         {
             FrmRepuestos ventana = new FrmRepuestos();
             ventana.MdiParent = this;
             ventana.WindowState = FormWindowState.Maximized;
             ventana.Show();
         }
+        private void tsmReparacionesFurgones_Click(object sender, EventArgs e)
+        {
+            cerrarVentanas();
+            sector = AccesoDatos.Sectores.TallerFurgones;
+            FrmReparaciones ventana = new FrmReparaciones(sector);
+            ventana.MdiParent = this;
+            ventana.WindowState = FormWindowState.Maximized;
+            ventana.Show();
+        }
+
+        // SIN USO
+        private void reparacionesToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            
+        }
+        private void tsmRepuestos_Click(object sender, EventArgs e)
+        {
+            
+        }
+
     }
 }

@@ -46,8 +46,12 @@
             this.dtpFichaReparacionesFechaInicio = new System.Windows.Forms.DateTimePicker();
             this.lblFichaReparacionesInicio = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.cbxFichaReparacionesHoraInicio = new System.Windows.Forms.ComboBox();
+            this.lblFichaReparacionesFinHs = new System.Windows.Forms.Label();
+            this.lblFichaReparacionesInicioHs = new System.Windows.Forms.Label();
+            this.cbxFichaReparacionesHoraFin = new System.Windows.Forms.ComboBox();
+            this.dtpFichaReparacionesFechaFin = new System.Windows.Forms.DateTimePicker();
             this.lblFichaReparacionesFin = new System.Windows.Forms.Label();
+            this.cbxFichaReparacionesHoraInicio = new System.Windows.Forms.ComboBox();
             this.btnFichaReparacionesAgregar = new System.Windows.Forms.Button();
             this.cbxFichaReparacionesFiltroArticulos = new System.Windows.Forms.TextBox();
             this.lblFichaReparacionesFiltroArticulos = new System.Windows.Forms.Label();
@@ -55,10 +59,6 @@
             this.lblFichaReparacionesTituloArticulos = new System.Windows.Forms.Label();
             this.dgvFichaReparacionesArticulos = new System.Windows.Forms.DataGridView();
             this.lblFichaReparacionesTituloRepuestos = new System.Windows.Forms.Label();
-            this.cbxFichaReparacionesHoraFin = new System.Windows.Forms.ComboBox();
-            this.dtpFichaReparacionesFechaFin = new System.Windows.Forms.DateTimePicker();
-            this.lblFichaReparacionesInicioHs = new System.Windows.Forms.Label();
-            this.lblFichaReparacionesFinHs = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFichaReparacionesRepuestos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFichaReparacionesArticulos)).BeginInit();
@@ -100,7 +100,7 @@
             // 
             // btnFichaReparacionesCerrar
             // 
-            this.btnFichaReparacionesCerrar.Location = new System.Drawing.Point(552, 376);
+            this.btnFichaReparacionesCerrar.Location = new System.Drawing.Point(707, 376);
             this.btnFichaReparacionesCerrar.Name = "btnFichaReparacionesCerrar";
             this.btnFichaReparacionesCerrar.Size = new System.Drawing.Size(74, 23);
             this.btnFichaReparacionesCerrar.TabIndex = 179;
@@ -231,90 +231,23 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "tiempo de trabajo";
             // 
-            // cbxFichaReparacionesHoraInicio
+            // lblFichaReparacionesFinHs
             // 
-            this.cbxFichaReparacionesHoraInicio.FormattingEnabled = true;
-            this.cbxFichaReparacionesHoraInicio.Location = new System.Drawing.Point(185, 26);
-            this.cbxFichaReparacionesHoraInicio.Name = "cbxFichaReparacionesHoraInicio";
-            this.cbxFichaReparacionesHoraInicio.Size = new System.Drawing.Size(72, 21);
-            this.cbxFichaReparacionesHoraInicio.TabIndex = 199;
+            this.lblFichaReparacionesFinHs.AutoSize = true;
+            this.lblFichaReparacionesFinHs.Location = new System.Drawing.Point(152, 63);
+            this.lblFichaReparacionesFinHs.Name = "lblFichaReparacionesFinHs";
+            this.lblFichaReparacionesFinHs.Size = new System.Drawing.Size(28, 13);
+            this.lblFichaReparacionesFinHs.TabIndex = 203;
+            this.lblFichaReparacionesFinHs.Text = "hora";
             // 
-            // lblFichaReparacionesFin
+            // lblFichaReparacionesInicioHs
             // 
-            this.lblFichaReparacionesFin.AutoSize = true;
-            this.lblFichaReparacionesFin.Location = new System.Drawing.Point(39, 60);
-            this.lblFichaReparacionesFin.Name = "lblFichaReparacionesFin";
-            this.lblFichaReparacionesFin.Size = new System.Drawing.Size(18, 13);
-            this.lblFichaReparacionesFin.TabIndex = 199;
-            this.lblFichaReparacionesFin.Text = "fin";
-            // 
-            // btnFichaReparacionesAgregar
-            // 
-            this.btnFichaReparacionesAgregar.Location = new System.Drawing.Point(570, 62);
-            this.btnFichaReparacionesAgregar.Name = "btnFichaReparacionesAgregar";
-            this.btnFichaReparacionesAgregar.Size = new System.Drawing.Size(56, 23);
-            this.btnFichaReparacionesAgregar.TabIndex = 203;
-            this.btnFichaReparacionesAgregar.Text = "Nuevo";
-            this.btnFichaReparacionesAgregar.UseVisualStyleBackColor = true;
-            // 
-            // cbxFichaReparacionesFiltroArticulos
-            // 
-            this.cbxFichaReparacionesFiltroArticulos.Location = new System.Drawing.Point(384, 63);
-            this.cbxFichaReparacionesFiltroArticulos.Name = "cbxFichaReparacionesFiltroArticulos";
-            this.cbxFichaReparacionesFiltroArticulos.Size = new System.Drawing.Size(180, 20);
-            this.cbxFichaReparacionesFiltroArticulos.TabIndex = 202;
-            // 
-            // lblFichaReparacionesFiltroArticulos
-            // 
-            this.lblFichaReparacionesFiltroArticulos.AutoSize = true;
-            this.lblFichaReparacionesFiltroArticulos.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFichaReparacionesFiltroArticulos.Location = new System.Drawing.Point(344, 67);
-            this.lblFichaReparacionesFiltroArticulos.Name = "lblFichaReparacionesFiltroArticulos";
-            this.lblFichaReparacionesFiltroArticulos.Size = new System.Drawing.Size(34, 12);
-            this.lblFichaReparacionesFiltroArticulos.TabIndex = 201;
-            this.lblFichaReparacionesFiltroArticulos.Text = "Filtro";
-            // 
-            // dgvFichaReparacionesRepuestos
-            // 
-            this.dgvFichaReparacionesRepuestos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvFichaReparacionesRepuestos.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dgvFichaReparacionesRepuestos.Location = new System.Drawing.Point(343, 206);
-            this.dgvFichaReparacionesRepuestos.MultiSelect = false;
-            this.dgvFichaReparacionesRepuestos.Name = "dgvFichaReparacionesRepuestos";
-            this.dgvFichaReparacionesRepuestos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvFichaReparacionesRepuestos.Size = new System.Drawing.Size(283, 166);
-            this.dgvFichaReparacionesRepuestos.TabIndex = 200;
-            // 
-            // lblFichaReparacionesTituloArticulos
-            // 
-            this.lblFichaReparacionesTituloArticulos.AutoSize = true;
-            this.lblFichaReparacionesTituloArticulos.Font = new System.Drawing.Font("Consolas", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFichaReparacionesTituloArticulos.Location = new System.Drawing.Point(342, 29);
-            this.lblFichaReparacionesTituloArticulos.Name = "lblFichaReparacionesTituloArticulos";
-            this.lblFichaReparacionesTituloArticulos.Size = new System.Drawing.Size(202, 24);
-            this.lblFichaReparacionesTituloArticulos.TabIndex = 199;
-            this.lblFichaReparacionesTituloArticulos.Text = "Buscar articulos";
-            // 
-            // dgvFichaReparacionesArticulos
-            // 
-            this.dgvFichaReparacionesArticulos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvFichaReparacionesArticulos.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dgvFichaReparacionesArticulos.Location = new System.Drawing.Point(343, 90);
-            this.dgvFichaReparacionesArticulos.MultiSelect = false;
-            this.dgvFichaReparacionesArticulos.Name = "dgvFichaReparacionesArticulos";
-            this.dgvFichaReparacionesArticulos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvFichaReparacionesArticulos.Size = new System.Drawing.Size(283, 77);
-            this.dgvFichaReparacionesArticulos.TabIndex = 204;
-            // 
-            // lblFichaReparacionesTituloRepuestos
-            // 
-            this.lblFichaReparacionesTituloRepuestos.AutoSize = true;
-            this.lblFichaReparacionesTituloRepuestos.Font = new System.Drawing.Font("Consolas", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFichaReparacionesTituloRepuestos.Location = new System.Drawing.Point(342, 174);
-            this.lblFichaReparacionesTituloRepuestos.Name = "lblFichaReparacionesTituloRepuestos";
-            this.lblFichaReparacionesTituloRepuestos.Size = new System.Drawing.Size(250, 24);
-            this.lblFichaReparacionesTituloRepuestos.TabIndex = 205;
-            this.lblFichaReparacionesTituloRepuestos.Text = "Repuestos a utilizar";
+            this.lblFichaReparacionesInicioHs.AutoSize = true;
+            this.lblFichaReparacionesInicioHs.Location = new System.Drawing.Point(152, 29);
+            this.lblFichaReparacionesInicioHs.Name = "lblFichaReparacionesInicioHs";
+            this.lblFichaReparacionesInicioHs.Size = new System.Drawing.Size(28, 13);
+            this.lblFichaReparacionesInicioHs.TabIndex = 202;
+            this.lblFichaReparacionesInicioHs.Text = "hora";
             // 
             // cbxFichaReparacionesHoraFin
             // 
@@ -331,29 +264,98 @@
             this.dtpFichaReparacionesFechaFin.Size = new System.Drawing.Size(81, 20);
             this.dtpFichaReparacionesFechaFin.TabIndex = 200;
             // 
-            // lblFichaReparacionesInicioHs
+            // lblFichaReparacionesFin
             // 
-            this.lblFichaReparacionesInicioHs.AutoSize = true;
-            this.lblFichaReparacionesInicioHs.Location = new System.Drawing.Point(152, 29);
-            this.lblFichaReparacionesInicioHs.Name = "lblFichaReparacionesInicioHs";
-            this.lblFichaReparacionesInicioHs.Size = new System.Drawing.Size(28, 13);
-            this.lblFichaReparacionesInicioHs.TabIndex = 202;
-            this.lblFichaReparacionesInicioHs.Text = "hora";
+            this.lblFichaReparacionesFin.AutoSize = true;
+            this.lblFichaReparacionesFin.Location = new System.Drawing.Point(39, 60);
+            this.lblFichaReparacionesFin.Name = "lblFichaReparacionesFin";
+            this.lblFichaReparacionesFin.Size = new System.Drawing.Size(18, 13);
+            this.lblFichaReparacionesFin.TabIndex = 199;
+            this.lblFichaReparacionesFin.Text = "fin";
             // 
-            // lblFichaReparacionesFinHs
+            // cbxFichaReparacionesHoraInicio
             // 
-            this.lblFichaReparacionesFinHs.AutoSize = true;
-            this.lblFichaReparacionesFinHs.Location = new System.Drawing.Point(152, 63);
-            this.lblFichaReparacionesFinHs.Name = "lblFichaReparacionesFinHs";
-            this.lblFichaReparacionesFinHs.Size = new System.Drawing.Size(28, 13);
-            this.lblFichaReparacionesFinHs.TabIndex = 203;
-            this.lblFichaReparacionesFinHs.Text = "hora";
+            this.cbxFichaReparacionesHoraInicio.FormattingEnabled = true;
+            this.cbxFichaReparacionesHoraInicio.Location = new System.Drawing.Point(185, 26);
+            this.cbxFichaReparacionesHoraInicio.Name = "cbxFichaReparacionesHoraInicio";
+            this.cbxFichaReparacionesHoraInicio.Size = new System.Drawing.Size(72, 21);
+            this.cbxFichaReparacionesHoraInicio.TabIndex = 199;
+            // 
+            // btnFichaReparacionesAgregar
+            // 
+            this.btnFichaReparacionesAgregar.Location = new System.Drawing.Point(725, 61);
+            this.btnFichaReparacionesAgregar.Name = "btnFichaReparacionesAgregar";
+            this.btnFichaReparacionesAgregar.Size = new System.Drawing.Size(56, 23);
+            this.btnFichaReparacionesAgregar.TabIndex = 203;
+            this.btnFichaReparacionesAgregar.Text = "Nuevo";
+            this.btnFichaReparacionesAgregar.UseVisualStyleBackColor = true;
+            // 
+            // cbxFichaReparacionesFiltroArticulos
+            // 
+            this.cbxFichaReparacionesFiltroArticulos.Location = new System.Drawing.Point(384, 63);
+            this.cbxFichaReparacionesFiltroArticulos.Name = "cbxFichaReparacionesFiltroArticulos";
+            this.cbxFichaReparacionesFiltroArticulos.Size = new System.Drawing.Size(312, 20);
+            this.cbxFichaReparacionesFiltroArticulos.TabIndex = 202;
+            // 
+            // lblFichaReparacionesFiltroArticulos
+            // 
+            this.lblFichaReparacionesFiltroArticulos.AutoSize = true;
+            this.lblFichaReparacionesFiltroArticulos.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFichaReparacionesFiltroArticulos.Location = new System.Drawing.Point(344, 67);
+            this.lblFichaReparacionesFiltroArticulos.Name = "lblFichaReparacionesFiltroArticulos";
+            this.lblFichaReparacionesFiltroArticulos.Size = new System.Drawing.Size(34, 12);
+            this.lblFichaReparacionesFiltroArticulos.TabIndex = 201;
+            this.lblFichaReparacionesFiltroArticulos.Text = "Filtro";
+            // 
+            // dgvFichaReparacionesRepuestos
+            // 
+            this.dgvFichaReparacionesRepuestos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvFichaReparacionesRepuestos.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dgvFichaReparacionesRepuestos.Location = new System.Drawing.Point(343, 248);
+            this.dgvFichaReparacionesRepuestos.MultiSelect = false;
+            this.dgvFichaReparacionesRepuestos.Name = "dgvFichaReparacionesRepuestos";
+            this.dgvFichaReparacionesRepuestos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvFichaReparacionesRepuestos.Size = new System.Drawing.Size(438, 124);
+            this.dgvFichaReparacionesRepuestos.TabIndex = 200;
+            this.dgvFichaReparacionesRepuestos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFichaReparacionesRepuestos_CellClick);
+            // 
+            // lblFichaReparacionesTituloArticulos
+            // 
+            this.lblFichaReparacionesTituloArticulos.AutoSize = true;
+            this.lblFichaReparacionesTituloArticulos.Font = new System.Drawing.Font("Consolas", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFichaReparacionesTituloArticulos.Location = new System.Drawing.Point(342, 29);
+            this.lblFichaReparacionesTituloArticulos.Name = "lblFichaReparacionesTituloArticulos";
+            this.lblFichaReparacionesTituloArticulos.Size = new System.Drawing.Size(226, 24);
+            this.lblFichaReparacionesTituloArticulos.TabIndex = 199;
+            this.lblFichaReparacionesTituloArticulos.Text = "Lista de repuestos";
+            // 
+            // dgvFichaReparacionesArticulos
+            // 
+            this.dgvFichaReparacionesArticulos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvFichaReparacionesArticulos.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dgvFichaReparacionesArticulos.Location = new System.Drawing.Point(343, 90);
+            this.dgvFichaReparacionesArticulos.MultiSelect = false;
+            this.dgvFichaReparacionesArticulos.Name = "dgvFichaReparacionesArticulos";
+            this.dgvFichaReparacionesArticulos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvFichaReparacionesArticulos.Size = new System.Drawing.Size(438, 124);
+            this.dgvFichaReparacionesArticulos.TabIndex = 204;
+            this.dgvFichaReparacionesArticulos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFichaReparacionesArticulos_CellClick);
+            // 
+            // lblFichaReparacionesTituloRepuestos
+            // 
+            this.lblFichaReparacionesTituloRepuestos.AutoSize = true;
+            this.lblFichaReparacionesTituloRepuestos.Font = new System.Drawing.Font("Consolas", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFichaReparacionesTituloRepuestos.Location = new System.Drawing.Point(342, 221);
+            this.lblFichaReparacionesTituloRepuestos.Name = "lblFichaReparacionesTituloRepuestos";
+            this.lblFichaReparacionesTituloRepuestos.Size = new System.Drawing.Size(250, 24);
+            this.lblFichaReparacionesTituloRepuestos.TabIndex = 205;
+            this.lblFichaReparacionesTituloRepuestos.Text = "Repuestos necesarios";
             // 
             // FrmFichaReparaciones
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(644, 411);
+            this.ClientSize = new System.Drawing.Size(793, 411);
             this.Controls.Add(this.lblFichaReparacionesTituloRepuestos);
             this.Controls.Add(this.dgvFichaReparacionesArticulos);
             this.Controls.Add(this.btnFichaReparacionesAgregar);

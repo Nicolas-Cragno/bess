@@ -58,6 +58,15 @@ namespace negocio
             public static readonly string UsoArticulos = db + ".uso_articulos";
             public static readonly string Unidades = db + ".unidades";
         }
+
+        public static class Sectores
+        {
+            public static readonly int Administracion = 1;
+            public static readonly int Trafico = 2;
+            public static readonly int Satelital = 3;
+            public static readonly int TallerCamiones = 4;
+            public static readonly int TallerFurgones = 5;
+        }
         public AccesoDatos()
         {
             conexion = new SqlConnection(cadenaConexion);

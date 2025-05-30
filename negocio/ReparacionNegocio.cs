@@ -9,13 +9,13 @@ namespace negocio
 {
     public class ReparacionNegocio
     {
-        public List<Reparacion> listar(int estado)
+        public List<Reparacion> listar(int sector, int estado)
         {
             List<Reparacion> listaReparaciones = new List<Reparacion>();
             AccesoDatos datos = new AccesoDatos();
             string campos = "SELECT idReparacion, idTipoReparacion, chofer, intTractor, intFurgon, detalle, fecha, mecanico, tipoVehiculo, fechaFin, estado";
             string database = " FROM " + AccesoDatos.Tablas.Reparaciones;
-            string condicion = " WHERE estado=" + estado + ";";
+            string condicion = " WHERE estado=" + estado + " AND idSector=" + sector + ";";
             string query = campos + database + condicion;
 
             try

@@ -18,9 +18,11 @@ namespace presentacion.reparaciones
         private List<Reparacion> listadoPendientes;
         private List<Reparacion> listadoFinalziadas;
         char ficha = 'F', agregar = 'A', modificar = 'M';
-        public FrmReparaciones()
+        int sector;
+        public FrmReparaciones(int sSector)
         {
             InitializeComponent();
+            sector = sSector;
         }
 
         private void FrmReparaciones_Load(object sender, EventArgs e)
@@ -32,9 +34,9 @@ namespace presentacion.reparaciones
         {
             this.ControlBox = false; // oculta el manejo de la ventana superior
             ReparacionNegocio reparacionNegocio = new ReparacionNegocio();
-            listadoPendientes = reparacionNegocio.listar(0);
+            listadoPendientes = reparacionNegocio.listar(sector, 0);
             dgvReparaciones.DataSource = listadoPendientes;
-            listadoFinalziadas = reparacionNegocio.listar(1);
+            listadoFinalziadas = reparacionNegocio.listar(sector, 1);
             dgvReparacionesFinalizadas.DataSource = listadoFinalziadas;
             formatoColumnas();
         }

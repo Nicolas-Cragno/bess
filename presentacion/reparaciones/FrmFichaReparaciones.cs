@@ -17,7 +17,10 @@ namespace presentacion.reparaciones
         // Carga del Form
         private char modo;
         private Reparacion reparacion;
+        private List<Articulo> listadoRepuestos;
+        private List<Articulo> listadoRepuestosAgregados;
         int activo = 1, choferL = 1, mecanico = 3;
+        string tallerCamiones = "TALLER CAMIONES";
         public FrmFichaReparaciones(char rModo, Reparacion rReparacion = null)
         {
             InitializeComponent();
@@ -55,8 +58,6 @@ namespace presentacion.reparaciones
             dtpFichaReparacionesFechaFin.Format = DateTimePickerFormat.Custom;
             dtpFichaReparacionesFechaFin.CustomFormat = "dd/MM/yyyy";
             cbxFichaReparacionesHoraFin.DataSource = datos.horarios(inicio, fin);
-
-
         }
         private void cbxFichaReparacionesTipo_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -78,13 +79,49 @@ namespace presentacion.reparaciones
                     break;
                 case 'A':
                     formularioAgregar();
+                    cargarRepuestos(dgvFichaReparacionesArticulos);
                     break;
                 case 'M':
                     formularioModificar();
+                    cargarRepuestos(dgvFichaReparacionesArticulos);
                     break;
                 default:
                     formularioAgregar();
                     break;
+            }
+        }
+        private void cargarRepuestos(DataGridView dgv)
+        {
+            ArticuloNegocio articuloNegocio = new ArticuloNegocio();
+            listadoRepuestos = articuloNegocio.listar(tallerCamiones);
+            dgv.DataSource = listadoRepuestos;
+            btnAgregar(dgv);
+            formatoColumnas(dgv);
+        }
+
+        private void btnAgregar(DataGridView dgv)
+        {
+            if (!dgv.Columns.Contains("AgregarArticulo"))
+            {
+                DataGridViewButtonColumn btnAgregar = new DataGridViewButtonColumn();
+                btnAgregar.Name = "AgregarArticulo";
+                btnAgregar.HeaderText = "";
+                btnAgregar.Text = "+";
+                btnAgregar.UseColumnTextForButtonValue = true;
+                dgv.Columns.Add(btnAgregar);
+            }
+        }
+
+        private void btnEliminar(DataGridView dgv)
+        {
+            if (!dgv.Columns.Contains("Eliminar"))
+            {
+                DataGridViewButtonColumn btnEliminar = new DataGridViewButtonColumn();
+                btnEliminar.Name = "Eliminar";
+                btnEliminar.HeaderText = "Acción";
+                btnEliminar.Text = "X";
+                btnEliminar.UseColumnTextForButtonValue = true;
+                dgv.Columns.Add(btnEliminar);
             }
         }
         private void formularioFicha() 
@@ -218,6 +255,94 @@ namespace presentacion.reparaciones
                     break;
             }
         }
+
+        // DGV TABLAS
+
+        private void formatoColumnas(DataGridView dgv)
+        {
+            ocultarColumnas(dgv);
+            nombrarColumnas(dgv);
+            anchoColumnas(dgv);
+            ordenarColumnas(dgv);
+        }
+
+        private void ocultarColumnas(DataGridView dgv)
+        {
+            // grilla articulos
+            dgv.Columns["Id"].Visible = false;
+            dgv.Columns["Detalle"].Visible = false;
+        }
+
+        private void anchoColumnas(DataGridView dgv)
+        {
+            // grilla articulos
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgv.AutoResizeColumns();
+            foreach (DataGridViewColumn column in dgv.Columns)
+            {
+                column.Width += 5;
+            }
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+        }
+        private void ordenarColumnas(DataGridView dgv)
+        {
+            // grilla articulos
+            dgv.Columns["Nombre"].DisplayIndex = 0;
+            dgv.Columns["CodigoProveedor"].DisplayIndex = 1;
+            dgv.Columns["Marca"].DisplayIndex = 2;
+            dgv.Columns["Stock"].DisplayIndex = 3;
+        }
+        private void nombrarColumnas(DataGridView dgv)
+        {
+            // grilla articulos
+            dgv.Columns["Nombre"].HeaderText = "REPUESTO";
+            dgv.Columns["CodigoProveedor"].HeaderText = "CODIGO";
+            dgv.Columns["Marca"].HeaderText = "MARCA";
+            dgv.Columns["Stock"].HeaderText = "DISPONIBLE";
+        }
+
+        // ACCIONES DE AGREGAR ELIMINAR ARTICULOS/REPUESTOS
+        private void dgvFichaReparacionesArticulos_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // BOTON + DE ARTICULOS QUE SUMA EL ARTICULO A LOS REPUESTOS AGREGADOS.
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0 && dgvFichaReparacionesArticulos.Columns[e.ColumnIndex].Name == "AgregarArticulo")
+            {
+                if (listadoRepuestosAgregados == null)
+                    listadoRepuestosAgregados = new List<Articulo>();
+
+                Articulo repuesto = listadoRepuestos[e.RowIndex];
+
+                if (!listadoRepuestosAgregados.Any(r => r.Id == repuesto.Id))
+                {
+                    listadoRepuestosAgregados.Add(repuesto);
+                    dgvFichaReparacionesRepuestos.DataSource = null;
+                    dgvFichaReparacionesRepuestos.DataSource = listadoRepuestosAgregados;
+                    formatoColumnas(dgvFichaReparacionesRepuestos);
+                    btnEliminar(dgvFichaReparacionesRepuestos); // se agrega el boton de eliminar
+                }
+                else
+                {
+                    MessageBox.Show("Este repuesto ya fue agregado.");
+                }
+            }
+        }
+        private void dgvFichaReparacionesRepuestos_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // BOTON Eliminar DE ARTICULOS QUE SUMA EL ARTICULO A LOS REPUESTOS AGREGADOS.
+            if (e.RowIndex >= 0 && dgvFichaReparacionesRepuestos.Columns[e.ColumnIndex].Name == "Eliminar")
+            {
+                int id = (int)dgvFichaReparacionesRepuestos.Rows[e.RowIndex].Cells["Id"].Value;
+                var item = listadoRepuestosAgregados.FirstOrDefault(r => r.Id == id);
+                if (item != null)
+                {
+                    listadoRepuestosAgregados.Remove(item);
+                    dgvFichaReparacionesRepuestos.DataSource = null;
+                    dgvFichaReparacionesRepuestos.DataSource = listadoRepuestosAgregados;
+                    btnEliminar(dgvFichaReparacionesRepuestos);
+                }
+            }
+        }
+
 
         // Sin uso
         private void dtpFichaReparacionesFecha_ValueChanged(object sender, EventArgs e)
