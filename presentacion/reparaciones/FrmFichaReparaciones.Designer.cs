@@ -43,15 +43,6 @@
             this.lblFichaReparacionTitulo = new System.Windows.Forms.Label();
             this.cbxFichaReparacionesMecanico = new System.Windows.Forms.ComboBox();
             this.lblFichaReparacionesMecanico = new System.Windows.Forms.Label();
-            this.dtpFichaReparacionesFechaInicio = new System.Windows.Forms.DateTimePicker();
-            this.lblFichaReparacionesInicio = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.lblFichaReparacionesFinHs = new System.Windows.Forms.Label();
-            this.lblFichaReparacionesInicioHs = new System.Windows.Forms.Label();
-            this.cbxFichaReparacionesHoraFin = new System.Windows.Forms.ComboBox();
-            this.dtpFichaReparacionesFechaFin = new System.Windows.Forms.DateTimePicker();
-            this.lblFichaReparacionesFin = new System.Windows.Forms.Label();
-            this.cbxFichaReparacionesHoraInicio = new System.Windows.Forms.ComboBox();
             this.btnFichaReparacionesAgregar = new System.Windows.Forms.Button();
             this.cbxFichaReparacionesFiltroArticulos = new System.Windows.Forms.TextBox();
             this.lblFichaReparacionesFiltroArticulos = new System.Windows.Forms.Label();
@@ -59,7 +50,6 @@
             this.lblFichaReparacionesTituloArticulos = new System.Windows.Forms.Label();
             this.dgvFichaReparacionesArticulos = new System.Windows.Forms.DataGridView();
             this.lblFichaReparacionesTituloRepuestos = new System.Windows.Forms.Label();
-            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFichaReparacionesRepuestos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFichaReparacionesArticulos)).BeginInit();
             this.SuspendLayout();
@@ -146,16 +136,16 @@
             // 
             // tbxFichaReparacionesDetalle
             // 
-            this.tbxFichaReparacionesDetalle.Location = new System.Drawing.Point(18, 298);
+            this.tbxFichaReparacionesDetalle.Location = new System.Drawing.Point(18, 201);
             this.tbxFichaReparacionesDetalle.Multiline = true;
             this.tbxFichaReparacionesDetalle.Name = "tbxFichaReparacionesDetalle";
-            this.tbxFichaReparacionesDetalle.Size = new System.Drawing.Size(280, 74);
+            this.tbxFichaReparacionesDetalle.Size = new System.Drawing.Size(280, 171);
             this.tbxFichaReparacionesDetalle.TabIndex = 174;
             // 
             // lblFichaReparacionesDetalle
             // 
             this.lblFichaReparacionesDetalle.AutoSize = true;
-            this.lblFichaReparacionesDetalle.Location = new System.Drawing.Point(23, 282);
+            this.lblFichaReparacionesDetalle.Location = new System.Drawing.Point(19, 185);
             this.lblFichaReparacionesDetalle.Name = "lblFichaReparacionesDetalle";
             this.lblFichaReparacionesDetalle.Size = new System.Drawing.Size(40, 13);
             this.lblFichaReparacionesDetalle.TabIndex = 173;
@@ -196,90 +186,6 @@
             this.lblFichaReparacionesMecanico.Size = new System.Drawing.Size(53, 13);
             this.lblFichaReparacionesMecanico.TabIndex = 191;
             this.lblFichaReparacionesMecanico.Text = "mecanico";
-            // 
-            // dtpFichaReparacionesFechaInicio
-            // 
-            this.dtpFichaReparacionesFechaInicio.Location = new System.Drawing.Point(63, 26);
-            this.dtpFichaReparacionesFechaInicio.Name = "dtpFichaReparacionesFechaInicio";
-            this.dtpFichaReparacionesFechaInicio.Size = new System.Drawing.Size(81, 20);
-            this.dtpFichaReparacionesFechaInicio.TabIndex = 193;
-            this.dtpFichaReparacionesFechaInicio.ValueChanged += new System.EventHandler(this.dtpFichaReparacionesFecha_ValueChanged);
-            // 
-            // lblFichaReparacionesInicio
-            // 
-            this.lblFichaReparacionesInicio.AutoSize = true;
-            this.lblFichaReparacionesInicio.Location = new System.Drawing.Point(26, 29);
-            this.lblFichaReparacionesInicio.Name = "lblFichaReparacionesInicio";
-            this.lblFichaReparacionesInicio.Size = new System.Drawing.Size(31, 13);
-            this.lblFichaReparacionesInicio.TabIndex = 194;
-            this.lblFichaReparacionesInicio.Text = "inicio";
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.lblFichaReparacionesFinHs);
-            this.groupBox1.Controls.Add(this.lblFichaReparacionesInicioHs);
-            this.groupBox1.Controls.Add(this.cbxFichaReparacionesHoraFin);
-            this.groupBox1.Controls.Add(this.dtpFichaReparacionesFechaFin);
-            this.groupBox1.Controls.Add(this.lblFichaReparacionesFin);
-            this.groupBox1.Controls.Add(this.cbxFichaReparacionesHoraInicio);
-            this.groupBox1.Controls.Add(this.dtpFichaReparacionesFechaInicio);
-            this.groupBox1.Controls.Add(this.lblFichaReparacionesInicio);
-            this.groupBox1.Location = new System.Drawing.Point(20, 172);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(282, 107);
-            this.groupBox1.TabIndex = 198;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "tiempo de trabajo";
-            // 
-            // lblFichaReparacionesFinHs
-            // 
-            this.lblFichaReparacionesFinHs.AutoSize = true;
-            this.lblFichaReparacionesFinHs.Location = new System.Drawing.Point(152, 63);
-            this.lblFichaReparacionesFinHs.Name = "lblFichaReparacionesFinHs";
-            this.lblFichaReparacionesFinHs.Size = new System.Drawing.Size(28, 13);
-            this.lblFichaReparacionesFinHs.TabIndex = 203;
-            this.lblFichaReparacionesFinHs.Text = "hora";
-            // 
-            // lblFichaReparacionesInicioHs
-            // 
-            this.lblFichaReparacionesInicioHs.AutoSize = true;
-            this.lblFichaReparacionesInicioHs.Location = new System.Drawing.Point(152, 29);
-            this.lblFichaReparacionesInicioHs.Name = "lblFichaReparacionesInicioHs";
-            this.lblFichaReparacionesInicioHs.Size = new System.Drawing.Size(28, 13);
-            this.lblFichaReparacionesInicioHs.TabIndex = 202;
-            this.lblFichaReparacionesInicioHs.Text = "hora";
-            // 
-            // cbxFichaReparacionesHoraFin
-            // 
-            this.cbxFichaReparacionesHoraFin.FormattingEnabled = true;
-            this.cbxFichaReparacionesHoraFin.Location = new System.Drawing.Point(185, 60);
-            this.cbxFichaReparacionesHoraFin.Name = "cbxFichaReparacionesHoraFin";
-            this.cbxFichaReparacionesHoraFin.Size = new System.Drawing.Size(72, 21);
-            this.cbxFichaReparacionesHoraFin.TabIndex = 201;
-            // 
-            // dtpFichaReparacionesFechaFin
-            // 
-            this.dtpFichaReparacionesFechaFin.Location = new System.Drawing.Point(63, 60);
-            this.dtpFichaReparacionesFechaFin.Name = "dtpFichaReparacionesFechaFin";
-            this.dtpFichaReparacionesFechaFin.Size = new System.Drawing.Size(81, 20);
-            this.dtpFichaReparacionesFechaFin.TabIndex = 200;
-            // 
-            // lblFichaReparacionesFin
-            // 
-            this.lblFichaReparacionesFin.AutoSize = true;
-            this.lblFichaReparacionesFin.Location = new System.Drawing.Point(39, 60);
-            this.lblFichaReparacionesFin.Name = "lblFichaReparacionesFin";
-            this.lblFichaReparacionesFin.Size = new System.Drawing.Size(18, 13);
-            this.lblFichaReparacionesFin.TabIndex = 199;
-            this.lblFichaReparacionesFin.Text = "fin";
-            // 
-            // cbxFichaReparacionesHoraInicio
-            // 
-            this.cbxFichaReparacionesHoraInicio.FormattingEnabled = true;
-            this.cbxFichaReparacionesHoraInicio.Location = new System.Drawing.Point(185, 26);
-            this.cbxFichaReparacionesHoraInicio.Name = "cbxFichaReparacionesHoraInicio";
-            this.cbxFichaReparacionesHoraInicio.Size = new System.Drawing.Size(72, 21);
-            this.cbxFichaReparacionesHoraInicio.TabIndex = 199;
             // 
             // btnFichaReparacionesAgregar
             // 
@@ -364,7 +270,6 @@
             this.Controls.Add(this.lblFichaReparacionesFiltroArticulos);
             this.Controls.Add(this.dgvFichaReparacionesRepuestos);
             this.Controls.Add(this.lblFichaReparacionesTituloArticulos);
-            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.cbxFichaReparacionesMecanico);
             this.Controls.Add(this.lblFichaReparacionesMecanico);
             this.Controls.Add(this.cbxFichaReparacionesTipoTrabajo);
@@ -382,8 +287,6 @@
             this.Controls.Add(this.lblFichaReparacionTitulo);
             this.Name = "FrmFichaReparaciones";
             this.Load += new System.EventHandler(this.FrmFichaReparaciones_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFichaReparacionesRepuestos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFichaReparacionesArticulos)).EndInit();
             this.ResumeLayout(false);
@@ -408,11 +311,6 @@
         private System.Windows.Forms.Label lblFichaReparacionTitulo;
         private System.Windows.Forms.ComboBox cbxFichaReparacionesMecanico;
         private System.Windows.Forms.Label lblFichaReparacionesMecanico;
-        private System.Windows.Forms.DateTimePicker dtpFichaReparacionesFechaInicio;
-        private System.Windows.Forms.Label lblFichaReparacionesInicio;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label lblFichaReparacionesFin;
-        private System.Windows.Forms.ComboBox cbxFichaReparacionesHoraInicio;
         private System.Windows.Forms.Button btnFichaReparacionesAgregar;
         private System.Windows.Forms.TextBox cbxFichaReparacionesFiltroArticulos;
         private System.Windows.Forms.Label lblFichaReparacionesFiltroArticulos;
@@ -420,9 +318,5 @@
         private System.Windows.Forms.Label lblFichaReparacionesTituloArticulos;
         private System.Windows.Forms.DataGridView dgvFichaReparacionesArticulos;
         private System.Windows.Forms.Label lblFichaReparacionesTituloRepuestos;
-        private System.Windows.Forms.ComboBox cbxFichaReparacionesHoraFin;
-        private System.Windows.Forms.DateTimePicker dtpFichaReparacionesFechaFin;
-        private System.Windows.Forms.Label lblFichaReparacionesFinHs;
-        private System.Windows.Forms.Label lblFichaReparacionesInicioHs;
     }
 }

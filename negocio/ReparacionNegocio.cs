@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -90,6 +91,39 @@ namespace negocio
             }
             finally { datos.cerrarConexion(); }
             ;
+        }
+
+        public void agregar(Reparacion nvRp, List<Articulo> nvAr, int idSector)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            int idTipo = datos.buscarIdTipoReparacion(nvRp.Tipo);
+            int dniChofer = datos.buscarDniFull(nvRp.Persona);
+            int dniMecanico = datos.buscarDniFull(nvRp.Mecanico);
+            int tipoVehiculo = datos.buscarIdTipoVehiculo(nvRp.TipoVehiculo); 
+            string database = "INSERT INTO " + AccesoDatos.Tablas.Reparaciones;
+            string campos = "(idTipoReparacion, chofer, intTractor, intFurgon, detalle, fecha, mecanico, tipoVehiculo, idSector)";
+            string parametros = " VALUES (" + idTipo + ", " + dniChofer + ", " + nvRp.Tractor + ", " + nvRp.Furgon + ", '" + nvRp.Detalle.ToUpper() + "', GETDATE(), " + dniMecanico + ", " + tipoVehiculo + ", " + idSector + ")";
+            string query = database + campos + parametros + " SELECT SCOPE_IDENTITY();";
+            try 
+            {
+                datos.setearConsulta(query);
+                //datos.ejecutarAccion();
+                int idReparacion = datos.ejecutarScalar();
+
+                foreach(Articulo auxArticulo in nvAr)
+                {
+                    string queryArticulo = "INSERT INTO " + AccesoDatos.Tablas.UsoArticulos + "(idArticulo, idReparacion, cantidad) VALUES (" + auxArticulo.Id + ", " + idReparacion + ", " + auxArticulo.Cantidad.ToString(CultureInfo.InvariantCulture) + ");";
+                    datos.setearConsulta(queryArticulo);
+                    datos.ejecutarAccion();
+                }
+            }
+            catch (Exception ex) { throw ex; }
+            finally { datos.cerrarConexion();  }
+        }
+
+        public void modificar(Reparacion mdRp, List<UsoStock> mdAr)
+        {
+           
         }
     }
 }

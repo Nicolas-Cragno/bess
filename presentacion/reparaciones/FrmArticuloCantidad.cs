@@ -15,11 +15,14 @@ namespace presentacion.reparaciones
     public partial class FrmArticuloCantidad : Form
     {
         private Articulo articulo;
-        float cantidad;
+        double cantidad, cantidadDefecto;
+        public double CantidadSeleccionada {  get; set; }
         public FrmArticuloCantidad(Articulo sArticulo)
         {
             InitializeComponent();
             articulo = sArticulo;
+            cantidad = articulo.Cantidad;
+            
         }
 
         private void btnFichaReparacionesOK_Click(object sender, EventArgs e)
@@ -32,6 +35,7 @@ namespace presentacion.reparaciones
             } else
             {
                 cantidad = float.Parse(tbxArticuloCantidad.Text);   
+                CantidadSeleccionada = cantidad;
             }
 
             // Validar
@@ -41,6 +45,7 @@ namespace presentacion.reparaciones
              }
              else if (cantidad > 0)
              {
+                CantidadSeleccionada = cantidad;
                 Close();
              } 
              else {
@@ -62,7 +67,7 @@ namespace presentacion.reparaciones
             lblArticuloCantidadCodigo.Text = articulo.CodigoProveedor.ToString();
             lblArticuloCantidadStock.Text = articulo.Stock.ToString() + " " + articulo.Unidad;
             cantidad = 1;
-            tbxArticuloCantidad.Text = cantidad.ToString();
+            tbxArticuloCantidad.Text = articulo.Cantidad.ToString();
         }
 
         private void tbxArticuloCantidad_KeyPress(object sender, KeyPressEventArgs e)

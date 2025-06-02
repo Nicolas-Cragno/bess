@@ -19,7 +19,8 @@ namespace presentacion.reparaciones
         private Reparacion reparacion;
         private List<Articulo> listadoRepuestos;
         private List<Articulo> listadoRepuestosAgregados;
-        int activo = 1, choferL = 1, mecanico = 3;
+        private List<Articulo> listadoRepuestosFinal;
+        int activo = 1, choferL = 1, mecanico = 3, idTallerCamiones = 4;
         string tallerCamiones = "TALLER CAMIONES";
         public FrmFichaReparaciones(char rModo, Reparacion rReparacion = null)
         {
@@ -48,16 +49,6 @@ namespace presentacion.reparaciones
             cbxFichaReparacionesMecanico.DataSource = mecanicoNegocio.listarNombres(activo, mecanico);
             cbxFichaReparacionesChofer.SelectedIndex = -1;
             cbxFichaReparacionesMecanico.SelectedIndex = -1;
-            // fechas y horarios
-            int inicio = 8, fin = 18; // jornada laboral
-            dtpFichaReparacionesFechaInicio.Value = DateTime.Today;
-            dtpFichaReparacionesFechaInicio.Format = DateTimePickerFormat.Custom;
-            dtpFichaReparacionesFechaInicio.CustomFormat = "dd/MM/yyyy";
-            cbxFichaReparacionesHoraInicio.DataSource = datos.horarios(inicio, fin);
-            dtpFichaReparacionesFechaFin.Value = DateTime.Today;
-            dtpFichaReparacionesFechaFin.Format = DateTimePickerFormat.Custom;
-            dtpFichaReparacionesFechaFin.CustomFormat = "dd/MM/yyyy";
-            cbxFichaReparacionesHoraFin.DataSource = datos.horarios(inicio, fin);
         }
         private void cbxFichaReparacionesTipo_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -146,11 +137,8 @@ namespace presentacion.reparaciones
 
         private void cargarDatos(long idReparacion) 
         {
+            UsoStockNegocio usoStockNegocio = new UsoStockNegocio();
             cbxFichaReparacionesTipo.Text = reparacion.TipoVehiculo.ToString();
-            dtpFichaReparacionesFechaInicio.Text = reparacion.Fecha.ToString("dd/MM/yy");
-            cbxFichaReparacionesHoraInicio.Text = reparacion.Fecha.ToString("HH:mm");
-            dtpFichaReparacionesFechaFin.Text = reparacion.FechaFin.ToString("dd/MM/yy");
-            cbxFichaReparacionesHoraFin.Text = reparacion.FechaFin.ToString("HH:mm");
 
             // listados
             cbxFichaReparacionesTipoTrabajo.Text = reparacion.Tipo.ToString();
@@ -160,20 +148,15 @@ namespace presentacion.reparaciones
 
             // ingreso datos
             tbxFichaReparacionesDetalle.Text = reparacion.Detalle.ToString();
+
+            // repuestos
+            dgvFichaReparacionesRepuestos.DataSource = usoStockNegocio.listar(idReparacion);
         }
 
 
         private void bloquearDatos() 
         {
             // listados
-            dtpFichaReparacionesFechaInicio.Format = DateTimePickerFormat.Custom;
-            dtpFichaReparacionesFechaInicio.CustomFormat = "dd/MM/yy";
-            dtpFichaReparacionesFechaInicio.Enabled = false;
-            dtpFichaReparacionesFechaFin.Format = DateTimePickerFormat.Custom;
-            dtpFichaReparacionesFechaFin.CustomFormat = "dd/MM/yy";
-            dtpFichaReparacionesFechaFin.Enabled = false;
-            cbxFichaReparacionesHoraFin.Enabled = false;
-            cbxFichaReparacionesHoraInicio.Enabled = false;
             cbxFichaReparacionesTipo.Enabled = false;
             cbxFichaReparacionesInt.Enabled = false;
             cbxFichaReparacionesTipoTrabajo.Enabled = false;
@@ -197,10 +180,6 @@ namespace presentacion.reparaciones
             Reparacion auxReparacion = new Reparacion();
             Validaciones validar =  new Validaciones();
             AccesoDatos datos = new AccesoDatos();
-            DateTime dInicio = dtpFichaReparacionesFechaInicio.Value.Date;
-            TimeSpan hInicio = TimeSpan.Parse(cbxFichaReparacionesHoraInicio.Text);
-            DateTime dFin = dtpFichaReparacionesFechaFin.Value.Date;
-            TimeSpan hFin = TimeSpan.Parse(cbxFichaReparacionesHoraFin.Text);
 
             auxReparacion.Tipo = validar.cbxString(cbxFichaReparacionesTipoTrabajo.Text);
             auxReparacion.Persona = validar.cbxString(cbxFichaReparacionesChofer.Text);
@@ -223,14 +202,33 @@ namespace presentacion.reparaciones
             }
             auxReparacion.Mecanico = validar.cbxString(cbxFichaReparacionesMecanico.Text);
             auxReparacion.Detalle = tbxFichaReparacionesDetalle.Text;
-            auxReparacion.Fecha = validar.dtpFecha(dInicio, hInicio);
-            auxReparacion.FechaFin = validar.dtpFecha(dFin, hFin);
 
 
             return auxReparacion;
         }
 
-        private void agregar() { }
+        private List<Articulo> capturarUsoArticulos()
+        {
+            List<Articulo> listado = new List<Articulo>();
+            foreach(DataGridViewRow fila in dgvFichaReparacionesRepuestos.Rows)
+            {
+                if(fila.DataBoundItem == null) continue;
+
+                Articulo auxArticulo = (Articulo)fila.DataBoundItem;
+
+                listado.Add(auxArticulo);
+            }
+
+            return listado;
+        }
+
+        private void agregar() 
+        {
+            ReparacionNegocio reparacionNegocio = new ReparacionNegocio();
+            Reparacion nuevaReparacion = capturarReparacion();
+            List<Articulo> repuestos = capturarUsoArticulos();
+            reparacionNegocio.agregar(nuevaReparacion, repuestos, idTallerCamiones);
+        }
         private void modificar(long id) { }
         private void editar() { }
 
@@ -321,6 +319,7 @@ namespace presentacion.reparaciones
                     listadoRepuestosAgregados = new List<Articulo>();
 
                 Articulo repuesto = listadoRepuestos[e.RowIndex];
+                repuesto.Cantidad = 1; // por defecto se selecciona 1 unidad, lt o lo que corresponda
 
                 if (repuesto.Stock > 0)
                 {
@@ -370,6 +369,7 @@ namespace presentacion.reparaciones
 
                 FrmArticuloCantidad ventana = new FrmArticuloCantidad(repuesto);
                 ventana.ShowDialog();
+                repuesto.Cantidad = ventana.CantidadSeleccionada;
             }
         }
 

@@ -37,7 +37,6 @@
             this.lblArticuloCantidadDisponible = new System.Windows.Forms.Label();
             this.btnFichaReparacionesOK = new System.Windows.Forms.Button();
             this.lblArticuloCantidadUnidad = new System.Windows.Forms.Label();
-            this.btnArticuloCantidadCancelar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblArticuloCantidadNombre
@@ -108,7 +107,7 @@
             // 
             // btnFichaReparacionesOK
             // 
-            this.btnFichaReparacionesOK.Location = new System.Drawing.Point(12, 152);
+            this.btnFichaReparacionesOK.Location = new System.Drawing.Point(237, 152);
             this.btnFichaReparacionesOK.Name = "btnFichaReparacionesOK";
             this.btnFichaReparacionesOK.Size = new System.Drawing.Size(74, 23);
             this.btnFichaReparacionesOK.TabIndex = 180;
@@ -125,22 +124,11 @@
             this.lblArticuloCantidadUnidad.TabIndex = 181;
             this.lblArticuloCantidadUnidad.Text = "unidad";
             // 
-            // btnArticuloCantidadCancelar
-            // 
-            this.btnArticuloCantidadCancelar.Location = new System.Drawing.Point(237, 152);
-            this.btnArticuloCantidadCancelar.Name = "btnArticuloCantidadCancelar";
-            this.btnArticuloCantidadCancelar.Size = new System.Drawing.Size(74, 23);
-            this.btnArticuloCantidadCancelar.TabIndex = 182;
-            this.btnArticuloCantidadCancelar.Text = "Cancelar";
-            this.btnArticuloCantidadCancelar.UseVisualStyleBackColor = true;
-            this.btnArticuloCantidadCancelar.Click += new System.EventHandler(this.btnArticuloCantidadCancelar_Click);
-            // 
             // FrmArticuloCantidad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(323, 187);
-            this.Controls.Add(this.btnArticuloCantidadCancelar);
             this.Controls.Add(this.lblArticuloCantidadUnidad);
             this.Controls.Add(this.btnFichaReparacionesOK);
             this.Controls.Add(this.lblArticuloCantidadDisponible);
@@ -169,6 +157,5 @@
         private System.Windows.Forms.Label lblArticuloCantidadDisponible;
         private System.Windows.Forms.Button btnFichaReparacionesOK;
         private System.Windows.Forms.Label lblArticuloCantidadUnidad;
-        private System.Windows.Forms.Button btnArticuloCantidadCancelar;
     }
 }

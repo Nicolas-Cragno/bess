@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
@@ -138,6 +139,30 @@ namespace negocio
             }
             conexion.Close();
         }
+
+        public int ejecutarScalar()
+        {
+            comando.Connection = conexion;
+
+            try
+            {
+                abrirConexion();
+                object resultado = comando.ExecuteScalar();
+
+                if (resultado != null && int.TryParse(resultado.ToString(), out int id))
+                    return id;
+                else
+                    throw new Exception("No se pudo obtener el ID generado.");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                cerrarConexion();
+            }
+        } // obtiene el id de la ultima carga a base de datos
 
         // funciones para empleados
         public Chofer buscarDatosChofer(int dni)
@@ -477,7 +502,33 @@ namespace negocio
             catch (Exception ex) { throw ex; }
             finally { datos.cerrarConexion(); }
         }
-        
+
+        public int buscarIdTipoReparacion(string tipo)
+        {
+            int idTipo;
+
+            AccesoDatos datos = new AccesoDatos();
+            string query = "SELECT idTipoReparacion FROM " + Tablas.TiposReparaciones + " WHERE nombre='" + tipo + "';";
+
+            try
+            {
+                datos.setearConsulta(query);
+                datos.ejecutarLectura();
+
+                if (!datos.Lector.Read())
+                {
+                    idTipo = (int)datos.Lector["idTipoReparacion"];
+                }
+                else
+                {
+                    idTipo = 1;
+                }
+
+                return idTipo;
+            }
+            catch (Exception ex) { throw ex; }
+            finally { datos.cerrarConexion(); }
+        }
             
             // funciones para vehiculos
         public string buscarSatelital(int id) 
@@ -555,7 +606,7 @@ namespace negocio
                 datos.setearConsulta(query);
                 datos.ejecutarLectura();
 
-                if (Lector.Read())
+                if (datos.Lector.Read())
                 {
                     idTipo = (int)datos.Lector["idVehiculo"];
                 }
