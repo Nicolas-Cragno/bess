@@ -118,6 +118,18 @@
     <Compile Include="mecanicos\FrmMecanicos.Designer.cs">
       <DependentUpon>FrmMecanicos.cs</DependentUpon>
     </Compile>
+    <Compile Include="personas\FrmPersonas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="personas\FrmPersonas.Designer.cs">
+      <DependentUpon>FrmPersonas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="personas\FrmPersonasInactivas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="personas\FrmPersonasInactivas.Designer.cs">
+      <DependentUpon>FrmPersonasInactivas.cs</DependentUpon>
+    </Compile>
     <Compile Include="reparaciones\FrmArticuloCantidad.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -251,6 +263,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="mecanicos\FrmMecanicos.resx">
       <DependentUpon>FrmMecanicos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="personas\FrmPersonas.resx">
+      <DependentUpon>FrmPersonas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="personas\FrmPersonasInactivas.resx">
+      <DependentUpon>FrmPersonasInactivas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="reparaciones\FrmArticuloCantidad.resx">
       <DependentUpon>FrmArticuloCantidad.cs</DependentUpon>

@@ -38,12 +38,13 @@
             // 
             // btnChoferesInactivosClose
             // 
-            this.btnChoferesInactivosClose.Location = new System.Drawing.Point(318, 344);
+            this.btnChoferesInactivosClose.Location = new System.Drawing.Point(449, 344);
             this.btnChoferesInactivosClose.Name = "btnChoferesInactivosClose";
             this.btnChoferesInactivosClose.Size = new System.Drawing.Size(51, 23);
             this.btnChoferesInactivosClose.TabIndex = 12;
             this.btnChoferesInactivosClose.Text = "Cerrar";
             this.btnChoferesInactivosClose.UseVisualStyleBackColor = true;
+            this.btnChoferesInactivosClose.Click += new System.EventHandler(this.btnChoferesInactivosClose_Click);
             // 
             // dgvChoferesInactivos
             // 
@@ -53,7 +54,7 @@
             this.dgvChoferesInactivos.MultiSelect = false;
             this.dgvChoferesInactivos.Name = "dgvChoferesInactivos";
             this.dgvChoferesInactivos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvChoferesInactivos.Size = new System.Drawing.Size(356, 245);
+            this.dgvChoferesInactivos.Size = new System.Drawing.Size(487, 245);
             this.dgvChoferesInactivos.TabIndex = 11;
             // 
             // tbxChoferesInactivosFiltro
@@ -77,7 +78,7 @@
             // 
             this.lblChoferesInactivosTitulo.AutoSize = true;
             this.lblChoferesInactivosTitulo.Font = new System.Drawing.Font("Consolas", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblChoferesInactivosTitulo.Location = new System.Drawing.Point(40, 7);
+            this.lblChoferesInactivosTitulo.Location = new System.Drawing.Point(105, 7);
             this.lblChoferesInactivosTitulo.Name = "lblChoferesInactivosTitulo";
             this.lblChoferesInactivosTitulo.Size = new System.Drawing.Size(303, 34);
             this.lblChoferesInactivosTitulo.TabIndex = 8;
@@ -87,7 +88,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(380, 375);
+            this.ClientSize = new System.Drawing.Size(512, 375);
             this.Controls.Add(this.btnChoferesInactivosClose);
             this.Controls.Add(this.dgvChoferesInactivos);
             this.Controls.Add(this.tbxChoferesInactivosFiltro);
@@ -95,6 +96,7 @@
             this.Controls.Add(this.lblChoferesInactivosTitulo);
             this.Name = "FrmChoferesInactivos";
             this.Text = "FrmChoferesInactivos";
+            this.Load += new System.EventHandler(this.FrmChoferesInactivos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvChoferesInactivos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

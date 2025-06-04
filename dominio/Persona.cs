@@ -15,6 +15,7 @@ namespace dominio
         public string Empresa {  get; set; }
         public string Detalle {  get; set; }
         public bool Activo {  get; set; }
+        public DateTime Ingreso { get; set; }
         
     }
 }

@@ -29,6 +29,7 @@ namespace negocio
 
                     auxEvento.Id = (long)datos.Lector["idEvento"];
                     auxEvento.Tipo = datos.buscarTipoEvento((int)datos.Lector["idTipoEvento"]);
+                    auxEvento.DniPersona = (int)datos.Lector["dni"];
                     auxEvento.Persona = datos.buscarPersona((int)datos.Lector["dni"]);
                     auxEvento.Tractor = (int)datos.Lector["intTractor"];
                     auxEvento.Furgon = (int)datos.Lector["intFurgon"];
@@ -47,6 +48,12 @@ namespace negocio
                 throw ex;
             }
             finally { datos.cerrarConexion(); }
+        }
+
+        public List<Evento> listarPorPersona(int dni)
+        {
+            List<Evento> eventos = listar();
+            return eventos.Where(e => e.DniPersona == dni).ToList(); 
         }
 
         public List<Evento> listarEventos(char tipo, int parametro) 

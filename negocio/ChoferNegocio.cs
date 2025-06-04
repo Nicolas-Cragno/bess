@@ -32,9 +32,7 @@ namespace negocio
                     chofer.Detalle = (string)datos.Lector["detalle"];
                     chofer.Apellido = (string)datos.Lector["apellido"];
                     chofer.Nombres = (string)datos.Lector["nombres"];
-                    /*
-                    chofer.Empresa = datos.buscarEmpresa((long)datos.Lector["empresa"]);
-                     */
+                    chofer.Empresa = datos.buscarEmpresaAbreviada((long)datos.Lector["empresa"]);
                     chofer.Tractor = datos.buscarTractorAsignado(chofer.Dni);
                     chofer.Viajes = 0 ;
                     chofer.Promedio = 0 ;

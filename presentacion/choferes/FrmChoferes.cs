@@ -77,5 +77,21 @@ namespace presentacion.choferes
             dgvChoferes.Columns["Nombres"].HeaderText = "NOMBRE/S";
             dgvChoferes.Columns["Puesto"].HeaderText = "TIPO DE EMPLEADO";
         }
+
+        private void dgvChoferes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Chofer seleccion = (Chofer)dgvChoferes.CurrentRow.DataBoundItem;
+
+            FrmFichaChofer ventana = new FrmFichaChofer(seleccion);
+            ventana.ShowDialog();
+            cargar();
+        }
+
+        private void btnInactivos_Click(object sender, EventArgs e)
+        {
+            FrmChoferesInactivos inactivos = new FrmChoferesInactivos();
+            inactivos.ShowDialog();
+            cargar();
+        }
     }
 }

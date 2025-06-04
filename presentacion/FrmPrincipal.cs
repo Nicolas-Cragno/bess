@@ -18,6 +18,7 @@ using presentacion.mecanicos;
 using presentacion.reparaciones;
 using presentacion.articulos;
 using negocio;
+using presentacion.personas;
 
 namespace presentacion
 {
@@ -27,6 +28,8 @@ namespace presentacion
         public FrmPrincipal()
         {
             InitializeComponent();
+
+            tsmViajes.Visible = false; // todavia no lo defini
         }
 
         private void cerrarVentanas() // cerrar ventanas al abrir otras para navegar.
@@ -40,10 +43,12 @@ namespace presentacion
         private void choferesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             cerrarVentanas();
-            FrmChoferes ventana = new FrmChoferes();
+            //FrmChoferes ventana = new FrmChoferes();
+            FrmPersonas ventana = new FrmPersonas(1);
             ventana.MdiParent = this;
             ventana.WindowState = FormWindowState.Maximized;
             ventana.Show();
+
         }
 
         private void tsmMovimientos_Click(object sender, EventArgs e)
@@ -113,13 +118,12 @@ namespace presentacion
         private void mecanicosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             cerrarVentanas();
-            FrmMecanicos ventana = new FrmMecanicos();
+            //FrmMecanicos ventana = new FrmMecanicos();
+            FrmPersonas ventana = new FrmPersonas(3);
             ventana.MdiParent = this;
             ventana.WindowState = FormWindowState.Maximized;
             ventana.Show();
         }
-
-
 
         private void tsmReparacionesCamiones_Click(object sender, EventArgs e)
         {

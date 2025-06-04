@@ -63,6 +63,7 @@
             this.btbFichaChoferCerrar.TabIndex = 49;
             this.btbFichaChoferCerrar.Text = "Cerrar";
             this.btbFichaChoferCerrar.UseVisualStyleBackColor = true;
+            this.btbFichaChoferCerrar.Click += new System.EventHandler(this.btbFichaChoferCerrar_Click);
             // 
             // btnAgregarFichaChoferEvento
             // 
@@ -298,6 +299,7 @@
             this.Controls.Add(this.lblFichaChoferTitulo);
             this.Name = "FrmFichaChofer";
             this.Text = "FrmFichaChofer";
+            this.Load += new System.EventHandler(this.FrmFichaChofer_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvFichaChoferEvento)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

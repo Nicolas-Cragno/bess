@@ -10,6 +10,7 @@ namespace dominio
     {
         public long Id {  get; set; }
         public string Tipo { get; set; }
+        public int DniPersona { get; set; }
         public string Persona { get; set; }
         public int Tractor { get; set; }
         public int Furgon { get; set; }

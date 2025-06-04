@@ -45,6 +45,7 @@
             this.btnInactivos.TabIndex = 14;
             this.btnInactivos.Text = "Ver inactivos";
             this.btnInactivos.UseVisualStyleBackColor = true;
+            this.btnInactivos.Click += new System.EventHandler(this.btnInactivos_Click);
             // 
             // btnChoferesNuevo
             // 
@@ -65,6 +66,7 @@
             this.dgvChoferes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvChoferes.Size = new System.Drawing.Size(620, 298);
             this.dgvChoferes.TabIndex = 11;
+            this.dgvChoferes.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvChoferes_CellDoubleClick);
             // 
             // tbxChoferesFiltro
             // 
