@@ -45,5 +45,67 @@ namespace negocio
             catch (Exception ex) { throw ex; }
             finally { datos.cerrarConexion(); }
         }
+
+        public void modificar(UsoStock mdSt)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            int idArticulo = datos.buscarIdArticulo(mdSt.Articulo);
+            string database = "UPDATE " + AccesoDatos.Tablas.UsoArticulos + " SET ";
+            string campos = "cantidad=" + mdSt.Cantidad;
+            string condicion = " WHERE idUso=" + mdSt.Id + " AND idArticulo=" + idArticulo + " AND idReparacion=" + mdSt.Reparacion + ";";
+            string query = database+ campos+ condicion;
+            try
+            {
+                datos.setearConsulta(query);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex) { throw ex; }
+            finally { datos.cerrarConexion(); }
+        }
+
+        public void modificarDesdeArticulos(List<Articulo> listaArticulos, long idReparacion)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            
+            try
+            {
+                foreach (Articulo articulo in listaArticulos)
+                {
+                    string database = "UPDATE" + AccesoDatos.Tablas.UsoArticulos;
+                    string campos = " SET cantidad=" + articulo.Cantidad;
+                    string condicion = " WHERE idArticulo=" + articulo.Id + " AND idReparacion=" + idReparacion + ";";
+                    string query = database + campos+ condicion;
+
+                    datos.setearConsulta(query);
+                    datos.ejecutarAccion();
+                }
+            }
+            catch (Exception ex) { throw ex; }
+            finally { datos.cerrarConexion(); }
+        }
+
+        public int buscarCantidad(long idReparacion, int idArticulo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            string query = "SELECT cantidad FROM " + AccesoDatos.Tablas.UsoArticulos + " WHERE idReparacion=" + idReparacion + " AND idArticulo=" + idArticulo + ";";
+            int cantidad;
+
+            try 
+            {
+                datos.setearConsulta(query);
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    cantidad = (int)datos.Lector["cantidad"];
+                } else
+                {
+                    cantidad = 0;   
+                }
+                return cantidad;
+            }
+            catch (Exception ex) { throw ex; }
+            finally{ datos.cerrarConexion(); };
+        }
     }
 }

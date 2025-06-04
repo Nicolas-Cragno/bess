@@ -91,6 +91,12 @@ namespace presentacion.reparaciones
             formatoColumnas(dgv);
         }
 
+        private void cargarRepuestosReparacion(DataGridView dgv)
+        {
+            
+
+        }
+
         private void btnAgregar(DataGridView dgv)
         {
             if (!dgv.Columns.Contains("AgregarArticulo"))
@@ -129,10 +135,14 @@ namespace presentacion.reparaciones
         }
         private void formularioModificar() 
         {
+            ArticuloNegocio articuloNegocio = new ArticuloNegocio();
+            listadoRepuestosAgregados = articuloNegocio.listarPorReparacion(reparacion.Id, tallerCamiones);
             cargarListas();
             cargarDatos(reparacion.Id);
             lblFichaReparacionTitulo.Text = reparacion.Fecha.ToString("dd/MM/yyyy");
             lblFichaReparacionTitulo.TextAlign = ContentAlignment.MiddleCenter;
+            dgvFichaReparacionesRepuestos.DataSource = listadoRepuestosAgregados;
+            formatoColumnas(dgvFichaReparacionesRepuestos);
         }
 
         private void cargarDatos(long idReparacion) 
@@ -229,11 +239,19 @@ namespace presentacion.reparaciones
             List<Articulo> repuestos = capturarUsoArticulos();
             reparacionNegocio.agregar(nuevaReparacion, repuestos, idTallerCamiones);
         }
-        private void modificar(long id) { }
+        private void modificar() 
+        {
+            ReparacionNegocio reparacionNegocio = new ReparacionNegocio();
+            Reparacion mReparacion = capturarReparacion();
+            List<Articulo> mRepuestos = capturarUsoArticulos();
+
+            reparacionNegocio.modificar(reparacion.Id, mReparacion, mRepuestos);
+        }
         private void editar() { }
 
         private void btnFichaReparacionesOK_Click(object sender, EventArgs e)
         {
+            MessageBox.Show(reparacion.Id.ToString());
             ejecutar(modo);
             Close();
         }
@@ -249,7 +267,7 @@ namespace presentacion.reparaciones
                     agregar();
                     break;
                 case 'M':
-                    modificar(reparacion.Id);
+                    modificar();
                     break;
                 default:
                     MessageBox.Show("Error");

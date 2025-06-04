@@ -231,7 +231,7 @@ namespace negocio
         public int buscarDniFull(string nombreCompleto) 
         {
             int dni;
-            if (nombreCompleto == "SIN ASIGNAR")
+            if (nombreCompleto == "SIN ASIGNAR" || nombreCompleto == "SIN CHOFER ASIGNADO")
             {
                 dni = 0;
             } else
@@ -528,6 +528,28 @@ namespace negocio
             }
             catch (Exception ex) { throw ex; }
             finally { datos.cerrarConexion(); }
+        }
+
+        public int buscarIdArticulo(string articulo)
+        {
+            AccesoDatos datos = new AccesoDatos ();
+            string query = "SELECT idArticulo FROM " + Tablas.Articulos + " WHERE nombre=" + articulo + ";";
+            int id;
+            try {
+                datos.setearConsulta(query);
+                datos.ejecutarLectura();
+
+                if(datos.Lector.Read())
+                {
+                    id = (int)datos.Lector["idArticulo"];
+                } else
+                {
+                    id = 0;
+                }
+                return id;
+            }
+            catch (Exception ex) { throw ex; }
+            finally{ datos.cerrarConexion(); };
         }
             
             // funciones para vehiculos

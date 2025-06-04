@@ -37,7 +37,7 @@ namespace negocio
                     auxReparacion.Fecha = (DateTime)datos.Lector["fecha"];
                     auxReparacion.Mecanico = datos.buscarPersona((int)datos.Lector["mecanico"]);
                     auxReparacion.TipoVehiculo = datos.buscarTipoVehiculo((int)datos.Lector["tipoVehiculo"]);
-                    auxReparacion.FechaFin = (DateTime)datos.Lector["fechaFin"];
+                    auxReparacion.FechaFin = datos.Lector["fechaFin"] != DBNull.Value ? (DateTime)datos.Lector["fechaFin"] : DateTime.MinValue;
                     auxReparacion.Estado = (bool)datos.Lector["estado"];
                     switch ((int)datos.Lector["tipoVehiculo"])
                     {
@@ -121,9 +121,66 @@ namespace negocio
             finally { datos.cerrarConexion();  }
         }
 
-        public void modificar(Reparacion mdRp, List<UsoStock> mdAr)
+        public void modificar(long idReparacion, Reparacion mdRp, List<Articulo> mdAr)
         {
-           
+            AccesoDatos datos = new AccesoDatos();
+            int idTipo = datos.buscarIdTipoReparacion(mdRp.Tipo);
+            int dniChofer = datos.buscarDniFull(mdRp.Persona);
+            int dniMecanico = datos.buscarDniFull(mdRp.Mecanico);
+            int tipoVehiculo = datos.buscarIdTipoVehiculo(mdRp.TipoVehiculo);
+            string database = "UPDATE " + AccesoDatos.Tablas.Reparaciones;
+            string campos = " SET idTipoReparacion=" + idTipo + ", chofer=" + dniChofer + ", intTractor=" + mdRp.Tractor + ", intFurgon=" + mdRp.Furgon + ", detalle='" + mdRp.Detalle.ToUpper() + "', mecanico=" + dniMecanico + ", tipoVehiculo=" + tipoVehiculo;
+            string condicion = " WHERE idReparacion=" + idReparacion + ";";
+            string query = database + campos + condicion;
+            try
+            {
+                datos.setearConsulta(query);
+                datos.ejecutarAccion();
+
+                //UsoStockNegocio usoStockNegocio = new UsoStockNegocio();
+                //usoStockNegocio.modificarDesdeArticulos(mdAr, mdRp.Id);
+
+            }
+            catch (Exception ex) { throw ex; }
+            finally { datos.cerrarConexion(); }
+        }
+
+        public void finalizar(long id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            string query = "UPDATE " + AccesoDatos.Tablas.Reparaciones + " SET fechaFin=GETDATE(), estado=1 WHERE idReparacion=" + id + ";";
+
+            try
+            {
+                datos.setearConsulta(query);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex) { throw ex; }
+            finally { datos.cerrarConexion(); }
+        }
+
+        public bool verificarEstado(long id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            string query = "SELECT estado FROM " + AccesoDatos.Tablas.Reparaciones + " WHERE idReparacion=" + id + ";";
+            bool estado;
+            try 
+            {
+                datos.setearConsulta(query);
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    estado = (bool)datos.Lector["estado"];
+                } else
+                {
+                    estado = false;
+                }
+
+                return estado;
+            }
+            catch (Exception ex) { throw ex; }
+            finally { datos.cerrarConexion(); }
         }
     }
 }

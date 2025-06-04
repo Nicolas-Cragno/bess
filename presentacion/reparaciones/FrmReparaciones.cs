@@ -16,7 +16,7 @@ namespace presentacion.reparaciones
     {
         // Carga del Form
         private List<Reparacion> listadoPendientes;
-        private List<Reparacion> listadoFinalziadas;
+        private List<Reparacion> listadoFinalizadas;
         char ficha = 'F', agregar = 'A', modificar = 'M';
         int sector;
         public FrmReparaciones(int sSector)
@@ -36,8 +36,8 @@ namespace presentacion.reparaciones
             ReparacionNegocio reparacionNegocio = new ReparacionNegocio();
             listadoPendientes = reparacionNegocio.listar(sector, 0);
             dgvReparaciones.DataSource = listadoPendientes;
-            listadoFinalziadas = reparacionNegocio.listar(sector, 1);
-            dgvReparacionesFinalizadas.DataSource = listadoFinalziadas;
+            listadoFinalizadas = reparacionNegocio.listar(sector, 1);
+            dgvReparacionesFinalizadas.DataSource = listadoFinalizadas;
             formatoColumnas();
         }
 
@@ -76,11 +76,11 @@ namespace presentacion.reparaciones
 
             if (filtro != "")
             {
-                listaFiltrada = listadoPendientes.FindAll(rp => rp.Tipo.ToString().Contains(filtro.ToUpper()) || rp.Persona.ToString().Contains(filtro.ToUpper()) || rp.Tractor.ToString().Contains(filtro.ToUpper()) || rp.Fecha.ToString().Contains(filtro.ToUpper()) || rp.Mecanico.ToString().Contains(filtro.ToUpper()));
+                listaFiltrada = listadoFinalizadas.FindAll(rp => rp.Tipo.ToString().Contains(filtro.ToUpper()) || rp.Persona.ToString().Contains(filtro.ToUpper()) || rp.Tractor.ToString().Contains(filtro.ToUpper()) || rp.Fecha.ToString().Contains(filtro.ToUpper()) || rp.Mecanico.ToString().Contains(filtro.ToUpper()));
             }
             else
             {
-                listaFiltrada = listadoPendientes;
+                listaFiltrada = listadoFinalizadas;
             }
 
             dgvReparacionesFinalizadas.DataSource = null;
@@ -98,18 +98,20 @@ namespace presentacion.reparaciones
         private void dgvReparaciones_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             Reparacion seleccion = (Reparacion)dgvReparaciones.CurrentRow.DataBoundItem;
+            char pendiente = 'P';
 
             //FrmFichaReparaciones fichaReparacion = new FrmFichaReparaciones(ficha, seleccion);
             //fichaReparacion.ShowDialog();
-            FrmHistoriaReparacion historiaReparacion = new FrmHistoriaReparacion(seleccion);
+            FrmHistoriaReparacion historiaReparacion = new FrmHistoriaReparacion(seleccion, pendiente);
             historiaReparacion.ShowDialog();
             cargar();
         }
         private void dgvReparacionesFinalizadas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             Reparacion seleccion = (Reparacion)dgvReparacionesFinalizadas.CurrentRow.DataBoundItem;
+            char finalizado = 'F';
 
-            FrmHistoriaReparacion historiaReparacion = new FrmHistoriaReparacion(seleccion);
+            FrmHistoriaReparacion historiaReparacion = new FrmHistoriaReparacion(seleccion, finalizado);
             historiaReparacion.ShowDialog();
             cargar();
         }
@@ -117,9 +119,9 @@ namespace presentacion.reparaciones
         private void formatoColumnas()
         {
             ocultarColumnas();
+            ordenarColumnas();
             nombrarColumnas();
             anchoColumnas();
-            ordenarColumnas();
         }
 
         private void ocultarColumnas()
@@ -187,5 +189,6 @@ namespace presentacion.reparaciones
             dgvReparacionesFinalizadas.Columns["Tractor"].HeaderText = "TRACTOR";
             dgvReparacionesFinalizadas.Columns["FechaFin"].HeaderText = "FINALIZACION";
         }
+
     }
 }

@@ -18,10 +18,12 @@ namespace presentacion.reparaciones
         private Reparacion reparacion;
         private List<UsoStock> listaRepuestos;
         int activo = 1, choferL = 1, mecanico = 3;
-        public FrmHistoriaReparacion(Reparacion hReparacion)
+        char modo; 
+        public FrmHistoriaReparacion(Reparacion hReparacion, char rModo = 'F')
         {
             InitializeComponent();
             reparacion = hReparacion;
+            modo = rModo;
         }
 
         private void btnHistoriaReparacionCerrar_Click(object sender, EventArgs e)
@@ -38,16 +40,27 @@ namespace presentacion.reparaciones
         {
             AccesoDatos datos = new AccesoDatos();
             UsoStockNegocio usoStockNegocio = new UsoStockNegocio();
+            lblHistoriaReparacionTitulo.Text = reparacion.Fecha.ToString("dd/MM/yyyy");
             cbxHistoriaReparacionTipo.Text = reparacion.TipoVehiculo;
             cbxHistoriaReparacionInt.Text = reparacion.InternoAfectado.ToString();
             cbxHistoriaReparacionTipoTrabajo.Text = reparacion.Tipo;
             cbxHistoriaReparacionChofer.Text = reparacion.Persona;
             cbxHistoriaReparacionMecanico.Text = reparacion.Mecanico;
-            lblHistoriaReparacionInicioFecha.Text = reparacion.Fecha.Date.ToString("dd/MM/yyyy");
-            lblHistoriaReparacionInicioHora.Text = reparacion.Fecha.ToString("HH:mm");
-            lblHistoriaReparacionFinFecha.Text = reparacion.FechaFin.Date.ToString("dd/MM/yyyy");
-            lblHistoriaReparacionFinHora.Text = reparacion.FechaFin.ToString("HH:mm");
             tbxHistoriaReparacionDetalle.Text = reparacion.Detalle;
+
+            switch (modo)
+            {
+                case 'P': // Pendiente
+                    btnHistoriaReparacionFinalizar.Visible = true;
+                    lblHistoriaReparacionEstado.Text = "Pendiente.";
+                    break;
+                case 'F': // Finalizado
+                    btnHistoriaReparacionFinalizar.Visible = false;
+                    lblHistoriaReparacionEstado.Text = "Finalizado el " + reparacion.Fecha.ToString("dd/MM/yyyy") +".";
+                    break;
+                default:
+                    break;
+            }
 
             listaRepuestos = usoStockNegocio.listar(reparacion.Id);
             dgvHistoriaReparacionRepuestos.DataSource = listaRepuestos;
@@ -65,6 +78,24 @@ namespace presentacion.reparaciones
         {
            dgvHistoriaReparacionRepuestos.Columns["Id"].Visible = false;
            dgvHistoriaReparacionRepuestos.Columns["Reparacion"].Visible = false;
+        }
+
+        private void btnHistoriaReparacionFinalizar_Click(object sender, EventArgs e)
+        {
+            FrmFinalizar ventanaFinalizar = new FrmFinalizar(reparacion.Id);
+            ReparacionNegocio reparacionNegocio = new ReparacionNegocio();
+            ventanaFinalizar.ShowDialog();
+            if(reparacionNegocio.verificarEstado(reparacion.Id))
+            {
+                modo = 'F';
+                cargar();
+            }
+        }
+
+        private void btnHistoriaReparacionOK_Click(object sender, EventArgs e)
+        {
+            FrmFichaReparaciones editarReparacion = new FrmFichaReparaciones('M', reparacion);
+            editarReparacion.ShowDialog();
         }
 
         private void nombrarColumnas()

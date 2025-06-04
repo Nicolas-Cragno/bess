@@ -164,11 +164,11 @@
             // 
             this.lblFichaReparacionTitulo.AutoSize = true;
             this.lblFichaReparacionTitulo.Font = new System.Drawing.Font("Consolas", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFichaReparacionTitulo.Location = new System.Drawing.Point(90, 11);
+            this.lblFichaReparacionTitulo.Location = new System.Drawing.Point(68, 9);
             this.lblFichaReparacionTitulo.Name = "lblFichaReparacionTitulo";
-            this.lblFichaReparacionTitulo.Size = new System.Drawing.Size(142, 28);
+            this.lblFichaReparacionTitulo.Size = new System.Drawing.Size(181, 28);
             this.lblFichaReparacionTitulo.TabIndex = 171;
-            this.lblFichaReparacionTitulo.Text = "Reparacion";
+            this.lblFichaReparacionTitulo.Text = "Nuevo trabajo";
             // 
             // cbxFichaReparacionesMecanico
             // 

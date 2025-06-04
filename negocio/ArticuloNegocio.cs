@@ -48,5 +48,39 @@ namespace negocio
             }
             finally { datos.cerrarConexion(); }
         }
+
+        public Articulo buscar(int id, string sector)
+        {
+            List<Articulo> listado = listar(sector);
+            Articulo articulo = listado.FirstOrDefault(a => a.Id == id);
+
+            return articulo;
+        }
+        public List<Articulo> listarPorReparacion(long idReparacion, string sector)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            string query = "SELECT idArticulo, cantidad FROM " + AccesoDatos.Tablas.UsoArticulos + " WHERE idReparacion=" + idReparacion + ";";
+            List<Articulo> lista = new List<Articulo>();
+            try 
+            {
+                datos.setearConsulta(query);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Articulo auxArticulo;
+
+                    auxArticulo = buscar((int)datos.Lector["idArticulo"], sector);
+
+                
+                   auxArticulo.Cantidad = (double)datos.Lector["cantidad"];
+                   
+                    lista.Add(auxArticulo);
+                }
+                return lista;
+            }
+            catch (Exception ex) { throw ex; }
+            finally { datos.cerrarConexion(); };
+        }
     }
 }

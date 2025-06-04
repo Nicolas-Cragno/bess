@@ -11,7 +11,7 @@ namespace dominio
         public string Mecanico {  get; set; }
         public string TipoVehiculo { get; set; }
         public int InternoAfectado { get; set; }
-        public DateTime FechaFin {  get; set; }
+        public DateTime? FechaFin {  get; set; } // puede ser NULL
         public bool Estado {  get; set; }
     }
 }
