@@ -58,7 +58,7 @@
             this.lblHistoriaReparacionTituloRepuestos.Name = "lblHistoriaReparacionTituloRepuestos";
             this.lblHistoriaReparacionTituloRepuestos.Size = new System.Drawing.Size(238, 24);
             this.lblHistoriaReparacionTituloRepuestos.TabIndex = 228;
-            this.lblHistoriaReparacionTituloRepuestos.Text = "Repuestos / insumos";
+            this.lblHistoriaReparacionTituloRepuestos.Text = "Insumos y repuestos";
             // 
             // dgvHistoriaReparacionRepuestos
             // 
@@ -68,7 +68,7 @@
             this.dgvHistoriaReparacionRepuestos.MultiSelect = false;
             this.dgvHistoriaReparacionRepuestos.Name = "dgvHistoriaReparacionRepuestos";
             this.dgvHistoriaReparacionRepuestos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvHistoriaReparacionRepuestos.Size = new System.Drawing.Size(283, 325);
+            this.dgvHistoriaReparacionRepuestos.Size = new System.Drawing.Size(529, 325);
             this.dgvHistoriaReparacionRepuestos.TabIndex = 223;
             // 
             // cbxHistoriaReparacionMecanico
@@ -124,7 +124,7 @@
             // 
             // btnHistoriaReparacionCerrar
             // 
-            this.btnHistoriaReparacionCerrar.Location = new System.Drawing.Point(552, 376);
+            this.btnHistoriaReparacionCerrar.Location = new System.Drawing.Point(798, 378);
             this.btnHistoriaReparacionCerrar.Name = "btnHistoriaReparacionCerrar";
             this.btnHistoriaReparacionCerrar.Size = new System.Drawing.Size(74, 23);
             this.btnHistoriaReparacionCerrar.TabIndex = 214;
@@ -172,7 +172,7 @@
             this.tbxHistoriaReparacionDetalle.Location = new System.Drawing.Point(12, 183);
             this.tbxHistoriaReparacionDetalle.Multiline = true;
             this.tbxHistoriaReparacionDetalle.Name = "tbxHistoriaReparacionDetalle";
-            this.tbxHistoriaReparacionDetalle.Size = new System.Drawing.Size(280, 164);
+            this.tbxHistoriaReparacionDetalle.Size = new System.Drawing.Size(283, 166);
             this.tbxHistoriaReparacionDetalle.TabIndex = 209;
             // 
             // lblHistoriaReparacionDetalle
@@ -227,7 +227,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(644, 411);
+            this.ClientSize = new System.Drawing.Size(884, 409);
             this.Controls.Add(this.lblHistoriaReparacionEstado);
             this.Controls.Add(this.btnHistoriaReparacionFinalizar);
             this.Controls.Add(this.lblHistoriaReparacionTituloRepuestos);
@@ -248,7 +248,6 @@
             this.Controls.Add(this.lblHistoriaReparacionTipo);
             this.Controls.Add(this.lblHistoriaReparacionTitulo);
             this.Name = "FrmHistoriaReparacion";
-            this.Text = "FrmHistoriaReparacion";
             this.Load += new System.EventHandler(this.FrmHistoriaReparacion_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvHistoriaReparacionRepuestos)).EndInit();
             this.ResumeLayout(false);

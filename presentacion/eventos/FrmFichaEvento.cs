@@ -18,6 +18,8 @@ namespace presentacion.eventos
         private char modo;
         private Evento evento;
         int activo = 1, choferL = 1;
+
+        // Cargas
         public FrmFichaEvento(char eModo, Evento eEvento = null, Form padre = null)
         {
             InitializeComponent();
@@ -25,15 +27,14 @@ namespace presentacion.eventos
             evento = eEvento;
             formularioPadre = padre;
         }
-
         private void FrmFichaEvento_Load(object sender, EventArgs e)
         {
             configuracion(modo);
         }
-
         private void configuracion(char eSelect)
         {
             this.ControlBox = false;
+            tabulaciones();
             if (formularioPadre != null)
             {
                 Screen pantalla = Screen.FromControl(formularioPadre);
@@ -60,12 +61,20 @@ namespace presentacion.eventos
                     break;
             }
         }
-
+        private void tabulaciones() 
+        {
+            cbxFichaEventoChofer.TabIndex = 0;
+            cbxFichaEventoInterno.TabIndex = 1;
+            cbxFichaEventoFurgon.TabIndex = 2;
+            cbxFichaEventoTipo.TabIndex = 3;
+            tbxFichaEventoDetalle.TabIndex = 4;
+            btnFichaEventoOK.TabIndex = 5;
+            btnFichaEventoCerrar.TabIndex = 6;
+        }
         private void formularioAgregar()
         {
             cargarListas();
         }
-
         private void formularioModificar()
         {
             cargarListas();
@@ -73,13 +82,11 @@ namespace presentacion.eventos
             lblFichaEventoTitulo.Text = evento.Fecha.ToString("dd/MM/yyyy");
             lblFichaEventoTitulo.TextAlign = ContentAlignment.MiddleCenter;
         }
-
         private void formularioFicha()
         {
             cargarDatos();
             bloquearDatos();
         }
-
         private void cargarListas() 
         {
             ChoferNegocio choferNegocio = new ChoferNegocio();
@@ -95,7 +102,6 @@ namespace presentacion.eventos
             cbxFichaEventoChofer.SelectedIndex = -1;
             cbxFichaEventoTipo.SelectedIndex = -1;
         }
-
         private void cargarDatos() 
         {
             // listados
@@ -118,6 +124,8 @@ namespace presentacion.eventos
             // ingreso de texto
             tbxFichaEventoDetalle.ReadOnly = true;
         }
+
+        // Acciones
         private Evento capturarDatos() 
         {
             Evento auxEvento = new Evento();
@@ -151,15 +159,6 @@ namespace presentacion.eventos
                     break;
             }
         }
-
-        private void editar()
-        {
-            char edit = 'M';
-            FrmFichaEvento edEvento = new FrmFichaEvento(edit, evento);
-            edEvento.ShowDialog();
-            Close();
-        }
-
         private void agregar()
         {
             AccesoDatos datos = new AccesoDatos();
@@ -186,18 +185,13 @@ namespace presentacion.eventos
             }
             finally { datos.cerrarConexion(); }
         }
-
-        private void btnFichaEventoCerrar_Click(object sender, EventArgs e)
+        private void editar()
         {
+            char edit = 'M';
+            FrmFichaEvento edEvento = new FrmFichaEvento(edit, evento);
+            edEvento.ShowDialog();
             Close();
         }
-
-        private void btnFichaEventoOK_Click(object sender, EventArgs e)
-        {
-            ejecutar(modo);
-            Close();
-        }
-
         private void modificar(long id)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -223,6 +217,17 @@ namespace presentacion.eventos
                 MessageBox.Show(ex.ToString());
             }
             finally { datos.cerrarConexion(); }
+        }
+        
+        // Botones - clicks
+        private void btnFichaEventoCerrar_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+        private void btnFichaEventoOK_Click(object sender, EventArgs e)
+        {
+            ejecutar(modo);
+            Close();
         }
     }
 }

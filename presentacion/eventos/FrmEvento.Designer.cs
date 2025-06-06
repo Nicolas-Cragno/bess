@@ -41,9 +41,9 @@
             // 
             this.btnEventosNuevo.Location = new System.Drawing.Point(355, 93);
             this.btnEventosNuevo.Name = "btnEventosNuevo";
-            this.btnEventosNuevo.Size = new System.Drawing.Size(92, 23);
+            this.btnEventosNuevo.Size = new System.Drawing.Size(63, 23);
             this.btnEventosNuevo.TabIndex = 17;
-            this.btnEventosNuevo.Text = "Agregar Evento";
+            this.btnEventosNuevo.Text = "Nuevo";
             this.btnEventosNuevo.UseVisualStyleBackColor = true;
             this.btnEventosNuevo.Click += new System.EventHandler(this.btnEventosNuevo_Click);
             // 
@@ -91,7 +91,7 @@
             // 
             this.lblMovimientosSubtitulo.AutoSize = true;
             this.lblMovimientosSubtitulo.Font = new System.Drawing.Font("Consolas", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMovimientosSubtitulo.Location = new System.Drawing.Point(15, 50);
+            this.lblMovimientosSubtitulo.Location = new System.Drawing.Point(16, 46);
             this.lblMovimientosSubtitulo.Name = "lblMovimientosSubtitulo";
             this.lblMovimientosSubtitulo.Size = new System.Drawing.Size(432, 19);
             this.lblMovimientosSubtitulo.TabIndex = 25;

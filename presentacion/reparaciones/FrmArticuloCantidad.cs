@@ -17,6 +17,8 @@ namespace presentacion.reparaciones
         private Articulo articulo;
         double cantidad, cantidadDefecto;
         public double CantidadSeleccionada {  get; set; }
+
+        // Cargas
         public FrmArticuloCantidad(Articulo sArticulo)
         {
             InitializeComponent();
@@ -24,7 +26,28 @@ namespace presentacion.reparaciones
             cantidad = articulo.Cantidad;
             
         }
+        private void FrmArticuloCantidad_Load(object sender, EventArgs e)
+        {
+            cargar();
+        }
+        private void cargar()
+        {
+            this.ControlBox = false; // oculta la barra de control superior
+            tabulaciones();
+            lblArticuloCantidadNombre.Text = articulo.Nombre;
+            lblArticuloCantidadMarca.Text = articulo.Marca;
+            lblArticuloCantidadCodigo.Text = articulo.CodigoProveedor.ToString();
+            lblArticuloCantidadStock.Text = articulo.Stock.ToString() + " " + articulo.Unidad;
+            cantidad = 1;
+            tbxArticuloCantidad.Text = articulo.Cantidad.ToString();
+        }
+        private void tabulaciones()
+        {
+            tbxArticuloCantidad.TabIndex = 0;
+            btnFichaReparacionesOK.TabIndex = 1;
+        }
 
+        // Acciones
         private void btnFichaReparacionesOK_Click(object sender, EventArgs e)
         {
             // ingreso
@@ -52,24 +75,6 @@ namespace presentacion.reparaciones
                 MessageBox.Show("Ingrese un valor valido");
              }
         }
-
-        private void FrmArticuloCantidad_Load(object sender, EventArgs e)
-        {
-            cargar();
-        }
-
-        private void cargar()
-        {
-            this.ControlBox = false; // oculta la barra de control superior
-
-            lblArticuloCantidadNombre.Text = articulo.Nombre;
-            lblArticuloCantidadMarca.Text = articulo.Marca;
-            lblArticuloCantidadCodigo.Text = articulo.CodigoProveedor.ToString();
-            lblArticuloCantidadStock.Text = articulo.Stock.ToString() + " " + articulo.Unidad;
-            cantidad = 1;
-            tbxArticuloCantidad.Text = articulo.Cantidad.ToString();
-        }
-
         private void tbxArticuloCantidad_KeyPress(object sender, KeyPressEventArgs e)
         {
             string unidad = tbxArticuloCantidad.Text;
@@ -92,7 +97,6 @@ namespace presentacion.reparaciones
                 e.Handled = true;
             }
         }
-
         private void btnArticuloCantidadCancelar_Click(object sender, EventArgs e)
         {
             Close();

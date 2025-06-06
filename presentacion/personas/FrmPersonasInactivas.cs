@@ -18,10 +18,15 @@ namespace presentacion.personas
         List<Chofer> listadoChoferes = new List<Chofer>();
         List<Mecanico> listadoMecanicos = new List<Mecanico>();
         List<Persona> listadoPersonas = new List<Persona>();
-        public FrmPersonasInactivas(int pPuesto)
+        private int anchoMaximoDgv = 0;
+        private Form formularioPadre;
+
+        // Cargas
+        public FrmPersonasInactivas(int pPuesto, Form padre=null)
         {
             InitializeComponent();
             puesto = pPuesto;   
+            formularioPadre = padre;
         }
         private void FrmPersonasInactivas_Load(object sender, EventArgs e)
         {
@@ -30,6 +35,7 @@ namespace presentacion.personas
         private void cargar() 
         {
             this.ControlBox = false; // oculta el manejo de la ventana superior
+            tabulaciones();
             ChoferNegocio choferNegocio = new ChoferNegocio();
             MecanicoNegocio mecanicoNegocio = new MecanicoNegocio();
             PersonaNegocio personaNegocio = new PersonaNegocio();
@@ -51,17 +57,28 @@ namespace presentacion.personas
                     formatoColumnas(listadoPersonas);
                     break;
             }
+            colgarDerecha();
         }
-        private void btnPersonasInactivasClose_Click(object sender, EventArgs e)
+        private void colgarDerecha()
         {
-            Close();
+            if (formularioPadre != null)
+            {
+                Screen pantalla = Screen.FromControl(formularioPadre);
+                this.StartPosition = FormStartPosition.Manual;
+                this.Location = new Point(
+                    pantalla.WorkingArea.Right - this.Width,
+                    pantalla.WorkingArea.Top
+                );
+            }
+        }
+        private void tabulaciones()
+        {
+            tbxPersonasInactivasFiltro.TabIndex = 0;
+            dgvPersonasInactivas.TabIndex = 1;
+            btnPersonasInactivasClose.TabIndex = 2;
         }
 
-        // Filtros a DGV
-        private void tbxPersonasInactivasFiltro_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            filtrar();
-        }
+        // Data Grid View
         private void filtrar()
         {
             switch (puesto)
@@ -131,14 +148,13 @@ namespace presentacion.personas
             dgvPersonasInactivas.DataSource = listaFiltrada;
             formatoColumnas(listadoPersonas);
         }
-
-        // DGV y columnas
         private void formatoColumnas(object lista)
         {
             ocultarColumnas();
             anchoColumnas(lista);
             ordenarColumnas();
             nombrarColumnas();
+            ajustarDgv(dgvPersonasInactivas);
         }
         private void ocultarColumnas()
         {
@@ -217,6 +233,39 @@ namespace presentacion.personas
             dgvPersonasInactivas.Columns["Dni"].HeaderText = "DNI";
             dgvPersonasInactivas.Columns["Apellido"].HeaderText = "APELLIDO/S";
             dgvPersonasInactivas.Columns["Nombres"].HeaderText = "NOMBRES/S";
+        }
+        private void ajustarDgv(DataGridView dgv)
+        {
+            if (anchoMaximoDgv == 0)
+            {
+                int anchoTotal = dgv.RowHeadersVisible ? dgv.RowHeadersWidth : 0;
+
+                foreach (DataGridViewColumn col in dgv.Columns)
+                {
+                    if (col.Visible)
+                        anchoTotal += col.Width + 1;
+                }
+
+                // Si hay scroll vertical (más filas que alto disponible), lo sumamos. Si no, no.
+                if (dgv.DisplayedRowCount(false) < dgv.RowCount)
+                    anchoTotal += SystemInformation.VerticalScrollBarWidth;
+
+                anchoMaximoDgv = anchoTotal;
+            }
+
+            dgv.Width = anchoMaximoDgv;
+            this.Width = dgv.Left + dgv.Width + 30; // es para que el Form tome el tamaño del dgv
+            btnPersonasInactivasClose.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+        }
+
+        // Acciones
+        private void tbxPersonasInactivasFiltro_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            filtrar();
+        }
+        private void btnPersonasInactivasClose_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

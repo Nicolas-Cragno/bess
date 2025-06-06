@@ -20,6 +20,10 @@ namespace presentacion.personas
         private List<Fletero> listadoFleteros;
         private List<Persona> listadoPersonas;
         // private List<Administrativo> listadoAdministrativos;
+        private int anchoMaximoDgv = 0;
+        char verFicha = 'F', modificar = 'M', agregar = 'A';
+
+        // Cargas
         public FrmPersonas(int pPuesto)
         {
             InitializeComponent();
@@ -27,7 +31,7 @@ namespace presentacion.personas
 
             AccesoDatos datos = new AccesoDatos();
             lblPersonasTitulo.Text = datos.buscarPuesto(puesto);
-            lblPersonasTitulo.Left = (this.ClientSize.Width - lblPersonasTitulo.Width) / 2;
+            //lblPersonasTitulo.Left = (this.ClientSize.Width - lblPersonasTitulo.Width) / 2;
         }
         private void FrmPersonas_Load(object sender, EventArgs e)
         {
@@ -66,11 +70,7 @@ namespace presentacion.personas
             }
         }
 
-        // Filtros a DGV
-        private void tbxPersonasFiltro_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            filtrar();
-        }
+        // Data Grid View
         private void filtrar()
         {
             switch (puesto)
@@ -143,14 +143,13 @@ namespace presentacion.personas
             dgvPersonas.DataSource = listaFiltrada;
             formatoColumnas(listadoPersonas);
         }
-
-        // DGV & columnas
         private void formatoColumnas(object lista)
         {
             ocultarColumnas();
             anchoColumnas(lista);
             ordenarColumnas();
             nombrarColumnas();
+            ajustarDgv(dgvPersonas);
         }
         private void ocultarColumnas()
         {
@@ -267,13 +266,38 @@ namespace presentacion.personas
                     break;
             }
         }
+        private void ajustarDgv(DataGridView dgv)
+        {
+            if (anchoMaximoDgv == 0)
+            {
+                int anchoTotal = dgv.RowHeadersVisible ? dgv.RowHeadersWidth : 0;
+
+                foreach (DataGridViewColumn col in dgv.Columns)
+                {
+                    if (col.Visible)
+                        anchoTotal += col.Width + 1;
+                }
+
+                // Si hay scroll vertical (más filas que alto disponible), lo sumamos. Si no, no.
+                if (dgv.DisplayedRowCount(false) < dgv.RowCount)
+                    anchoTotal += SystemInformation.VerticalScrollBarWidth;
+
+                anchoMaximoDgv = anchoTotal;
+            }
+
+            dgv.Width = anchoMaximoDgv;
+        }
+        // Acciones
+        private void tbxPersonasFiltro_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            filtrar();
+        }
         private void btnPersonasInactivas_Click(object sender, EventArgs e)
         {
-            FrmPersonasInactivas ventana = new FrmPersonasInactivas(puesto);
+            FrmPersonasInactivas ventana = new FrmPersonasInactivas(puesto, this);
             ventana.ShowDialog();
             cargar();
         }
-
         private void dgvPersonas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             FrmFichaPersona ficha = null;
@@ -281,22 +305,29 @@ namespace presentacion.personas
             {
                 case 1:
                     Chofer chofer = (Chofer)dgvPersonas.CurrentRow.DataBoundItem;
-                    ficha = new FrmFichaPersona(puesto, chofer);
+                    ficha = new FrmFichaPersona(puesto, verFicha, chofer);
                     break;
                 case 3:
                     Mecanico mecanico = (Mecanico)dgvPersonas.CurrentRow.DataBoundItem;
-                    ficha = new FrmFichaPersona(puesto, mecanico);
+                    ficha = new FrmFichaPersona(puesto, verFicha, mecanico);
                     break;
                 case 4:
                     Fletero fletero = (Fletero)dgvPersonas.CurrentRow.DataBoundItem;
-                    ficha = new FrmFichaPersona(puesto, fletero);
+                    ficha = new FrmFichaPersona(puesto, verFicha, fletero);
                     break;
                 default:
                     Persona persona = (Persona)dgvPersonas.CurrentRow.DataBoundItem;
-                    ficha = new FrmFichaPersona(puesto, persona);
+                    ficha = new FrmFichaPersona(puesto, verFicha, persona);
                     break;
             }
             ficha.ShowDialog();
+            cargar();
+        }
+
+        private void btnPersonasAgregar_Click(object sender, EventArgs e)
+        {
+            FrmFichaPersona ventana = new FrmFichaPersona(1, 'A', null);
+            ventana.ShowDialog();
             cargar();
         }
     }

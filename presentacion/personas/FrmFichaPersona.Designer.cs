@@ -56,6 +56,7 @@
             // 
             // btnFichaPersonaCerrar
             // 
+            this.btnFichaPersonaCerrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnFichaPersonaCerrar.Location = new System.Drawing.Point(704, 363);
             this.btnFichaPersonaCerrar.Name = "btnFichaPersonaCerrar";
             this.btnFichaPersonaCerrar.Size = new System.Drawing.Size(75, 23);
@@ -103,12 +104,13 @@
             // 
             // btnFichaPersonaEditar
             // 
-            this.btnFichaPersonaEditar.Location = new System.Drawing.Point(258, 363);
+            this.btnFichaPersonaEditar.Location = new System.Drawing.Point(9, 363);
             this.btnFichaPersonaEditar.Name = "btnFichaPersonaEditar";
             this.btnFichaPersonaEditar.Size = new System.Drawing.Size(75, 23);
             this.btnFichaPersonaEditar.TabIndex = 67;
             this.btnFichaPersonaEditar.Text = "Editar Datos";
             this.btnFichaPersonaEditar.UseVisualStyleBackColor = true;
+            this.btnFichaPersonaEditar.Click += new System.EventHandler(this.btnFichaPersonaEditar_Click);
             // 
             // tbxFichaPersonaDetalle
             // 

@@ -14,11 +14,11 @@ namespace presentacion.movimientos
 {
     public partial class FrmMovimientos : Form
     {
-        // Carga del Form
-
         private List<Movimiento> listadoMovimientos;
         char ficha = 'F', agregar = 'A', modificar = 'M';
         private int anchoMaximoDgv = 0;
+
+        // Cargas
         public FrmMovimientos()
         {
             InitializeComponent();
@@ -31,14 +31,20 @@ namespace presentacion.movimientos
         private void cargar()
         {
             this.ControlBox = false; // oculta el manejo de la ventana superior
+            tabulaciones();
             MovimientoNegocio negocio = new MovimientoNegocio();
             listadoMovimientos = negocio.listar();
             dgvMovimientos.DataSource = listadoMovimientos;
             formatoColumnas();
         }
+        private void tabulaciones()
+        {
+            tbxMovimientosFiltro.TabIndex = 0;
+            btnMovimientosNuevo.TabIndex = 1;
+            dgvMovimientos.TabIndex = 2;
+        }
 
-        // Hacia otros Forms / cerrar
-
+        // Botones - clicks
         private void btnMovimientosNuevo_Click(object sender, EventArgs e)
         {
             FrmFichaMovimiento ventana = new FrmFichaMovimiento(agregar, null, this);
@@ -50,8 +56,7 @@ namespace presentacion.movimientos
             Close();
         }
 
-        // Formato de dgv
-
+        // Data grid view
         private void filtrar()
         {
             List<Movimiento> listaFiltrada;
@@ -70,45 +75,20 @@ namespace presentacion.movimientos
             dgvMovimientos.DataSource = listaFiltrada;
             formatoColumnas();
         }
-        private void tbxMovimientosFiltro_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            filtrar();
-        }
-        private void dgvMovimientos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            Movimiento seleccion = (Movimiento)dgvMovimientos.CurrentRow.DataBoundItem;
-
-            FrmFichaMovimiento fichaMovimiento = new FrmFichaMovimiento(ficha, seleccion, this);
-            fichaMovimiento.ShowDialog();
-            cargar();
-        }
         private void formatoColumnas()
         {
             ocultarColumnas();
             nombrarColumnas();
             anchoColumnas();
-            ajustarDgv();
+            ajustarDgv(dgvMovimientos);
         }
-        private void ajustarDgv()
+        private void nombrarColumnas()
         {
-            if (anchoMaximoDgv == 0)
-            {
-                int anchoTotal = dgvMovimientos.RowHeadersVisible ? dgvMovimientos.RowHeadersWidth : 0;
-
-                foreach (DataGridViewColumn col in dgvMovimientos.Columns)
-                {
-                    if (col.Visible)
-                        anchoTotal += col.Width + 1;
-                }
-
-                // Si hay scroll vertical (más filas que alto disponible), lo sumamos. Si no, no.
-                if (dgvMovimientos.DisplayedRowCount(false) < dgvMovimientos.RowCount)
-                    anchoTotal += SystemInformation.VerticalScrollBarWidth;
-
-                anchoMaximoDgv = anchoTotal;
-            }
-
-            dgvMovimientos.Width = anchoMaximoDgv;
+            dgvMovimientos.Columns["Tipo"].HeaderText = "";
+            dgvMovimientos.Columns["Persona"].HeaderText = "EMPLEADO / CHOFER";
+            dgvMovimientos.Columns["Tractor"].HeaderText = "TRACTOR";
+            dgvMovimientos.Columns["Furgon"].HeaderText = "FURGON";
+            dgvMovimientos.Columns["Fecha"].HeaderText = "FECHA Y HORA";
         }
         private void ocultarColumnas()
         {
@@ -125,16 +105,6 @@ namespace presentacion.movimientos
             dgvMovimientos.Columns["Efurgon"].Visible = false;
             dgvMovimientos.Columns["Llave"].Visible = false;
         }
-
-        private void nombrarColumnas()
-        {
-            dgvMovimientos.Columns["Tipo"].HeaderText = "";
-            dgvMovimientos.Columns["Persona"].HeaderText = "EMPLEADO / CHOFER";
-            dgvMovimientos.Columns["Tractor"].HeaderText = "TRACTOR";
-            dgvMovimientos.Columns["Furgon"].HeaderText = "FURGON";
-            dgvMovimientos.Columns["Fecha"].HeaderText = "FECHA Y HORA";
-        }
-
         private void anchoColumnas()
         {
             dgvMovimientos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
@@ -145,23 +115,53 @@ namespace presentacion.movimientos
             }
             dgvMovimientos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
         }
+        private void ajustarDgv(DataGridView dgv)
+        {
+            if (anchoMaximoDgv == 0)
+            {
+                int anchoTotal = dgv.RowHeadersVisible ? dgv.RowHeadersWidth : 0;
+
+                foreach (DataGridViewColumn col in dgv.Columns)
+                {
+                    if (col.Visible)
+                        anchoTotal += col.Width + 1;
+                }
+
+                // Si hay scroll vertical (más filas que alto disponible), lo sumamos. Si no, no.
+                if (dgv.DisplayedRowCount(false) < dgv.RowCount)
+                    anchoTotal += SystemInformation.VerticalScrollBarWidth;
+
+                anchoMaximoDgv = anchoTotal;
+            }
+
+            dgv.Width = anchoMaximoDgv;
+        }
+        private void tbxMovimientosFiltro_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            filtrar();
+        }
+        private void dgvMovimientos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Movimiento seleccion = (Movimiento)dgvMovimientos.CurrentRow.DataBoundItem;
+
+            FrmFichaMovimiento fichaMovimiento = new FrmFichaMovimiento(ficha, seleccion, this);
+            fichaMovimiento.ShowDialog();
+            cargar();
+        }
 
         // Sin uso
         private void dgvMovimientos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
-
         private void tbxMovimientosFiltro_TextChanged(object sender, EventArgs e)
         {
 
         }
-
         private void lblMovimientosFiltro_Click(object sender, EventArgs e)
         {
 
         }
-
         private void lblMovimientosTitulo_Click(object sender, EventArgs e)
         {
 

@@ -38,7 +38,8 @@
             // 
             // btnPersonasInactivasClose
             // 
-            this.btnPersonasInactivasClose.Location = new System.Drawing.Point(450, 344);
+            this.btnPersonasInactivasClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPersonasInactivasClose.Location = new System.Drawing.Point(276, 355);
             this.btnPersonasInactivasClose.Name = "btnPersonasInactivasClose";
             this.btnPersonasInactivasClose.Size = new System.Drawing.Size(51, 23);
             this.btnPersonasInactivasClose.TabIndex = 17;
@@ -54,7 +55,7 @@
             this.dgvPersonasInactivas.MultiSelect = false;
             this.dgvPersonasInactivas.Name = "dgvPersonasInactivas";
             this.dgvPersonasInactivas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPersonasInactivas.Size = new System.Drawing.Size(487, 245);
+            this.dgvPersonasInactivas.Size = new System.Drawing.Size(313, 256);
             this.dgvPersonasInactivas.TabIndex = 16;
             // 
             // tbxPersonasInactivasFiltro
@@ -79,7 +80,7 @@
             // 
             this.lblPersonasInactivasTitulo.AutoSize = true;
             this.lblPersonasInactivasTitulo.Font = new System.Drawing.Font("Consolas", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPersonasInactivasTitulo.Location = new System.Drawing.Point(177, 7);
+            this.lblPersonasInactivasTitulo.Location = new System.Drawing.Point(12, 9);
             this.lblPersonasInactivasTitulo.Name = "lblPersonasInactivasTitulo";
             this.lblPersonasInactivasTitulo.Size = new System.Drawing.Size(159, 34);
             this.lblPersonasInactivasTitulo.TabIndex = 13;
@@ -89,7 +90,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(512, 375);
+            this.ClientSize = new System.Drawing.Size(339, 390);
             this.Controls.Add(this.btnPersonasInactivasClose);
             this.Controls.Add(this.dgvPersonasInactivas);
             this.Controls.Add(this.tbxPersonasInactivasFiltro);

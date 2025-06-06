@@ -57,7 +57,7 @@
             // cbxFichaReparacionesTipoTrabajo
             // 
             this.cbxFichaReparacionesTipoTrabajo.FormattingEnabled = true;
-            this.cbxFichaReparacionesTipoTrabajo.Location = new System.Drawing.Point(185, 63);
+            this.cbxFichaReparacionesTipoTrabajo.Location = new System.Drawing.Point(177, 63);
             this.cbxFichaReparacionesTipoTrabajo.Name = "cbxFichaReparacionesTipoTrabajo";
             this.cbxFichaReparacionesTipoTrabajo.Size = new System.Drawing.Size(116, 21);
             this.cbxFichaReparacionesTipoTrabajo.TabIndex = 190;
@@ -65,7 +65,7 @@
             // lblFichaReparacionesTipoTrabajo
             // 
             this.lblFichaReparacionesTipoTrabajo.AutoSize = true;
-            this.lblFichaReparacionesTipoTrabajo.Location = new System.Drawing.Point(187, 47);
+            this.lblFichaReparacionesTipoTrabajo.Location = new System.Drawing.Point(179, 47);
             this.lblFichaReparacionesTipoTrabajo.Name = "lblFichaReparacionesTipoTrabajo";
             this.lblFichaReparacionesTipoTrabajo.Size = new System.Drawing.Size(84, 13);
             this.lblFichaReparacionesTipoTrabajo.TabIndex = 189;
@@ -74,7 +74,7 @@
             // cbxFichaReparacionesInt
             // 
             this.cbxFichaReparacionesInt.FormattingEnabled = true;
-            this.cbxFichaReparacionesInt.Location = new System.Drawing.Point(123, 63);
+            this.cbxFichaReparacionesInt.Location = new System.Drawing.Point(115, 63);
             this.cbxFichaReparacionesInt.Name = "cbxFichaReparacionesInt";
             this.cbxFichaReparacionesInt.Size = new System.Drawing.Size(56, 21);
             this.cbxFichaReparacionesInt.TabIndex = 181;
@@ -82,7 +82,7 @@
             // lblFichaReparacionesInterno
             // 
             this.lblFichaReparacionesInterno.AutoSize = true;
-            this.lblFichaReparacionesInterno.Location = new System.Drawing.Point(125, 46);
+            this.lblFichaReparacionesInterno.Location = new System.Drawing.Point(117, 46);
             this.lblFichaReparacionesInterno.Name = "lblFichaReparacionesInterno";
             this.lblFichaReparacionesInterno.Size = new System.Drawing.Size(39, 13);
             this.lblFichaReparacionesInterno.TabIndex = 180;
@@ -90,7 +90,7 @@
             // 
             // btnFichaReparacionesCerrar
             // 
-            this.btnFichaReparacionesCerrar.Location = new System.Drawing.Point(798, 376);
+            this.btnFichaReparacionesCerrar.Location = new System.Drawing.Point(798, 378);
             this.btnFichaReparacionesCerrar.Name = "btnFichaReparacionesCerrar";
             this.btnFichaReparacionesCerrar.Size = new System.Drawing.Size(74, 23);
             this.btnFichaReparacionesCerrar.TabIndex = 179;
@@ -100,7 +100,7 @@
             // 
             // btnFichaReparacionesOK
             // 
-            this.btnFichaReparacionesOK.Location = new System.Drawing.Point(18, 376);
+            this.btnFichaReparacionesOK.Location = new System.Drawing.Point(10, 376);
             this.btnFichaReparacionesOK.Name = "btnFichaReparacionesOK";
             this.btnFichaReparacionesOK.Size = new System.Drawing.Size(74, 23);
             this.btnFichaReparacionesOK.TabIndex = 178;
@@ -111,7 +111,7 @@
             // cbxFichaReparacionesChofer
             // 
             this.cbxFichaReparacionesChofer.FormattingEnabled = true;
-            this.cbxFichaReparacionesChofer.Location = new System.Drawing.Point(22, 105);
+            this.cbxFichaReparacionesChofer.Location = new System.Drawing.Point(14, 105);
             this.cbxFichaReparacionesChofer.Name = "cbxFichaReparacionesChofer";
             this.cbxFichaReparacionesChofer.Size = new System.Drawing.Size(280, 21);
             this.cbxFichaReparacionesChofer.TabIndex = 177;
@@ -119,7 +119,7 @@
             // cbxFichaReparacionesTipo
             // 
             this.cbxFichaReparacionesTipo.FormattingEnabled = true;
-            this.cbxFichaReparacionesTipo.Location = new System.Drawing.Point(21, 63);
+            this.cbxFichaReparacionesTipo.Location = new System.Drawing.Point(13, 63);
             this.cbxFichaReparacionesTipo.Name = "cbxFichaReparacionesTipo";
             this.cbxFichaReparacionesTipo.Size = new System.Drawing.Size(96, 21);
             this.cbxFichaReparacionesTipo.TabIndex = 176;
@@ -128,7 +128,7 @@
             // lblFichaReparacionesChofer
             // 
             this.lblFichaReparacionesChofer.AutoSize = true;
-            this.lblFichaReparacionesChofer.Location = new System.Drawing.Point(24, 89);
+            this.lblFichaReparacionesChofer.Location = new System.Drawing.Point(16, 89);
             this.lblFichaReparacionesChofer.Name = "lblFichaReparacionesChofer";
             this.lblFichaReparacionesChofer.Size = new System.Drawing.Size(83, 13);
             this.lblFichaReparacionesChofer.TabIndex = 175;
@@ -136,16 +136,16 @@
             // 
             // tbxFichaReparacionesDetalle
             // 
-            this.tbxFichaReparacionesDetalle.Location = new System.Drawing.Point(18, 201);
+            this.tbxFichaReparacionesDetalle.Location = new System.Drawing.Point(10, 201);
             this.tbxFichaReparacionesDetalle.Multiline = true;
             this.tbxFichaReparacionesDetalle.Name = "tbxFichaReparacionesDetalle";
-            this.tbxFichaReparacionesDetalle.Size = new System.Drawing.Size(280, 171);
+            this.tbxFichaReparacionesDetalle.Size = new System.Drawing.Size(283, 171);
             this.tbxFichaReparacionesDetalle.TabIndex = 174;
             // 
             // lblFichaReparacionesDetalle
             // 
             this.lblFichaReparacionesDetalle.AutoSize = true;
-            this.lblFichaReparacionesDetalle.Location = new System.Drawing.Point(19, 185);
+            this.lblFichaReparacionesDetalle.Location = new System.Drawing.Point(11, 185);
             this.lblFichaReparacionesDetalle.Name = "lblFichaReparacionesDetalle";
             this.lblFichaReparacionesDetalle.Size = new System.Drawing.Size(40, 13);
             this.lblFichaReparacionesDetalle.TabIndex = 173;
@@ -154,7 +154,7 @@
             // lblFichaReparacionesTipo
             // 
             this.lblFichaReparacionesTipo.AutoSize = true;
-            this.lblFichaReparacionesTipo.Location = new System.Drawing.Point(23, 47);
+            this.lblFichaReparacionesTipo.Location = new System.Drawing.Point(15, 47);
             this.lblFichaReparacionesTipo.Name = "lblFichaReparacionesTipo";
             this.lblFichaReparacionesTipo.Size = new System.Drawing.Size(24, 13);
             this.lblFichaReparacionesTipo.TabIndex = 172;
@@ -164,7 +164,7 @@
             // 
             this.lblFichaReparacionTitulo.AutoSize = true;
             this.lblFichaReparacionTitulo.Font = new System.Drawing.Font("Consolas", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFichaReparacionTitulo.Location = new System.Drawing.Point(68, 9);
+            this.lblFichaReparacionTitulo.Location = new System.Drawing.Point(60, 9);
             this.lblFichaReparacionTitulo.Name = "lblFichaReparacionTitulo";
             this.lblFichaReparacionTitulo.Size = new System.Drawing.Size(181, 28);
             this.lblFichaReparacionTitulo.TabIndex = 171;
@@ -173,7 +173,7 @@
             // cbxFichaReparacionesMecanico
             // 
             this.cbxFichaReparacionesMecanico.FormattingEnabled = true;
-            this.cbxFichaReparacionesMecanico.Location = new System.Drawing.Point(22, 145);
+            this.cbxFichaReparacionesMecanico.Location = new System.Drawing.Point(14, 145);
             this.cbxFichaReparacionesMecanico.Name = "cbxFichaReparacionesMecanico";
             this.cbxFichaReparacionesMecanico.Size = new System.Drawing.Size(280, 21);
             this.cbxFichaReparacionesMecanico.TabIndex = 192;
@@ -181,7 +181,7 @@
             // lblFichaReparacionesMecanico
             // 
             this.lblFichaReparacionesMecanico.AutoSize = true;
-            this.lblFichaReparacionesMecanico.Location = new System.Drawing.Point(24, 129);
+            this.lblFichaReparacionesMecanico.Location = new System.Drawing.Point(16, 129);
             this.lblFichaReparacionesMecanico.Name = "lblFichaReparacionesMecanico";
             this.lblFichaReparacionesMecanico.Size = new System.Drawing.Size(53, 13);
             this.lblFichaReparacionesMecanico.TabIndex = 191;
@@ -189,7 +189,7 @@
             // 
             // btnFichaReparacionesAgregar
             // 
-            this.btnFichaReparacionesAgregar.Location = new System.Drawing.Point(816, 60);
+            this.btnFichaReparacionesAgregar.Location = new System.Drawing.Point(816, 65);
             this.btnFichaReparacionesAgregar.Name = "btnFichaReparacionesAgregar";
             this.btnFichaReparacionesAgregar.Size = new System.Drawing.Size(56, 23);
             this.btnFichaReparacionesAgregar.TabIndex = 203;
@@ -198,16 +198,16 @@
             // 
             // cbxFichaReparacionesFiltroArticulos
             // 
-            this.cbxFichaReparacionesFiltroArticulos.Location = new System.Drawing.Point(384, 63);
+            this.cbxFichaReparacionesFiltroArticulos.Location = new System.Drawing.Point(608, 67);
             this.cbxFichaReparacionesFiltroArticulos.Name = "cbxFichaReparacionesFiltroArticulos";
-            this.cbxFichaReparacionesFiltroArticulos.Size = new System.Drawing.Size(397, 20);
+            this.cbxFichaReparacionesFiltroArticulos.Size = new System.Drawing.Size(202, 20);
             this.cbxFichaReparacionesFiltroArticulos.TabIndex = 202;
             // 
             // lblFichaReparacionesFiltroArticulos
             // 
             this.lblFichaReparacionesFiltroArticulos.AutoSize = true;
             this.lblFichaReparacionesFiltroArticulos.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFichaReparacionesFiltroArticulos.Location = new System.Drawing.Point(344, 67);
+            this.lblFichaReparacionesFiltroArticulos.Location = new System.Drawing.Point(568, 71);
             this.lblFichaReparacionesFiltroArticulos.Name = "lblFichaReparacionesFiltroArticulos";
             this.lblFichaReparacionesFiltroArticulos.Size = new System.Drawing.Size(34, 12);
             this.lblFichaReparacionesFiltroArticulos.TabIndex = 201;
@@ -230,11 +230,11 @@
             // 
             this.lblFichaReparacionesTituloArticulos.AutoSize = true;
             this.lblFichaReparacionesTituloArticulos.Font = new System.Drawing.Font("Consolas", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFichaReparacionesTituloArticulos.Location = new System.Drawing.Point(342, 29);
+            this.lblFichaReparacionesTituloArticulos.Location = new System.Drawing.Point(342, 62);
             this.lblFichaReparacionesTituloArticulos.Name = "lblFichaReparacionesTituloArticulos";
-            this.lblFichaReparacionesTituloArticulos.Size = new System.Drawing.Size(226, 24);
+            this.lblFichaReparacionesTituloArticulos.Size = new System.Drawing.Size(70, 24);
             this.lblFichaReparacionesTituloArticulos.TabIndex = 199;
-            this.lblFichaReparacionesTituloArticulos.Text = "Lista de repuestos";
+            this.lblFichaReparacionesTituloArticulos.Text = "Stock";
             // 
             // dgvFichaReparacionesArticulos
             // 
@@ -254,15 +254,15 @@
             this.lblFichaReparacionesTituloRepuestos.Font = new System.Drawing.Font("Consolas", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFichaReparacionesTituloRepuestos.Location = new System.Drawing.Point(342, 221);
             this.lblFichaReparacionesTituloRepuestos.Name = "lblFichaReparacionesTituloRepuestos";
-            this.lblFichaReparacionesTituloRepuestos.Size = new System.Drawing.Size(250, 24);
+            this.lblFichaReparacionesTituloRepuestos.Size = new System.Drawing.Size(238, 24);
             this.lblFichaReparacionesTituloRepuestos.TabIndex = 205;
-            this.lblFichaReparacionesTituloRepuestos.Text = "Repuestos necesarios";
+            this.lblFichaReparacionesTituloRepuestos.Text = "Insumos y repuestos";
             // 
             // FrmFichaReparaciones
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(884, 411);
+            this.ClientSize = new System.Drawing.Size(884, 409);
             this.Controls.Add(this.lblFichaReparacionesTituloRepuestos);
             this.Controls.Add(this.dgvFichaReparacionesArticulos);
             this.Controls.Add(this.btnFichaReparacionesAgregar);

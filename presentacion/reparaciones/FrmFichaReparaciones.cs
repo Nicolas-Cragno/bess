@@ -14,14 +14,15 @@ namespace presentacion.reparaciones
 {
     public partial class FrmFichaReparaciones : Form
     {
-        // Carga del Form
         private char modo;
         private Reparacion reparacion;
         private List<Articulo> listadoRepuestos;
         private List<Articulo> listadoRepuestosAgregados;
         private List<Articulo> listadoRepuestosFinal;
         int activo = 1, choferL = 1, mecanico = 3, idTallerCamiones = 4;
-        string tallerCamiones = "TALLER CAMIONES";
+        string tallerCamiones = "TALLER CAMIONES", tallerFurgones= "TALLER FURGONES";
+
+        // Cargas
         public FrmFichaReparaciones(char rModo, Reparacion rReparacion = null)
         {
             InitializeComponent();
@@ -32,36 +33,10 @@ namespace presentacion.reparaciones
         {
             configuracion(modo);
         }
-
-
-        private void cargarListas()
-        {
-            VehiculoNegocio vehiculoNegocio = new VehiculoNegocio();
-            ChoferNegocio choferNegocio = new ChoferNegocio();
-            TractorNegocio tractorNegocio = new TractorNegocio();
-            ReparacionNegocio reparacionNegocio = new ReparacionNegocio();
-            MecanicoNegocio mecanicoNegocio = new MecanicoNegocio();
-            AccesoDatos datos = new AccesoDatos();
-            cbxFichaReparacionesTipo.DataSource = vehiculoNegocio.listarTipos();
-            cbxFichaReparacionesTipo.SelectedIndexChanged += cbxFichaReparacionesTipo_SelectedIndexChanged; // depende la selección se captura el tipo y se listan los internos en la funcion de abajo
-            cbxFichaReparacionesTipoTrabajo.DataSource = reparacionNegocio.listarTipos() ;
-            cbxFichaReparacionesChofer.DataSource = choferNegocio.listarNombres(activo, choferL);
-            cbxFichaReparacionesMecanico.DataSource = mecanicoNegocio.listarNombres(activo, mecanico);
-            cbxFichaReparacionesChofer.SelectedIndex = -1;
-            cbxFichaReparacionesMecanico.SelectedIndex = -1;
-        }
-        private void cbxFichaReparacionesTipo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            VehiculoNegocio vehiculoNegocio = new VehiculoNegocio();
-            string tipo = cbxFichaReparacionesTipo.SelectedItem.ToString();
-            cbxFichaReparacionesInt.DataSource = vehiculoNegocio.listarInternos(tipo);
-        }
-
-        // Funciones particulares segun MODO
         private void configuracion (char rSelect)
         {
             this.ControlBox = false; // oculta la barra de control superior
-
+            tabulaciones();
             switch (rSelect)
             {
                 case 'F':
@@ -82,6 +57,36 @@ namespace presentacion.reparaciones
                     break;
             }
         }
+        private void tabulaciones()
+        {
+            cbxFichaReparacionesTipo.TabIndex = 0;
+            cbxFichaReparacionesInt.TabIndex = 1;
+            cbxFichaReparacionesTipoTrabajo.TabIndex = 2;
+            cbxFichaReparacionesChofer.TabIndex = 3;
+            cbxFichaReparacionesMecanico.TabIndex = 4;
+            tbxFichaReparacionesDetalle.TabIndex = 5;
+            cbxFichaReparacionesFiltroArticulos.TabIndex = 6;
+            btnFichaReparacionesAgregar.TabIndex = 7;
+            dgvFichaReparacionesArticulos.TabIndex = 8;
+            dgvFichaReparacionesRepuestos.TabIndex = 9;
+            dgvFichaReparacionesRepuestos.TabIndex = 10;
+        }
+        private void cargarListas()
+        {
+            VehiculoNegocio vehiculoNegocio = new VehiculoNegocio();
+            ChoferNegocio choferNegocio = new ChoferNegocio();
+            TractorNegocio tractorNegocio = new TractorNegocio();
+            ReparacionNegocio reparacionNegocio = new ReparacionNegocio();
+            MecanicoNegocio mecanicoNegocio = new MecanicoNegocio();
+            AccesoDatos datos = new AccesoDatos();
+            cbxFichaReparacionesTipo.DataSource = vehiculoNegocio.listarTipos();
+            cbxFichaReparacionesTipo.SelectedIndexChanged += cbxFichaReparacionesTipo_SelectedIndexChanged; // depende la selección se captura el tipo y se listan los internos en la funcion de abajo
+            cbxFichaReparacionesTipoTrabajo.DataSource = reparacionNegocio.listarTipos() ;
+            cbxFichaReparacionesChofer.DataSource = choferNegocio.listarNombres(activo, choferL);
+            cbxFichaReparacionesMecanico.DataSource = mecanicoNegocio.listarNombres(activo, mecanico);
+            cbxFichaReparacionesChofer.SelectedIndex = -1;
+            cbxFichaReparacionesMecanico.SelectedIndex = -1;
+        }
         private void cargarRepuestos(DataGridView dgv)
         {
             ArticuloNegocio articuloNegocio = new ArticuloNegocio();
@@ -90,39 +95,10 @@ namespace presentacion.reparaciones
             btnAgregar(dgv);
             formatoColumnas(dgv);
         }
-
         private void cargarRepuestosReparacion(DataGridView dgv)
         {
             
 
-        }
-
-        private void btnAgregar(DataGridView dgv)
-        {
-            if (!dgv.Columns.Contains("AgregarArticulo"))
-            {
-                DataGridViewButtonColumn btnAgregar = new DataGridViewButtonColumn();
-                btnAgregar.Name = "AgregarArticulo";
-                btnAgregar.HeaderText = "";
-                btnAgregar.Text = "+";
-                btnAgregar.UseColumnTextForButtonValue = true;
-                dgv.Columns.Add(btnAgregar);
-                formatoColumnas(dgv);
-            }
-        }
-
-        private void btnEliminar(DataGridView dgv)
-        {
-            if (!dgv.Columns.Contains("Eliminar"))
-            {
-                DataGridViewButtonColumn btnEliminar = new DataGridViewButtonColumn();
-                btnEliminar.Name = "Eliminar";
-                btnEliminar.HeaderText = "";
-                btnEliminar.Text = "x";
-                btnEliminar.UseColumnTextForButtonValue = true;
-                dgv.Columns.Add(btnEliminar);
-                formatoColumnas(dgv);
-            }
         }
         private void formularioFicha() 
         {
@@ -144,7 +120,6 @@ namespace presentacion.reparaciones
             dgvFichaReparacionesRepuestos.DataSource = listadoRepuestosAgregados;
             formatoColumnas(dgvFichaReparacionesRepuestos);
         }
-
         private void cargarDatos(long idReparacion) 
         {
             UsoStockNegocio usoStockNegocio = new UsoStockNegocio();
@@ -162,8 +137,6 @@ namespace presentacion.reparaciones
             // repuestos
             dgvFichaReparacionesRepuestos.DataSource = usoStockNegocio.listar(idReparacion);
         }
-
-
         private void bloquearDatos() 
         {
             // listados
@@ -177,106 +150,7 @@ namespace presentacion.reparaciones
             tbxFichaReparacionesDetalle.ReadOnly = true;
         }    
 
-        // Hacia otros Forms / cerrar
-        private void btnFichaReparacionesCerrar_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        // Acciones contra DB
-
-        private Reparacion capturarReparacion() 
-        {
-            Reparacion auxReparacion = new Reparacion();
-            Validaciones validar =  new Validaciones();
-            AccesoDatos datos = new AccesoDatos();
-
-            auxReparacion.Tipo = validar.cbxString(cbxFichaReparacionesTipoTrabajo.Text);
-            auxReparacion.Persona = validar.cbxString(cbxFichaReparacionesChofer.Text);
-            auxReparacion.TipoVehiculo = validar.cbxString(cbxFichaReparacionesTipo.Text);
-            int tipo = datos.buscarIdTipoVehiculo(auxReparacion.TipoVehiculo);
-            switch (tipo)
-            {
-                case 1:
-                    auxReparacion.Tractor = validar.cbxInt(cbxFichaReparacionesInt.Text);
-                    auxReparacion.Furgon = 0;
-                    break;
-                case 2:
-                    auxReparacion.Tractor = 0;
-                    auxReparacion.Furgon = validar.cbxInt(cbxFichaReparacionesInt.Text);
-                    break;
-                default:
-                    auxReparacion.Tractor = 0;
-                    auxReparacion.Furgon = 0;
-                    break;
-            }
-            auxReparacion.Mecanico = validar.cbxString(cbxFichaReparacionesMecanico.Text);
-            auxReparacion.Detalle = tbxFichaReparacionesDetalle.Text;
-
-
-            return auxReparacion;
-        }
-
-        private List<Articulo> capturarUsoArticulos()
-        {
-            List<Articulo> listado = new List<Articulo>();
-            foreach(DataGridViewRow fila in dgvFichaReparacionesRepuestos.Rows)
-            {
-                if(fila.DataBoundItem == null) continue;
-
-                Articulo auxArticulo = (Articulo)fila.DataBoundItem;
-
-                listado.Add(auxArticulo);
-            }
-
-            return listado;
-        }
-
-        private void agregar() 
-        {
-            ReparacionNegocio reparacionNegocio = new ReparacionNegocio();
-            Reparacion nuevaReparacion = capturarReparacion();
-            List<Articulo> repuestos = capturarUsoArticulos();
-            reparacionNegocio.agregar(nuevaReparacion, repuestos, idTallerCamiones);
-        }
-        private void modificar() 
-        {
-            ReparacionNegocio reparacionNegocio = new ReparacionNegocio();
-            Reparacion mReparacion = capturarReparacion();
-            List<Articulo> mRepuestos = capturarUsoArticulos();
-
-            reparacionNegocio.modificar(reparacion.Id, mReparacion, mRepuestos);
-        }
-        private void editar() { }
-
-        private void btnFichaReparacionesOK_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show(reparacion.Id.ToString());
-            ejecutar(modo);
-            Close();
-        }
-
-        private void ejecutar(char tmodo) 
-        {
-            switch (tmodo)
-            {
-                case 'F':
-                    editar();
-                    break;
-                case 'A':
-                    agregar();
-                    break;
-                case 'M':
-                    modificar();
-                    break;
-                default:
-                    MessageBox.Show("Error");
-                    break;
-            }
-        }
-
-        // DGV TABLAS
-
+        // Data Grid View
         private void formatoColumnas(DataGridView dgv)
         {
             ocultarColumnas(dgv);
@@ -284,7 +158,6 @@ namespace presentacion.reparaciones
             anchoColumnas(dgv);
             ordenarColumnas(dgv);
         }
-
         private void ocultarColumnas(DataGridView dgv)
         {
             // grilla articulos
@@ -327,7 +200,43 @@ namespace presentacion.reparaciones
             dgv.Columns["Cantidad"].HeaderText = "CANT.";
         }
 
-        // ACCIONES DE AGREGAR ELIMINAR ARTICULOS/REPUESTOS
+        // Acciones
+        private void cbxFichaReparacionesTipo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            VehiculoNegocio vehiculoNegocio = new VehiculoNegocio();
+            string tipo = cbxFichaReparacionesTipo.SelectedItem.ToString();
+            cbxFichaReparacionesInt.DataSource = vehiculoNegocio.listarInternos(tipo);
+        }
+        private void dgvFichaReparacionesRepuestos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // BOTON Eliminar DE ARTICULOS QUE SUMA EL ARTICULO A LOS REPUESTOS AGREGADOS.
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0 && dgvFichaReparacionesRepuestos.Columns[e.ColumnIndex].Name == "Eliminar")
+            {
+                int id = (int)dgvFichaReparacionesRepuestos.Rows[e.RowIndex].Cells["Id"].Value;
+                var item = listadoRepuestosAgregados.FirstOrDefault(r => r.Id == id);
+                if (item != null)
+                {
+                    listadoRepuestosAgregados.Remove(item);
+                    dgvFichaReparacionesRepuestos.DataSource = null;
+                    dgvFichaReparacionesRepuestos.DataSource = listadoRepuestosAgregados;
+                    formatoColumnas(dgvFichaReparacionesRepuestos);
+                    btnEliminar(dgvFichaReparacionesRepuestos);
+                }
+            }
+
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0 && dgvFichaReparacionesRepuestos.Columns[e.ColumnIndex].Name == "Cantidad")
+            {
+                Articulo repuesto = listadoRepuestosAgregados[e.RowIndex];
+
+                FrmArticuloCantidad ventana = new FrmArticuloCantidad(repuesto);
+                ventana.ShowDialog();
+                repuesto.Cantidad = ventana.CantidadSeleccionada;
+            }
+        }
+        private void dgvFichaReparacionesRepuestos_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+        }
         private void dgvFichaReparacionesArticulos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             // BOTON + DE ARTICULOS QUE SUMA EL ARTICULO A LOS REPUESTOS AGREGADOS.
@@ -363,41 +272,122 @@ namespace presentacion.reparaciones
 
             
         }
-
-        private void dgvFichaReparacionesRepuestos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void btnFichaReparacionesCerrar_Click(object sender, EventArgs e)
         {
-            // BOTON Eliminar DE ARTICULOS QUE SUMA EL ARTICULO A LOS REPUESTOS AGREGADOS.
-            if (e.RowIndex >= 0 && e.ColumnIndex >= 0 && dgvFichaReparacionesRepuestos.Columns[e.ColumnIndex].Name == "Eliminar")
+            Close();
+        }
+        private void btnFichaReparacionesOK_Click(object sender, EventArgs e)
+        {
+            ejecutar(modo);
+            Close();
+        }
+        private void btnAgregar(DataGridView dgv)
+        {
+            if (!dgv.Columns.Contains("AgregarArticulo"))
             {
-                int id = (int)dgvFichaReparacionesRepuestos.Rows[e.RowIndex].Cells["Id"].Value;
-                var item = listadoRepuestosAgregados.FirstOrDefault(r => r.Id == id);
-                if (item != null)
-                {
-                    listadoRepuestosAgregados.Remove(item);
-                    dgvFichaReparacionesRepuestos.DataSource = null;
-                    dgvFichaReparacionesRepuestos.DataSource = listadoRepuestosAgregados;
-                    formatoColumnas(dgvFichaReparacionesRepuestos);
-                    btnEliminar(dgvFichaReparacionesRepuestos);
-                }
-            }
-
-            if (e.RowIndex >= 0 && e.ColumnIndex >= 0 && dgvFichaReparacionesRepuestos.Columns[e.ColumnIndex].Name == "Cantidad")
-            {
-                Articulo repuesto = listadoRepuestosAgregados[e.RowIndex];
-
-                FrmArticuloCantidad ventana = new FrmArticuloCantidad(repuesto);
-                ventana.ShowDialog();
-                repuesto.Cantidad = ventana.CantidadSeleccionada;
+                DataGridViewButtonColumn btnAgregar = new DataGridViewButtonColumn();
+                btnAgregar.Name = "AgregarArticulo";
+                btnAgregar.HeaderText = "";
+                btnAgregar.Text = "+";
+                btnAgregar.UseColumnTextForButtonValue = true;
+                dgv.Columns.Add(btnAgregar);
+                formatoColumnas(dgv);
             }
         }
-
-        private void dgvFichaReparacionesRepuestos_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void btnEliminar(DataGridView dgv)
         {
-            
+            if (!dgv.Columns.Contains("Eliminar"))
+            {
+                DataGridViewButtonColumn btnEliminar = new DataGridViewButtonColumn();
+                btnEliminar.Name = "Eliminar";
+                btnEliminar.HeaderText = "";
+                btnEliminar.Text = "x";
+                btnEliminar.UseColumnTextForButtonValue = true;
+                dgv.Columns.Add(btnEliminar);
+                formatoColumnas(dgv);
+            }
         }
+        private void agregar() 
+        {
+            ReparacionNegocio reparacionNegocio = new ReparacionNegocio();
+            Reparacion nuevaReparacion = capturarReparacion();
+            List<Articulo> repuestos = capturarUsoArticulos();
+            reparacionNegocio.agregar(nuevaReparacion, repuestos, idTallerCamiones);
+        }
+        private void modificar() 
+        {
+            ReparacionNegocio reparacionNegocio = new ReparacionNegocio();
+            Reparacion mReparacion = capturarReparacion();
+            List<Articulo> mRepuestos = capturarUsoArticulos();
 
+            reparacionNegocio.modificar(reparacion.Id, mReparacion, mRepuestos);
+        }
+        private Reparacion capturarReparacion() 
+        {
+            Reparacion auxReparacion = new Reparacion();
+            Validaciones validar =  new Validaciones();
+            AccesoDatos datos = new AccesoDatos();
+
+            auxReparacion.Tipo = validar.cbxString(cbxFichaReparacionesTipoTrabajo.Text);
+            auxReparacion.Persona = validar.cbxString(cbxFichaReparacionesChofer.Text);
+            auxReparacion.TipoVehiculo = validar.cbxString(cbxFichaReparacionesTipo.Text);
+            int tipo = datos.buscarIdTipoVehiculo(auxReparacion.TipoVehiculo);
+            switch (tipo)
+            {
+                case 1:
+                    auxReparacion.Tractor = validar.cbxInt(cbxFichaReparacionesInt.Text);
+                    auxReparacion.Furgon = 0;
+                    break;
+                case 2:
+                    auxReparacion.Tractor = 0;
+                    auxReparacion.Furgon = validar.cbxInt(cbxFichaReparacionesInt.Text);
+                    break;
+                default:
+                    auxReparacion.Tractor = 0;
+                    auxReparacion.Furgon = 0;
+                    break;
+            }
+            auxReparacion.Mecanico = validar.cbxString(cbxFichaReparacionesMecanico.Text);
+            auxReparacion.Detalle = tbxFichaReparacionesDetalle.Text;
+
+
+            return auxReparacion;
+        }
+        private List<Articulo> capturarUsoArticulos()
+        {
+            List<Articulo> listado = new List<Articulo>();
+            foreach(DataGridViewRow fila in dgvFichaReparacionesRepuestos.Rows)
+            {
+                if(fila.DataBoundItem == null) continue;
+
+                Articulo auxArticulo = (Articulo)fila.DataBoundItem;
+
+                listado.Add(auxArticulo);
+            }
+
+            return listado;
+        }
+        private void ejecutar(char tmodo) 
+        {
+            switch (tmodo)
+            {
+                case 'F':
+                    editar();
+                    break;
+                case 'A':
+                    agregar();
+                    break;
+                case 'M':
+                    modificar();
+                    break;
+                default:
+                    MessageBox.Show("Error");
+                    break;
+            }
+        }
 
         // Sin uso
+        private void editar() { }
         private void dtpFichaReparacionesFecha_ValueChanged(object sender, EventArgs e)
         {
         }

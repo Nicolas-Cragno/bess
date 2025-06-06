@@ -39,11 +39,11 @@
             // 
             // btnMovimientosNuevo
             // 
-            this.btnMovimientosNuevo.Location = new System.Drawing.Point(355, 93);
+            this.btnMovimientosNuevo.Location = new System.Drawing.Point(312, 94);
             this.btnMovimientosNuevo.Name = "btnMovimientosNuevo";
-            this.btnMovimientosNuevo.Size = new System.Drawing.Size(92, 23);
+            this.btnMovimientosNuevo.Size = new System.Drawing.Size(63, 23);
             this.btnMovimientosNuevo.TabIndex = 23;
-            this.btnMovimientosNuevo.Text = "Agregar Nuevo";
+            this.btnMovimientosNuevo.Text = "Nuevo";
             this.btnMovimientosNuevo.UseVisualStyleBackColor = true;
             this.btnMovimientosNuevo.Click += new System.EventHandler(this.btnMovimientosNuevo_Click);
             // 
@@ -62,7 +62,7 @@
             // 
             // tbxMovimientosFiltro
             // 
-            this.tbxMovimientosFiltro.Location = new System.Drawing.Point(57, 95);
+            this.tbxMovimientosFiltro.Location = new System.Drawing.Point(14, 96);
             this.tbxMovimientosFiltro.Name = "tbxMovimientosFiltro";
             this.tbxMovimientosFiltro.Size = new System.Drawing.Size(292, 20);
             this.tbxMovimientosFiltro.TabIndex = 21;
@@ -73,7 +73,7 @@
             // 
             this.lblMovimientosFiltro.AutoSize = true;
             this.lblMovimientosFiltro.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMovimientosFiltro.Location = new System.Drawing.Point(17, 99);
+            this.lblMovimientosFiltro.Location = new System.Drawing.Point(17, 81);
             this.lblMovimientosFiltro.Name = "lblMovimientosFiltro";
             this.lblMovimientosFiltro.Size = new System.Drawing.Size(34, 12);
             this.lblMovimientosFiltro.TabIndex = 20;

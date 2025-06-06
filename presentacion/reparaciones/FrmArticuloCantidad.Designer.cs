@@ -52,10 +52,10 @@
             // lblArticuloCantidadCodigo
             // 
             this.lblArticuloCantidadCodigo.AutoSize = true;
-            this.lblArticuloCantidadCodigo.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblArticuloCantidadCodigo.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblArticuloCantidadCodigo.Location = new System.Drawing.Point(13, 56);
             this.lblArticuloCantidadCodigo.Name = "lblArticuloCantidadCodigo";
-            this.lblArticuloCantidadCodigo.Size = new System.Drawing.Size(144, 19);
+            this.lblArticuloCantidadCodigo.Size = new System.Drawing.Size(112, 15);
             this.lblArticuloCantidadCodigo.TabIndex = 173;
             this.lblArticuloCantidadCodigo.Text = "Codigo Provedor";
             // 
@@ -71,7 +71,7 @@
             // 
             // tbxArticuloCantidad
             // 
-            this.tbxArticuloCantidad.Location = new System.Drawing.Point(81, 95);
+            this.tbxArticuloCantidad.Location = new System.Drawing.Point(17, 97);
             this.tbxArticuloCantidad.Name = "tbxArticuloCantidad";
             this.tbxArticuloCantidad.Size = new System.Drawing.Size(76, 20);
             this.tbxArticuloCantidad.TabIndex = 176;
@@ -80,7 +80,7 @@
             // lblArticuloCantidadCantidad
             // 
             this.lblArticuloCantidadCantidad.AutoSize = true;
-            this.lblArticuloCantidadCantidad.Location = new System.Drawing.Point(27, 98);
+            this.lblArticuloCantidadCantidad.Location = new System.Drawing.Point(18, 81);
             this.lblArticuloCantidadCantidad.Name = "lblArticuloCantidadCantidad";
             this.lblArticuloCantidadCantidad.Size = new System.Drawing.Size(48, 13);
             this.lblArticuloCantidadCantidad.TabIndex = 177;
@@ -89,17 +89,17 @@
             // lblArticuloCantidadStock
             // 
             this.lblArticuloCantidadStock.AutoSize = true;
-            this.lblArticuloCantidadStock.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblArticuloCantidadStock.Location = new System.Drawing.Point(81, 120);
+            this.lblArticuloCantidadStock.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblArticuloCantidadStock.Location = new System.Drawing.Point(159, 98);
             this.lblArticuloCantidadStock.Name = "lblArticuloCantidadStock";
-            this.lblArticuloCantidadStock.Size = new System.Drawing.Size(54, 19);
+            this.lblArticuloCantidadStock.Size = new System.Drawing.Size(42, 15);
             this.lblArticuloCantidadStock.TabIndex = 178;
             this.lblArticuloCantidadStock.Text = "Stock";
             // 
             // lblArticuloCantidadDisponible
             // 
             this.lblArticuloCantidadDisponible.AutoSize = true;
-            this.lblArticuloCantidadDisponible.Location = new System.Drawing.Point(21, 124);
+            this.lblArticuloCantidadDisponible.Location = new System.Drawing.Point(159, 81);
             this.lblArticuloCantidadDisponible.Name = "lblArticuloCantidadDisponible";
             this.lblArticuloCantidadDisponible.Size = new System.Drawing.Size(54, 13);
             this.lblArticuloCantidadDisponible.TabIndex = 179;
@@ -107,7 +107,7 @@
             // 
             // btnFichaReparacionesOK
             // 
-            this.btnFichaReparacionesOK.Location = new System.Drawing.Point(237, 152);
+            this.btnFichaReparacionesOK.Location = new System.Drawing.Point(185, 124);
             this.btnFichaReparacionesOK.Name = "btnFichaReparacionesOK";
             this.btnFichaReparacionesOK.Size = new System.Drawing.Size(74, 23);
             this.btnFichaReparacionesOK.TabIndex = 180;
@@ -118,7 +118,7 @@
             // lblArticuloCantidadUnidad
             // 
             this.lblArticuloCantidadUnidad.AutoSize = true;
-            this.lblArticuloCantidadUnidad.Location = new System.Drawing.Point(163, 98);
+            this.lblArticuloCantidadUnidad.Location = new System.Drawing.Point(99, 100);
             this.lblArticuloCantidadUnidad.Name = "lblArticuloCantidadUnidad";
             this.lblArticuloCantidadUnidad.Size = new System.Drawing.Size(39, 13);
             this.lblArticuloCantidadUnidad.TabIndex = 181;
@@ -128,7 +128,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(323, 187);
+            this.ClientSize = new System.Drawing.Size(271, 155);
             this.Controls.Add(this.lblArticuloCantidadUnidad);
             this.Controls.Add(this.btnFichaReparacionesOK);
             this.Controls.Add(this.lblArticuloCantidadDisponible);

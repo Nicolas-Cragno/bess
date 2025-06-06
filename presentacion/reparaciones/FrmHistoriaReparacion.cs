@@ -14,30 +14,22 @@ namespace presentacion.reparaciones
 {
     public partial class FrmHistoriaReparacion : Form
     {
-        // Carga del Form
         private Reparacion reparacion;
         private List<UsoStock> listaRepuestos;
         int activo = 1, choferL = 1, mecanico = 3;
         char modo; 
+
+        // Cargas
         public FrmHistoriaReparacion(Reparacion hReparacion, char rModo = 'F')
         {
             InitializeComponent();
             reparacion = hReparacion;
             modo = rModo;
         }
-
-        private void btnHistoriaReparacionCerrar_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
-        private void FrmHistoriaReparacion_Load(object sender, EventArgs e)
-        {
-            cargar();
-        }
-
         private void cargar()
         {
+            tabulaciones();
+            this.ControlBox = false; // oculta el manejo de la ventana superior
             AccesoDatos datos = new AccesoDatos();
             UsoStockNegocio usoStockNegocio = new UsoStockNegocio();
             lblHistoriaReparacionTitulo.Text = reparacion.Fecha.ToString("dd/MM/yyyy");
@@ -66,20 +58,58 @@ namespace presentacion.reparaciones
             dgvHistoriaReparacionRepuestos.DataSource = listaRepuestos;
             formatoColumnas();
         }
+        private void tabulaciones()
+        {
+            cbxHistoriaReparacionTipo.TabIndex = 0;
+            cbxHistoriaReparacionInt.TabIndex = 1;
+            cbxHistoriaReparacionTipoTrabajo.TabIndex = 2;
+            cbxHistoriaReparacionChofer.TabIndex = 3;
+            cbxHistoriaReparacionMecanico.TabIndex = 4;
+            tbxHistoriaReparacionDetalle.TabIndex = 5;
+            dgvHistoriaReparacionRepuestos.TabIndex = 6;
+            btnHistoriaReparacionOK.TabIndex = 7;
+            btnHistoriaReparacionFinalizar.TabIndex = 8;
+            btnHistoriaReparacionCerrar.TabIndex = 9;
+        }
 
+        // Data Grid View
         private void formatoColumnas() 
         {
             ocultarColumnas();
             nombrarColumnas();
             anchoColumnas();
         }
-
         private void ocultarColumnas()
         {
            dgvHistoriaReparacionRepuestos.Columns["Id"].Visible = false;
            dgvHistoriaReparacionRepuestos.Columns["Reparacion"].Visible = false;
         }
+        private void nombrarColumnas()
+        {
+            dgvHistoriaReparacionRepuestos.Columns["Articulo"].HeaderText = "REPUESTO";
+            dgvHistoriaReparacionRepuestos.Columns["Cantidad"].HeaderText = "CANT";
+            dgvHistoriaReparacionRepuestos.Columns["Unidad"].HeaderText = "U. M.";
+        }
+        private void anchoColumnas()
+        {
+            dgvHistoriaReparacionRepuestos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgvHistoriaReparacionRepuestos.AutoResizeColumns();
+            foreach (DataGridViewColumn column in dgvHistoriaReparacionRepuestos.Columns)
+            {
+                column.Width += 15;
+            }
+            dgvHistoriaReparacionRepuestos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+        }
 
+        // Acciones
+        private void btnHistoriaReparacionCerrar_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+        private void FrmHistoriaReparacion_Load(object sender, EventArgs e)
+        {
+            cargar();
+        }
         private void btnHistoriaReparacionFinalizar_Click(object sender, EventArgs e)
         {
             FrmFinalizar ventanaFinalizar = new FrmFinalizar(reparacion.Id);
@@ -91,29 +121,10 @@ namespace presentacion.reparaciones
                 cargar();
             }
         }
-
         private void btnHistoriaReparacionOK_Click(object sender, EventArgs e)
         {
             FrmFichaReparaciones editarReparacion = new FrmFichaReparaciones('M', reparacion);
             editarReparacion.ShowDialog();
-        }
-
-        private void nombrarColumnas()
-        {
-            dgvHistoriaReparacionRepuestos.Columns["Articulo"].HeaderText = "REPUESTO";
-            dgvHistoriaReparacionRepuestos.Columns["Cantidad"].HeaderText = "CANT";
-            dgvHistoriaReparacionRepuestos.Columns["Unidad"].HeaderText = "U. M.";
-        }
-
-        private void anchoColumnas()
-        {
-            dgvHistoriaReparacionRepuestos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            dgvHistoriaReparacionRepuestos.AutoResizeColumns();
-            foreach (DataGridViewColumn column in dgvHistoriaReparacionRepuestos.Columns)
-            {
-                column.Width += 15;
-            }
-            dgvHistoriaReparacionRepuestos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
         }
     }
 }
