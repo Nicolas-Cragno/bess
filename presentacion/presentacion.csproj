@@ -52,36 +52,6 @@
     <Compile Include="articulos\FrmRepuestos.Designer.cs">
       <DependentUpon>FrmRepuestos.cs</DependentUpon>
     </Compile>
-    <Compile Include="choferes\FrmAgregarChofer.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="choferes\FrmAgregarChofer.Designer.cs">
-      <DependentUpon>FrmAgregarChofer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="choferes\FrmChoferes.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="choferes\FrmChoferes.Designer.cs">
-      <DependentUpon>FrmChoferes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="choferes\FrmChoferesInactivos.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="choferes\FrmChoferesInactivos.Designer.cs">
-      <DependentUpon>FrmChoferesInactivos.cs</DependentUpon>
-    </Compile>
-    <Compile Include="choferes\FrmFichaChofer.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="choferes\FrmFichaChofer.Designer.cs">
-      <DependentUpon>FrmFichaChofer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="choferes\FrmModificarChofer.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="choferes\FrmModificarChofer.Designer.cs">
-      <DependentUpon>FrmModificarChofer.cs</DependentUpon>
-    </Compile>
     <Compile Include="empresas\FrmClientes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,11 +82,11 @@
     <Compile Include="FrmPrincipal.Designer.cs">
       <DependentUpon>FrmPrincipal.cs</DependentUpon>
     </Compile>
-    <Compile Include="mecanicos\FrmMecanicos.cs">
+    <Compile Include="personas\FrmFichaPersona.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="mecanicos\FrmMecanicos.Designer.cs">
-      <DependentUpon>FrmMecanicos.cs</DependentUpon>
+    <Compile Include="personas\FrmFichaPersona.Designer.cs">
+      <DependentUpon>FrmFichaPersona.cs</DependentUpon>
     </Compile>
     <Compile Include="personas\FrmPersonas.cs">
       <SubType>Form</SubType>
@@ -231,21 +201,6 @@
     <EmbeddedResource Include="articulos\FrmRepuestos.resx">
       <DependentUpon>FrmRepuestos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="choferes\FrmAgregarChofer.resx">
-      <DependentUpon>FrmAgregarChofer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="choferes\FrmChoferes.resx">
-      <DependentUpon>FrmChoferes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="choferes\FrmChoferesInactivos.resx">
-      <DependentUpon>FrmChoferesInactivos.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="choferes\FrmFichaChofer.resx">
-      <DependentUpon>FrmFichaChofer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="choferes\FrmModificarChofer.resx">
-      <DependentUpon>FrmModificarChofer.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="empresas\FrmClientes.resx">
       <DependentUpon>FrmClientes.cs</DependentUpon>
     </EmbeddedResource>
@@ -261,8 +216,8 @@
     <EmbeddedResource Include="FrmPrincipal.resx">
       <DependentUpon>FrmPrincipal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="mecanicos\FrmMecanicos.resx">
-      <DependentUpon>FrmMecanicos.cs</DependentUpon>
+    <EmbeddedResource Include="personas\FrmFichaPersona.resx">
+      <DependentUpon>FrmFichaPersona.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="personas\FrmPersonas.resx">
       <DependentUpon>FrmPersonas.cs</DependentUpon>

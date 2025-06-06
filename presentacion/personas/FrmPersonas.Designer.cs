@@ -39,21 +39,21 @@
             // 
             // btnPersonasInactivas
             // 
-            this.btnPersonasInactivas.Location = new System.Drawing.Point(443, 69);
+            this.btnPersonasInactivas.Location = new System.Drawing.Point(497, 69);
             this.btnPersonasInactivas.Name = "btnPersonasInactivas";
-            this.btnPersonasInactivas.Size = new System.Drawing.Size(92, 23);
+            this.btnPersonasInactivas.Size = new System.Drawing.Size(65, 23);
             this.btnPersonasInactivas.TabIndex = 20;
-            this.btnPersonasInactivas.Text = "Ver inactivos";
+            this.btnPersonasInactivas.Text = "Inactivos";
             this.btnPersonasInactivas.UseVisualStyleBackColor = true;
             this.btnPersonasInactivas.Click += new System.EventHandler(this.btnPersonasInactivas_Click);
             // 
             // btnPersonasAgregar
             // 
-            this.btnPersonasAgregar.Location = new System.Drawing.Point(541, 69);
+            this.btnPersonasAgregar.Location = new System.Drawing.Point(568, 69);
             this.btnPersonasAgregar.Name = "btnPersonasAgregar";
-            this.btnPersonasAgregar.Size = new System.Drawing.Size(92, 23);
+            this.btnPersonasAgregar.Size = new System.Drawing.Size(65, 23);
             this.btnPersonasAgregar.TabIndex = 19;
-            this.btnPersonasAgregar.Text = "Agregar Chofer";
+            this.btnPersonasAgregar.Text = "Nuevo";
             this.btnPersonasAgregar.UseVisualStyleBackColor = true;
             // 
             // dgvPersonas
@@ -66,6 +66,7 @@
             this.dgvPersonas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvPersonas.Size = new System.Drawing.Size(620, 298);
             this.dgvPersonas.TabIndex = 18;
+            this.dgvPersonas.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPersonas_CellDoubleClick);
             // 
             // tbxPersonasFiltro
             // 
@@ -107,7 +108,6 @@
             this.Controls.Add(this.lblPersonasFiltro);
             this.Controls.Add(this.lblPersonasTitulo);
             this.Name = "FrmPersonas";
-            this.Text = "FrmPersonas";
             this.Load += new System.EventHandler(this.FrmPersonas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPersonas)).EndInit();
             this.ResumeLayout(false);

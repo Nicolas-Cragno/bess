@@ -15,14 +15,16 @@ namespace presentacion.movimientos
     public partial class FrmFichaMovimiento : Form
     {
         // Carga del Form
+        private Form formularioPadre;
         private char modo;
         private Movimiento movimiento;
         int activo = 1, choferL = 1;
-        public FrmFichaMovimiento(char mModo, Movimiento mMovimiento = null)
+        public FrmFichaMovimiento(char mModo, Movimiento mMovimiento = null, Form padre = null)
         {
             InitializeComponent();
             modo = mModo;
             movimiento = mMovimiento;
+            formularioPadre = padre;
         }
 
         private void FrmFichaMovimiento_Load(object sender, EventArgs e)
@@ -49,6 +51,15 @@ namespace presentacion.movimientos
         private void configuracion(char mSelect)
         {
             this.ControlBox = false;
+            if (formularioPadre != null)
+            {
+                Screen pantalla = Screen.FromControl(formularioPadre);
+                this.StartPosition = FormStartPosition.Manual;
+                this.Location = new Point(
+                    pantalla.WorkingArea.Right - this.Width,
+                    pantalla.WorkingArea.Top
+                );
+            }
             switch (mSelect)
             {
                 case 'F':

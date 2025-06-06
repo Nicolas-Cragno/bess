@@ -261,6 +261,7 @@
             this.Controls.Add(this.lblFichaMovimientoInterno);
             this.Controls.Add(this.lblFichaMovimientoTitulo);
             this.Name = "FrmFichaMovimiento";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Load += new System.EventHandler(this.FrmFichaMovimiento_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -29,6 +29,7 @@ namespace presentacion.personas
         }
         private void cargar() 
         {
+            this.ControlBox = false; // oculta el manejo de la ventana superior
             ChoferNegocio choferNegocio = new ChoferNegocio();
             MecanicoNegocio mecanicoNegocio = new MecanicoNegocio();
             PersonaNegocio personaNegocio = new PersonaNegocio();

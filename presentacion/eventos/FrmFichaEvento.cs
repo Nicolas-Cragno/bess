@@ -14,14 +14,16 @@ namespace presentacion.eventos
 {
     public partial class FrmFichaEvento : Form
     {
+        private Form formularioPadre;
         private char modo;
         private Evento evento;
         int activo = 1, choferL = 1;
-        public FrmFichaEvento(char eModo, Evento eEvento = null)
+        public FrmFichaEvento(char eModo, Evento eEvento = null, Form padre = null)
         {
             InitializeComponent();
             modo = eModo;
             evento = eEvento;
+            formularioPadre = padre;
         }
 
         private void FrmFichaEvento_Load(object sender, EventArgs e)
@@ -32,6 +34,15 @@ namespace presentacion.eventos
         private void configuracion(char eSelect)
         {
             this.ControlBox = false;
+            if (formularioPadre != null)
+            {
+                Screen pantalla = Screen.FromControl(formularioPadre);
+                this.StartPosition = FormStartPosition.Manual;
+                this.Location = new Point(
+                    pantalla.WorkingArea.Right - this.Width,
+                    pantalla.WorkingArea.Top
+                );
+            }
             switch (eSelect)
             {
                 case 'F':

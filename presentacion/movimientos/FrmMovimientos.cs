@@ -18,6 +18,7 @@ namespace presentacion.movimientos
 
         private List<Movimiento> listadoMovimientos;
         char ficha = 'F', agregar = 'A', modificar = 'M';
+        private int anchoMaximoDgv = 0;
         public FrmMovimientos()
         {
             InitializeComponent();
@@ -40,7 +41,7 @@ namespace presentacion.movimientos
 
         private void btnMovimientosNuevo_Click(object sender, EventArgs e)
         {
-            FrmFichaMovimiento ventana = new FrmFichaMovimiento(agregar);
+            FrmFichaMovimiento ventana = new FrmFichaMovimiento(agregar, null, this);
             ventana.ShowDialog();
             cargar();
         }
@@ -77,7 +78,7 @@ namespace presentacion.movimientos
         {
             Movimiento seleccion = (Movimiento)dgvMovimientos.CurrentRow.DataBoundItem;
 
-            FrmFichaMovimiento fichaMovimiento = new FrmFichaMovimiento(ficha, seleccion);
+            FrmFichaMovimiento fichaMovimiento = new FrmFichaMovimiento(ficha, seleccion, this);
             fichaMovimiento.ShowDialog();
             cargar();
         }
@@ -86,11 +87,33 @@ namespace presentacion.movimientos
             ocultarColumnas();
             nombrarColumnas();
             anchoColumnas();
+            ajustarDgv();
         }
+        private void ajustarDgv()
+        {
+            if (anchoMaximoDgv == 0)
+            {
+                int anchoTotal = dgvMovimientos.RowHeadersVisible ? dgvMovimientos.RowHeadersWidth : 0;
 
+                foreach (DataGridViewColumn col in dgvMovimientos.Columns)
+                {
+                    if (col.Visible)
+                        anchoTotal += col.Width + 1;
+                }
+
+                // Si hay scroll vertical (más filas que alto disponible), lo sumamos. Si no, no.
+                if (dgvMovimientos.DisplayedRowCount(false) < dgvMovimientos.RowCount)
+                    anchoTotal += SystemInformation.VerticalScrollBarWidth;
+
+                anchoMaximoDgv = anchoTotal;
+            }
+
+            dgvMovimientos.Width = anchoMaximoDgv;
+        }
         private void ocultarColumnas()
         {
             dgvMovimientos.Columns["Id"].Visible = false;
+            dgvMovimientos.Columns["DniPersona"].Visible = false;
             dgvMovimientos.Columns["Detalle"].Visible = false;
             dgvMovimientos.Columns["Registro"].Visible = false;
             dgvMovimientos.Columns["Corte"].Visible = false;
@@ -105,7 +128,7 @@ namespace presentacion.movimientos
 
         private void nombrarColumnas()
         {
-            dgvMovimientos.Columns["Tipo"].HeaderText = "MOVIMIENTO";
+            dgvMovimientos.Columns["Tipo"].HeaderText = "";
             dgvMovimientos.Columns["Persona"].HeaderText = "EMPLEADO / CHOFER";
             dgvMovimientos.Columns["Tractor"].HeaderText = "TRACTOR";
             dgvMovimientos.Columns["Furgon"].HeaderText = "FURGON";

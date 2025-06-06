@@ -45,6 +45,7 @@
     <Compile Include="Chofer.cs" />
     <Compile Include="Empresa.cs" />
     <Compile Include="Evento.cs" />
+    <Compile Include="Fletero.cs" />
     <Compile Include="Furgon.cs" />
     <Compile Include="Mecanico.cs" />
     <Compile Include="Movimiento.cs" />

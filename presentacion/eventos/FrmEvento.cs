@@ -16,6 +16,7 @@ namespace presentacion.eventos
     {
         private List<Evento> listadoEventos;
         char ficha = 'F', agregar = 'A', modificar = 'M';
+        private int anchoMaximoDgv = 0;
         public FrmEvento()
         {
             InitializeComponent();
@@ -34,22 +35,41 @@ namespace presentacion.eventos
             dgvEventos.DataSource = listadoEventos;
             formatoColumnas();
         }
-
         private void formatoColumnas()
         {
             nombrarColumnas();
             ocultarColumnas();
             ordenarColumnas();
             anchoColumnas();
-
+            ajustarDgv();
         }
-
         private void ocultarColumnas()
         {
-            
-            //dgvEventos.Columns[""].Visible = false;
+            dgvEventos.Columns["Id"].Visible = false;
+            dgvEventos.Columns["DniPersona"].Visible = false;
+            dgvEventos.Columns["Detalle"].Visible = false;
         }
+        private void ajustarDgv()
+        {
+            if (anchoMaximoDgv == 0)
+            {
+                int anchoTotal = dgvEventos.RowHeadersVisible ? dgvEventos.RowHeadersWidth : 0;
 
+                foreach (DataGridViewColumn col in dgvEventos.Columns)
+                {
+                    if (col.Visible)
+                        anchoTotal += col.Width + 1;
+                }
+
+                // Si hay scroll vertical (más filas que alto disponible), lo sumamos. Si no, no.
+                if (dgvEventos.DisplayedRowCount(false) < dgvEventos.RowCount)
+                    anchoTotal += SystemInformation.VerticalScrollBarWidth;
+
+                anchoMaximoDgv = anchoTotal;
+            }
+
+            dgvEventos.Width = anchoMaximoDgv;
+        }
         private void anchoColumnas()
         {
             dgvEventos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
@@ -59,6 +79,22 @@ namespace presentacion.eventos
                 column.Width += 15;
             }
             dgvEventos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+        }
+        private void ordenarColumnas()
+        {
+            dgvEventos.Columns["Tipo"].DisplayIndex = 0;
+            dgvEventos.Columns["Fecha"].DisplayIndex = 1;
+            dgvEventos.Columns["Tractor"].DisplayIndex = 2;
+            dgvEventos.Columns["Furgon"].DisplayIndex = 3;
+            dgvEventos.Columns["Persona"].DisplayIndex = 4;
+        }
+        private void nombrarColumnas()
+        {
+            dgvEventos.Columns["Tipo"].HeaderText = "";
+            dgvEventos.Columns["Persona"].HeaderText = "EMPLEADO";
+            dgvEventos.Columns["Tractor"].HeaderText = "TRACTOR";
+            dgvEventos.Columns["Furgon"].HeaderText = "FURGON";
+            dgvEventos.Columns["Fecha"].HeaderText = "FECHA";
         }
 
         private void tbxEventosFiltro_KeyPress(object sender, KeyPressEventArgs e)
@@ -89,7 +125,7 @@ namespace presentacion.eventos
         {
             Evento seleccion = (Evento)dgvEventos.CurrentRow.DataBoundItem;
 
-            FrmFichaEvento fichaEvento = new FrmFichaEvento(ficha, seleccion);
+            FrmFichaEvento fichaEvento = new FrmFichaEvento(ficha, seleccion, this);
             fichaEvento.ShowDialog();
             cargar();
         }
@@ -101,19 +137,5 @@ namespace presentacion.eventos
             cargar();
         }
 
-        private void ordenarColumnas()
-        {
-            /*
-            dgvEventos.Columns[""].DisplayIndex = 0;
-            dgvEventos.Columns[""].DisplayIndex = 1;
-            dgvEventos.Columns[""].DisplayIndex = 2;
-            dgvEventos.Columns[""].DisplayIndex = 4;
-             */
-        }
-
-        private void nombrarColumnas()
-        {
-            //dgvEventos.Columns[""].HeaderText = "";
-        }
     }
 }

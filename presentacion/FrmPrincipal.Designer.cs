@@ -34,20 +34,21 @@
             this.tsmMovimientos = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmEventos = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmTaller = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmViajes = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmRecursos = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmChoferes = new System.Windows.Forms.ToolStripMenuItem();
-            this.mecanicosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmVehiculos = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmOtros = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmEmpresas = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmClientes = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmTallerCamiones = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmReparacionesCamiones = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmRepuestosCamiones = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmTallerCamionesFurgones = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmReparacionesFurgones = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmRepuestosFurgones = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmViajes = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmRecursos = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmChoferes = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmFleteros = new System.Windows.Forms.ToolStripMenuItem();
+            this.mecanicosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmVehiculos = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmOtros = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmEmpresas = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmClientes = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuPrincipal.SuspendLayout();
             this.SuspendLayout();
@@ -108,6 +109,51 @@
             this.tsmTaller.Size = new System.Drawing.Size(94, 28);
             this.tsmTaller.Text = "Taller";
             // 
+            // tsmTallerCamiones
+            // 
+            this.tsmTallerCamiones.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmReparacionesCamiones,
+            this.tsmRepuestosCamiones});
+            this.tsmTallerCamiones.Name = "tsmTallerCamiones";
+            this.tsmTallerCamiones.Size = new System.Drawing.Size(176, 28);
+            this.tsmTallerCamiones.Text = "Camiones";
+            // 
+            // tsmReparacionesCamiones
+            // 
+            this.tsmReparacionesCamiones.Name = "tsmReparacionesCamiones";
+            this.tsmReparacionesCamiones.Size = new System.Drawing.Size(224, 28);
+            this.tsmReparacionesCamiones.Text = "Reparaciones";
+            this.tsmReparacionesCamiones.Click += new System.EventHandler(this.tsmReparacionesCamiones_Click);
+            // 
+            // tsmRepuestosCamiones
+            // 
+            this.tsmRepuestosCamiones.Name = "tsmRepuestosCamiones";
+            this.tsmRepuestosCamiones.Size = new System.Drawing.Size(224, 28);
+            this.tsmRepuestosCamiones.Text = "Repuestos";
+            this.tsmRepuestosCamiones.Click += new System.EventHandler(this.tsmRepuestosCamiones_Click);
+            // 
+            // tsmTallerCamionesFurgones
+            // 
+            this.tsmTallerCamionesFurgones.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmReparacionesFurgones,
+            this.tsmRepuestosFurgones});
+            this.tsmTallerCamionesFurgones.Name = "tsmTallerCamionesFurgones";
+            this.tsmTallerCamionesFurgones.Size = new System.Drawing.Size(176, 28);
+            this.tsmTallerCamionesFurgones.Text = "Furgones";
+            // 
+            // tsmReparacionesFurgones
+            // 
+            this.tsmReparacionesFurgones.Name = "tsmReparacionesFurgones";
+            this.tsmReparacionesFurgones.Size = new System.Drawing.Size(224, 28);
+            this.tsmReparacionesFurgones.Text = "Reparaciones";
+            this.tsmReparacionesFurgones.Click += new System.EventHandler(this.tsmReparacionesFurgones_Click);
+            // 
+            // tsmRepuestosFurgones
+            // 
+            this.tsmRepuestosFurgones.Name = "tsmRepuestosFurgones";
+            this.tsmRepuestosFurgones.Size = new System.Drawing.Size(224, 28);
+            this.tsmRepuestosFurgones.Text = "Repuestos";
+            // 
             // tsmViajes
             // 
             this.tsmViajes.Name = "tsmViajes";
@@ -119,6 +165,7 @@
             // 
             this.tsmRecursos.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmChoferes,
+            this.tsmFleteros,
             this.mecanicosToolStripMenuItem,
             this.tsmVehiculos,
             this.tsmOtros,
@@ -134,6 +181,13 @@
             this.tsmChoferes.Size = new System.Drawing.Size(260, 28);
             this.tsmChoferes.Text = "Choferes";
             this.tsmChoferes.Click += new System.EventHandler(this.choferesToolStripMenuItem_Click);
+            // 
+            // tsmFleteros
+            // 
+            this.tsmFleteros.Name = "tsmFleteros";
+            this.tsmFleteros.Size = new System.Drawing.Size(260, 28);
+            this.tsmFleteros.Text = "Fleteros";
+            this.tsmFleteros.Click += new System.EventHandler(this.fleterosToolStripMenuItem_Click);
             // 
             // mecanicosToolStripMenuItem
             // 
@@ -170,51 +224,6 @@
             this.tsmClientes.Text = "Clientes";
             this.tsmClientes.Click += new System.EventHandler(this.tsmClientes_Click);
             // 
-            // tsmTallerCamiones
-            // 
-            this.tsmTallerCamiones.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmReparacionesCamiones,
-            this.tsmRepuestosCamiones});
-            this.tsmTallerCamiones.Name = "tsmTallerCamiones";
-            this.tsmTallerCamiones.Size = new System.Drawing.Size(180, 28);
-            this.tsmTallerCamiones.Text = "Camiones";
-            // 
-            // tsmReparacionesCamiones
-            // 
-            this.tsmReparacionesCamiones.Name = "tsmReparacionesCamiones";
-            this.tsmReparacionesCamiones.Size = new System.Drawing.Size(224, 28);
-            this.tsmReparacionesCamiones.Text = "Reparaciones";
-            this.tsmReparacionesCamiones.Click += new System.EventHandler(this.tsmReparacionesCamiones_Click);
-            // 
-            // tsmRepuestosCamiones
-            // 
-            this.tsmRepuestosCamiones.Name = "tsmRepuestosCamiones";
-            this.tsmRepuestosCamiones.Size = new System.Drawing.Size(224, 28);
-            this.tsmRepuestosCamiones.Text = "Repuestos";
-            this.tsmRepuestosCamiones.Click += new System.EventHandler(this.tsmRepuestosCamiones_Click);
-            // 
-            // tsmTallerCamionesFurgones
-            // 
-            this.tsmTallerCamionesFurgones.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmReparacionesFurgones,
-            this.tsmRepuestosFurgones});
-            this.tsmTallerCamionesFurgones.Name = "tsmTallerCamionesFurgones";
-            this.tsmTallerCamionesFurgones.Size = new System.Drawing.Size(180, 28);
-            this.tsmTallerCamionesFurgones.Text = "Furgones";
-            // 
-            // tsmReparacionesFurgones
-            // 
-            this.tsmReparacionesFurgones.Name = "tsmReparacionesFurgones";
-            this.tsmReparacionesFurgones.Size = new System.Drawing.Size(224, 28);
-            this.tsmReparacionesFurgones.Text = "Reparaciones";
-            this.tsmReparacionesFurgones.Click += new System.EventHandler(this.tsmReparacionesFurgones_Click);
-            // 
-            // tsmRepuestosFurgones
-            // 
-            this.tsmRepuestosFurgones.Name = "tsmRepuestosFurgones";
-            this.tsmRepuestosFurgones.Size = new System.Drawing.Size(224, 28);
-            this.tsmRepuestosFurgones.Text = "Repuestos";
-            // 
             // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -225,6 +234,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.Name = "FrmPrincipal";
+            this.Load += new System.EventHandler(this.FrmPrincipal_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.menuPrincipal.ResumeLayout(false);
             this.menuPrincipal.PerformLayout();
@@ -254,5 +264,6 @@
         private System.Windows.Forms.ToolStripMenuItem tsmTallerCamionesFurgones;
         private System.Windows.Forms.ToolStripMenuItem tsmReparacionesFurgones;
         private System.Windows.Forms.ToolStripMenuItem tsmRepuestosFurgones;
+        private System.Windows.Forms.ToolStripMenuItem tsmFleteros;
     }
 }

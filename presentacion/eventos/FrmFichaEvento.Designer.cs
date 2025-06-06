@@ -46,7 +46,7 @@
             // cbxFichaEventoFurgon
             // 
             this.cbxFichaEventoFurgon.FormattingEnabled = true;
-            this.cbxFichaEventoFurgon.Location = new System.Drawing.Point(280, 106);
+            this.cbxFichaEventoFurgon.Location = new System.Drawing.Point(90, 94);
             this.cbxFichaEventoFurgon.Name = "cbxFichaEventoFurgon";
             this.cbxFichaEventoFurgon.Size = new System.Drawing.Size(72, 21);
             this.cbxFichaEventoFurgon.TabIndex = 100;
@@ -54,7 +54,7 @@
             // lblFichaEventoFurgon
             // 
             this.lblFichaEventoFurgon.AutoSize = true;
-            this.lblFichaEventoFurgon.Location = new System.Drawing.Point(235, 110);
+            this.lblFichaEventoFurgon.Location = new System.Drawing.Point(94, 78);
             this.lblFichaEventoFurgon.Name = "lblFichaEventoFurgon";
             this.lblFichaEventoFurgon.Size = new System.Drawing.Size(37, 13);
             this.lblFichaEventoFurgon.TabIndex = 99;
@@ -62,9 +62,9 @@
             // 
             // btnFichaEventoCerrar
             // 
-            this.btnFichaEventoCerrar.Location = new System.Drawing.Point(267, 323);
+            this.btnFichaEventoCerrar.Location = new System.Drawing.Point(221, 355);
             this.btnFichaEventoCerrar.Name = "btnFichaEventoCerrar";
-            this.btnFichaEventoCerrar.Size = new System.Drawing.Size(85, 23);
+            this.btnFichaEventoCerrar.Size = new System.Drawing.Size(74, 23);
             this.btnFichaEventoCerrar.TabIndex = 98;
             this.btnFichaEventoCerrar.Text = "Cerrar";
             this.btnFichaEventoCerrar.UseVisualStyleBackColor = true;
@@ -72,9 +72,9 @@
             // 
             // btnFichaEventoOK
             // 
-            this.btnFichaEventoOK.Location = new System.Drawing.Point(28, 323);
+            this.btnFichaEventoOK.Location = new System.Drawing.Point(13, 355);
             this.btnFichaEventoOK.Name = "btnFichaEventoOK";
-            this.btnFichaEventoOK.Size = new System.Drawing.Size(85, 23);
+            this.btnFichaEventoOK.Size = new System.Drawing.Size(74, 23);
             this.btnFichaEventoOK.TabIndex = 97;
             this.btnFichaEventoOK.Text = "Agregar";
             this.btnFichaEventoOK.UseVisualStyleBackColor = true;
@@ -83,7 +83,7 @@
             // cbxFichaEventoChofer
             // 
             this.cbxFichaEventoChofer.FormattingEnabled = true;
-            this.cbxFichaEventoChofer.Location = new System.Drawing.Point(72, 53);
+            this.cbxFichaEventoChofer.Location = new System.Drawing.Point(12, 54);
             this.cbxFichaEventoChofer.Name = "cbxFichaEventoChofer";
             this.cbxFichaEventoChofer.Size = new System.Drawing.Size(280, 21);
             this.cbxFichaEventoChofer.TabIndex = 96;
@@ -91,7 +91,7 @@
             // lblFichaEventoTipo
             // 
             this.lblFichaEventoTipo.AutoSize = true;
-            this.lblFichaEventoTipo.Location = new System.Drawing.Point(42, 83);
+            this.lblFichaEventoTipo.Location = new System.Drawing.Point(171, 78);
             this.lblFichaEventoTipo.Name = "lblFichaEventoTipo";
             this.lblFichaEventoTipo.Size = new System.Drawing.Size(24, 13);
             this.lblFichaEventoTipo.TabIndex = 94;
@@ -100,7 +100,7 @@
             // cbxFichaEventoInterno
             // 
             this.cbxFichaEventoInterno.FormattingEnabled = true;
-            this.cbxFichaEventoInterno.Location = new System.Drawing.Point(280, 79);
+            this.cbxFichaEventoInterno.Location = new System.Drawing.Point(12, 94);
             this.cbxFichaEventoInterno.Name = "cbxFichaEventoInterno";
             this.cbxFichaEventoInterno.Size = new System.Drawing.Size(72, 21);
             this.cbxFichaEventoInterno.TabIndex = 93;
@@ -108,7 +108,7 @@
             // lblFichaEventoDNI
             // 
             this.lblFichaEventoDNI.AutoSize = true;
-            this.lblFichaEventoDNI.Location = new System.Drawing.Point(29, 56);
+            this.lblFichaEventoDNI.Location = new System.Drawing.Point(12, 38);
             this.lblFichaEventoDNI.Name = "lblFichaEventoDNI";
             this.lblFichaEventoDNI.Size = new System.Drawing.Size(37, 13);
             this.lblFichaEventoDNI.TabIndex = 92;
@@ -116,16 +116,16 @@
             // 
             // tbxFichaEventoDetalle
             // 
-            this.tbxFichaEventoDetalle.Location = new System.Drawing.Point(28, 133);
+            this.tbxFichaEventoDetalle.Location = new System.Drawing.Point(12, 143);
             this.tbxFichaEventoDetalle.Multiline = true;
             this.tbxFichaEventoDetalle.Name = "tbxFichaEventoDetalle";
-            this.tbxFichaEventoDetalle.Size = new System.Drawing.Size(324, 184);
+            this.tbxFichaEventoDetalle.Size = new System.Drawing.Size(280, 206);
             this.tbxFichaEventoDetalle.TabIndex = 91;
             // 
             // lblFichaEventoDetalle
             // 
             this.lblFichaEventoDetalle.AutoSize = true;
-            this.lblFichaEventoDetalle.Location = new System.Drawing.Point(29, 114);
+            this.lblFichaEventoDetalle.Location = new System.Drawing.Point(12, 127);
             this.lblFichaEventoDetalle.Name = "lblFichaEventoDetalle";
             this.lblFichaEventoDetalle.Size = new System.Drawing.Size(40, 13);
             this.lblFichaEventoDetalle.TabIndex = 90;
@@ -134,7 +134,7 @@
             // lblFichaEventoInterno
             // 
             this.lblFichaEventoInterno.AutoSize = true;
-            this.lblFichaEventoInterno.Location = new System.Drawing.Point(235, 83);
+            this.lblFichaEventoInterno.Location = new System.Drawing.Point(12, 78);
             this.lblFichaEventoInterno.Name = "lblFichaEventoInterno";
             this.lblFichaEventoInterno.Size = new System.Drawing.Size(37, 13);
             this.lblFichaEventoInterno.TabIndex = 89;
@@ -144,7 +144,7 @@
             // 
             this.lblFichaEventoTitulo.AutoSize = true;
             this.lblFichaEventoTitulo.Font = new System.Drawing.Font("Consolas", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFichaEventoTitulo.Location = new System.Drawing.Point(135, 8);
+            this.lblFichaEventoTitulo.Location = new System.Drawing.Point(99, 8);
             this.lblFichaEventoTitulo.Name = "lblFichaEventoTitulo";
             this.lblFichaEventoTitulo.Size = new System.Drawing.Size(111, 34);
             this.lblFichaEventoTitulo.TabIndex = 88;
@@ -153,16 +153,16 @@
             // cbxFichaEventoTipo
             // 
             this.cbxFichaEventoTipo.FormattingEnabled = true;
-            this.cbxFichaEventoTipo.Location = new System.Drawing.Point(72, 80);
+            this.cbxFichaEventoTipo.Location = new System.Drawing.Point(168, 94);
             this.cbxFichaEventoTipo.Name = "cbxFichaEventoTipo";
-            this.cbxFichaEventoTipo.Size = new System.Drawing.Size(145, 21);
+            this.cbxFichaEventoTipo.Size = new System.Drawing.Size(124, 21);
             this.cbxFichaEventoTipo.TabIndex = 101;
             // 
             // FrmFichaEvento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(380, 354);
+            this.ClientSize = new System.Drawing.Size(309, 390);
             this.Controls.Add(this.cbxFichaEventoTipo);
             this.Controls.Add(this.cbxFichaEventoFurgon);
             this.Controls.Add(this.lblFichaEventoFurgon);
@@ -177,6 +177,7 @@
             this.Controls.Add(this.lblFichaEventoInterno);
             this.Controls.Add(this.lblFichaEventoTitulo);
             this.Name = "FrmFichaEvento";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Load += new System.EventHandler(this.FrmFichaEvento_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

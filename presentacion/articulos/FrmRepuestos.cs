@@ -28,7 +28,7 @@ namespace presentacion.articulos
         private void cargar()
         {
             string sector = "TALLER CAMIONES";
-
+            this.ControlBox = false; // oculta el manejo de la ventana superior
             ArticuloNegocio articuloNegocio = new ArticuloNegocio();
             listadoArticulos = articuloNegocio.listar(sector);
             dgvRepuestos.DataSource = listadoArticulos;

@@ -146,7 +146,6 @@
             this.Controls.Add(this.lblReparacionesFiltro);
             this.Controls.Add(this.lblReparacionesTitulo);
             this.Name = "FrmReparaciones";
-            this.Text = "FrmReparaciones";
             this.Load += new System.EventHandler(this.FrmReparaciones_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvReparaciones)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReparacionesFinalizadas)).EndInit();

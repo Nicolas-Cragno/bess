@@ -13,11 +13,6 @@ C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\presentacion\bin\Debug\negocio
 C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\presentacion\obj\Debug\presenta.D2D8CCE5.Up2Date
 C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\presentacion\obj\Debug\presentacion.exe
 C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\presentacion\obj\Debug\presentacion.pdb
-C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\presentacion\obj\Debug\presentacion.choferes.FrmChoferes.resources
-C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\presentacion\obj\Debug\presentacion.choferes.FrmChoferesInactivos.resources
-C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\presentacion\obj\Debug\presentacion.choferes.FrmFichaChofer.resources
-C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\presentacion\obj\Debug\presentacion.choferes.FrmModificarChofer.resources
-C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\presentacion\obj\Debug\presentacion.choferes.FrmAgregarChofer.resources
 C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\presentacion\obj\Debug\presentacion.eventos.FrmEvento.resources
 C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\presentacion\obj\Debug\presentacion.eventos.FrmFichaEvento.resources
 C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\presentacion\obj\Debug\presentacion.furgones.FrmAgregarFurgon.resources
@@ -33,7 +28,6 @@ C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\presentacion\obj\Debug\present
 C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\presentacion\obj\Debug\presentacion.empresas.FrmEmpresas.resources
 C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\presentacion\obj\Debug\presentacion.empresas.FrmClientes.resources
 C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\presentacion\obj\Debug\presentacion.viajes.FrmViajes.resources
-C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\presentacion\obj\Debug\presentacion.mecanicos.FrmMecanicos.resources
 C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\presentacion\obj\Debug\presentacion.reparaciones.FrmReparaciones.resources
 C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\presentacion\obj\Debug\presentacion.articulos.FrmRepuestos.resources
 C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\presentacion\obj\Debug\presentacion.reparaciones.FrmFichaReparaciones.resources
@@ -42,3 +36,4 @@ C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\presentacion\obj\Debug\present
 C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\presentacion\obj\Debug\presentacion.reparaciones.FrmFinalizar.resources
 C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\presentacion\obj\Debug\presentacion.personas.FrmPersonas.resources
 C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\presentacion\obj\Debug\presentacion.personas.FrmPersonasInactivas.resources
+C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\presentacion\obj\Debug\presentacion.personas.FrmFichaPersona.resources

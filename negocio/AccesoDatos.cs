@@ -29,6 +29,8 @@ namespace negocio
             public static readonly string Puestos = db + ".puestos";
             public static readonly string AsignacionesTractores = ".asignaciones_tractores";
             public static readonly string Sectores = db + ".sectores";
+            public static readonly string TractoresFleteros = db + ".tractores_fleteros";
+            public static readonly string FurgonesFleteros = db + ".furgones_fleteros";
 
             //  VEHICULOS
             public static readonly string Tractores = db + ".tractores";
@@ -394,6 +396,61 @@ namespace negocio
             finally { datos.cerrarConexion(); }
 
             return idTipoEmpresa;
+        }
+        public Tractor buscarTractorFletero(int dni) 
+        {
+            AccesoDatos datos = new AccesoDatos();
+            Tractor tractor = new Tractor();
+            string query = "SELECT dominio, marca, modelo, detalle FROM " + Tablas.TractoresFleteros + " WHERE chofer=" + dni + ";";
+            try 
+            {
+                datos.setearConsulta(query);
+                datos.ejecutarLectura();
+
+                if(datos.Lector.Read())
+                {
+                    tractor.Dominio = (string)datos.Lector["dominio"];
+                    tractor.Marca = (string)datos.Lector["marca"];
+                    tractor.Modelo = (int)datos.Lector["modelo"];
+                    tractor.Detalle = (string)datos.Lector["detalle"];
+                } else
+                {
+                    tractor.Dominio = "NO TIENE";
+                    tractor.Marca = "";
+                    tractor.Modelo = 0;
+                    tractor.Detalle = "";
+                }
+                return tractor;
+            }
+            catch (Exception ex) { throw ex; }
+            finally { datos.cerrarConexion(); }
+        }
+        public Furgon buscarFurgonFletero(int dni) 
+        {
+            AccesoDatos datos = new AccesoDatos();
+            Furgon furgon = new Furgon();
+            string query = "SELECT dominio, marca, detalle FROM " + Tablas.FurgonesFleteros + " WHERE chofer=" + dni + ";";
+            try
+            {
+                datos.setearConsulta(query);
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    furgon.Dominio = (string)datos.Lector["dominio"];
+                    furgon.Marca = (string)datos.Lector["marca"];
+                    furgon.Detalle = (string)datos.Lector["detalle"];
+                }
+                else
+                {
+                    furgon.Dominio = "NO TIENE";
+                    furgon.Marca = "";
+                    furgon.Detalle = "";
+                }
+                return furgon;
+            }
+            catch (Exception ex) { throw ex; }
+            finally { datos.cerrarConexion(); }
         }
 
         // funciones para stock / articulos / repuestos

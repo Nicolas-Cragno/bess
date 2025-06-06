@@ -94,7 +94,6 @@
             this.Controls.Add(this.lblRepuestosFiltro);
             this.Controls.Add(this.lblRepuestosTitulo);
             this.Name = "FrmRepuestos";
-            this.Text = "FrmRepuestos";
             this.Load += new System.EventHandler(this.FrmRepuestos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvRepuestos)).EndInit();
             this.ResumeLayout(false);

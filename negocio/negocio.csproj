@@ -46,6 +46,7 @@
     <Compile Include="ChoferNegocio.cs" />
     <Compile Include="EmpresaNegocio.cs" />
     <Compile Include="EventoNegocio.cs" />
+    <Compile Include="FleteroNegocio.cs" />
     <Compile Include="FurgonNegocio.cs" />
     <Compile Include="MecanicoNegocio.cs" />
     <Compile Include="MovimientoNegocio.cs" />

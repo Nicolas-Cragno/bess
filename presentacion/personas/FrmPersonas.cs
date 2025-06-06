@@ -17,6 +17,7 @@ namespace presentacion.personas
         int puesto;
         private List<Chofer> listadoChoferes;
         private List<Mecanico> listadoMecanicos;
+        private List<Fletero> listadoFleteros;
         private List<Persona> listadoPersonas;
         // private List<Administrativo> listadoAdministrativos;
         public FrmPersonas(int pPuesto)
@@ -34,9 +35,11 @@ namespace presentacion.personas
         }
         private void cargar()
         {
+            this.ControlBox = false; // oculta el manejo de la ventana superior
             PersonaNegocio personaNegocio = new PersonaNegocio();
             ChoferNegocio choferNegocio = new ChoferNegocio();
             MecanicoNegocio mecanicoNegocio = new MecanicoNegocio();
+            FleteroNegocio fleteroNegocio = new FleteroNegocio();
             switch (puesto)
             {
                 case 1: // chofer larga distancia
@@ -48,6 +51,12 @@ namespace presentacion.personas
                     listadoMecanicos = mecanicoNegocio.listar(1, puesto);
                     dgvPersonas.DataSource = listadoMecanicos;
                     formatoColumnas(listadoMecanicos);
+                    break;
+                case 4: // fleteros
+                    listadoFleteros = fleteroNegocio.listar();
+                    btnPersonasInactivas.Visible = false;
+                    dgvPersonas.DataSource = listadoFleteros;
+                    formatoColumnas(listadoFleteros);
                     break;
                 default: // sin asignar / otros.
                     listadoPersonas = personaNegocio.listar(1);
@@ -71,6 +80,9 @@ namespace presentacion.personas
                     break;
                 case 3:
                     filtroMecanico();
+                    break;
+                case 4:
+                    filtroChofer();
                     break;
                 default:
                     filtroPersona();
@@ -161,6 +173,17 @@ namespace presentacion.personas
                     dgvPersonas.Columns["Detalle"].Visible = false;
                     dgvPersonas.Columns["Activo"].Visible = false;
                     break;
+                case 4: // fleteros
+                    dgvPersonas.Columns["Puesto"].Visible = false;
+                    dgvPersonas.Columns["Activo"].Visible = false;
+                    dgvPersonas.Columns["Ingreso"].Visible = false;
+                    dgvPersonas.Columns["Empresa"].Visible = false;
+                    dgvPersonas.Columns["ModeloTractor"].Visible = false;
+                    dgvPersonas.Columns["MarcaTractor"].Visible = false;
+                    dgvPersonas.Columns["DetalleTractor"].Visible = false;
+                    dgvPersonas.Columns["MarcaFurgon"].Visible = false;
+                    dgvPersonas.Columns["DetalleFurgon"].Visible = false;
+                    break;
                 default:  // sin asignar / otros
                     break;
             }
@@ -214,6 +237,10 @@ namespace presentacion.personas
                     dgvPersonas.Columns["Viajes"].DisplayIndex = 5;
                     dgvPersonas.Columns["Promedio"].DisplayIndex = 6;
                     break;
+                case 4: // fleteros
+                    dgvPersonas.Columns["dominioTractor"].DisplayIndex = 5;
+                    dgvPersonas.Columns["dominioFurgon"].DisplayIndex = 6;
+                    break;
                 default:  // sin asignar / otros
                     break;
             }
@@ -232,6 +259,10 @@ namespace presentacion.personas
                     dgvPersonas.Columns["Promedio"].HeaderText = "LTS C/100";
                     dgvPersonas.Columns["Empresa"].HeaderText = "";
                     break;
+                case 4: // fleteros
+                    dgvPersonas.Columns["dominioTractor"].HeaderText = "TRACTOR";
+                    dgvPersonas.Columns["dominioFurgon"].HeaderText = "FURGON";
+                    break;
                 default:  // sin asignar / otros
                     break;
             }
@@ -240,6 +271,32 @@ namespace presentacion.personas
         {
             FrmPersonasInactivas ventana = new FrmPersonasInactivas(puesto);
             ventana.ShowDialog();
+            cargar();
+        }
+
+        private void dgvPersonas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            FrmFichaPersona ficha = null;
+            switch (puesto)
+            {
+                case 1:
+                    Chofer chofer = (Chofer)dgvPersonas.CurrentRow.DataBoundItem;
+                    ficha = new FrmFichaPersona(puesto, chofer);
+                    break;
+                case 3:
+                    Mecanico mecanico = (Mecanico)dgvPersonas.CurrentRow.DataBoundItem;
+                    ficha = new FrmFichaPersona(puesto, mecanico);
+                    break;
+                case 4:
+                    Fletero fletero = (Fletero)dgvPersonas.CurrentRow.DataBoundItem;
+                    ficha = new FrmFichaPersona(puesto, fletero);
+                    break;
+                default:
+                    Persona persona = (Persona)dgvPersonas.CurrentRow.DataBoundItem;
+                    ficha = new FrmFichaPersona(puesto, persona);
+                    break;
+            }
+            ficha.ShowDialog();
             cargar();
         }
     }
