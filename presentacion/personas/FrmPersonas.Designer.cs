@@ -39,7 +39,7 @@
             // 
             // btnPersonasInactivas
             // 
-            this.btnPersonasInactivas.Location = new System.Drawing.Point(424, 93);
+            this.btnPersonasInactivas.Location = new System.Drawing.Point(381, 94);
             this.btnPersonasInactivas.Name = "btnPersonasInactivas";
             this.btnPersonasInactivas.Size = new System.Drawing.Size(63, 23);
             this.btnPersonasInactivas.TabIndex = 20;
@@ -49,7 +49,7 @@
             // 
             // btnPersonasAgregar
             // 
-            this.btnPersonasAgregar.Location = new System.Drawing.Point(355, 93);
+            this.btnPersonasAgregar.Location = new System.Drawing.Point(312, 94);
             this.btnPersonasAgregar.Name = "btnPersonasAgregar";
             this.btnPersonasAgregar.Size = new System.Drawing.Size(63, 23);
             this.btnPersonasAgregar.TabIndex = 19;
@@ -71,7 +71,7 @@
             // 
             // tbxPersonasFiltro
             // 
-            this.tbxPersonasFiltro.Location = new System.Drawing.Point(57, 95);
+            this.tbxPersonasFiltro.Location = new System.Drawing.Point(14, 96);
             this.tbxPersonasFiltro.Name = "tbxPersonasFiltro";
             this.tbxPersonasFiltro.Size = new System.Drawing.Size(292, 20);
             this.tbxPersonasFiltro.TabIndex = 17;
@@ -81,7 +81,7 @@
             // 
             this.lblPersonasFiltro.AutoSize = true;
             this.lblPersonasFiltro.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPersonasFiltro.Location = new System.Drawing.Point(17, 99);
+            this.lblPersonasFiltro.Location = new System.Drawing.Point(17, 81);
             this.lblPersonasFiltro.Name = "lblPersonasFiltro";
             this.lblPersonasFiltro.Size = new System.Drawing.Size(34, 12);
             this.lblPersonasFiltro.TabIndex = 16;

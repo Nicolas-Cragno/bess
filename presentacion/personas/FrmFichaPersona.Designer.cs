@@ -44,13 +44,14 @@
             this.lblFichaPersonaData2 = new System.Windows.Forms.Label();
             this.tbxFichaPersonaData1 = new System.Windows.Forms.TextBox();
             this.lblFichaPersonaData1 = new System.Windows.Forms.Label();
-            this.tbxFichaPersonaPuesto = new System.Windows.Forms.TextBox();
             this.lblFichaPersonaPuesto = new System.Windows.Forms.Label();
-            this.tbxFichaPersonaEmpresa = new System.Windows.Forms.TextBox();
             this.lblFichaPersonaEmpresa = new System.Windows.Forms.Label();
             this.tbxFichaPersonaDNI = new System.Windows.Forms.TextBox();
             this.lblFichaPersonaDNI = new System.Windows.Forms.Label();
             this.lblFichaPersonaTitulo = new System.Windows.Forms.Label();
+            this.cbxFichaPersonaEmpresa = new System.Windows.Forms.ComboBox();
+            this.cbxFichaPersonaPuesto = new System.Windows.Forms.ComboBox();
+            this.btnFichaPersonaAlta = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFichaPersonaEventos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -80,6 +81,7 @@
             this.tbxFichaPersonaFiltroEventos.Name = "tbxFichaPersonaFiltroEventos";
             this.tbxFichaPersonaFiltroEventos.Size = new System.Drawing.Size(217, 20);
             this.tbxFichaPersonaFiltroEventos.TabIndex = 71;
+            this.tbxFichaPersonaFiltroEventos.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxFichaPersonaFiltroEventos_KeyPress);
             // 
             // lblFichaPersonaFiltroEventos
             // 
@@ -101,9 +103,11 @@
             this.dgvFichaPersonaEventos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvFichaPersonaEventos.Size = new System.Drawing.Size(381, 271);
             this.dgvFichaPersonaEventos.TabIndex = 69;
+            this.dgvFichaPersonaEventos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFichaPersonaEventos_CellDoubleClick);
             // 
             // btnFichaPersonaEditar
             // 
+            this.btnFichaPersonaEditar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnFichaPersonaEditar.Location = new System.Drawing.Point(9, 363);
             this.btnFichaPersonaEditar.Name = "btnFichaPersonaEditar";
             this.btnFichaPersonaEditar.Size = new System.Drawing.Size(75, 23);
@@ -198,14 +202,6 @@
             this.lblFichaPersonaData1.TabIndex = 57;
             this.lblFichaPersonaData1.Text = "dato1";
             // 
-            // tbxFichaPersonaPuesto
-            // 
-            this.tbxFichaPersonaPuesto.Location = new System.Drawing.Point(9, 126);
-            this.tbxFichaPersonaPuesto.Name = "tbxFichaPersonaPuesto";
-            this.tbxFichaPersonaPuesto.ReadOnly = true;
-            this.tbxFichaPersonaPuesto.Size = new System.Drawing.Size(208, 20);
-            this.tbxFichaPersonaPuesto.TabIndex = 56;
-            // 
             // lblFichaPersonaPuesto
             // 
             this.lblFichaPersonaPuesto.AutoSize = true;
@@ -214,14 +210,6 @@
             this.lblFichaPersonaPuesto.Size = new System.Drawing.Size(88, 13);
             this.lblFichaPersonaPuesto.TabIndex = 55;
             this.lblFichaPersonaPuesto.Text = "tipo de empleado";
-            // 
-            // tbxFichaPersonaEmpresa
-            // 
-            this.tbxFichaPersonaEmpresa.Location = new System.Drawing.Point(117, 75);
-            this.tbxFichaPersonaEmpresa.Name = "tbxFichaPersonaEmpresa";
-            this.tbxFichaPersonaEmpresa.ReadOnly = true;
-            this.tbxFichaPersonaEmpresa.Size = new System.Drawing.Size(216, 20);
-            this.tbxFichaPersonaEmpresa.TabIndex = 54;
             // 
             // lblFichaPersonaEmpresa
             // 
@@ -259,11 +247,41 @@
             this.lblFichaPersonaTitulo.TabIndex = 50;
             this.lblFichaPersonaTitulo.Text = "Apellido, nombres empleado";
             // 
+            // cbxFichaPersonaEmpresa
+            // 
+            this.cbxFichaPersonaEmpresa.FormattingEnabled = true;
+            this.cbxFichaPersonaEmpresa.Location = new System.Drawing.Point(117, 75);
+            this.cbxFichaPersonaEmpresa.Name = "cbxFichaPersonaEmpresa";
+            this.cbxFichaPersonaEmpresa.Size = new System.Drawing.Size(216, 21);
+            this.cbxFichaPersonaEmpresa.TabIndex = 74;
+            // 
+            // cbxFichaPersonaPuesto
+            // 
+            this.cbxFichaPersonaPuesto.FormattingEnabled = true;
+            this.cbxFichaPersonaPuesto.Location = new System.Drawing.Point(9, 126);
+            this.cbxFichaPersonaPuesto.Name = "cbxFichaPersonaPuesto";
+            this.cbxFichaPersonaPuesto.Size = new System.Drawing.Size(208, 21);
+            this.cbxFichaPersonaPuesto.TabIndex = 75;
+            // 
+            // btnFichaPersonaAlta
+            // 
+            this.btnFichaPersonaAlta.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnFichaPersonaAlta.Location = new System.Drawing.Point(258, 363);
+            this.btnFichaPersonaAlta.Name = "btnFichaPersonaAlta";
+            this.btnFichaPersonaAlta.Size = new System.Drawing.Size(75, 23);
+            this.btnFichaPersonaAlta.TabIndex = 76;
+            this.btnFichaPersonaAlta.Text = "Dar de alta";
+            this.btnFichaPersonaAlta.UseVisualStyleBackColor = true;
+            this.btnFichaPersonaAlta.Click += new System.EventHandler(this.btnFichaPersonaAlta_Click);
+            // 
             // FrmFichaPersona
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(799, 397);
+            this.Controls.Add(this.btnFichaPersonaAlta);
+            this.Controls.Add(this.cbxFichaPersonaPuesto);
+            this.Controls.Add(this.cbxFichaPersonaEmpresa);
             this.Controls.Add(this.btnFichaPersonaCerrar);
             this.Controls.Add(this.btnFichaPersonaEventos);
             this.Controls.Add(this.tbxFichaPersonaFiltroEventos);
@@ -280,9 +298,7 @@
             this.Controls.Add(this.lblFichaPersonaData2);
             this.Controls.Add(this.tbxFichaPersonaData1);
             this.Controls.Add(this.lblFichaPersonaData1);
-            this.Controls.Add(this.tbxFichaPersonaPuesto);
             this.Controls.Add(this.lblFichaPersonaPuesto);
-            this.Controls.Add(this.tbxFichaPersonaEmpresa);
             this.Controls.Add(this.lblFichaPersonaEmpresa);
             this.Controls.Add(this.tbxFichaPersonaDNI);
             this.Controls.Add(this.lblFichaPersonaDNI);
@@ -313,12 +329,13 @@
         private System.Windows.Forms.Label lblFichaPersonaData2;
         private System.Windows.Forms.TextBox tbxFichaPersonaData1;
         private System.Windows.Forms.Label lblFichaPersonaData1;
-        private System.Windows.Forms.TextBox tbxFichaPersonaPuesto;
         private System.Windows.Forms.Label lblFichaPersonaPuesto;
-        private System.Windows.Forms.TextBox tbxFichaPersonaEmpresa;
         private System.Windows.Forms.Label lblFichaPersonaEmpresa;
         private System.Windows.Forms.TextBox tbxFichaPersonaDNI;
         private System.Windows.Forms.Label lblFichaPersonaDNI;
         private System.Windows.Forms.Label lblFichaPersonaTitulo;
+        private System.Windows.Forms.ComboBox cbxFichaPersonaEmpresa;
+        private System.Windows.Forms.ComboBox cbxFichaPersonaPuesto;
+        private System.Windows.Forms.Button btnFichaPersonaAlta;
     }
 }

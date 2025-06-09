@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,6 +44,37 @@ namespace negocio
             }
             catch(Exception ex) { throw ex; }
             finally { datos.cerrarConexion(); }
+        }
+        public List<string> listarNombres(int estado)
+        {
+            List<Persona> personas = new List<Persona>();
+            personas = listar(estado);
+            List<string> nombres = personas.Select(p => p.Apellido + ", " + p.Nombres).OrderBy(nombre => nombre).ToList();
+
+            return nombres;
+        }
+
+        public void agregar(Persona nvPersona)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            long idEmpresa = datos.buscarCuitEmpresa(nvPersona.Empresa);
+            int idPuesto = datos.buscarIdPuesto(nvPersona.Puesto);
+            string database = "INSERT INTO " + AccesoDatos.Tablas.Personas + "(dni, idPuesto, detalle, apellido, nombres, empresa)";
+            string values = "VALUES (" + nvPersona.Dni + ", " + idPuesto + ", '" + nvPersona.Detalle.ToUpper() + "', '" + nvPersona.Apellido.ToUpper() + "', '" + nvPersona.Nombres.ToUpper() + "', " + idEmpresa + ");";
+            string query = database + values;
+
+            try 
+            {
+                datos.setearConsulta(query);
+                datos.ejecutarAccion();
+            }
+            catch(Exception ex) 
+            {
+                throw;
+            }
+            finally {
+                datos.cerrarConexion(); 
+            }
         }
     }
 }

@@ -350,7 +350,7 @@ namespace negocio
         public int buscarIdPuesto(string puesto)
         {
             AccesoDatos datos = new AccesoDatos();
-            string query = "SELECT idPuesto FROM " + Tablas.Puestos + " WHERE nombre = " + puesto + ";";
+            string query = "SELECT idPuesto FROM " + Tablas.Puestos + " WHERE nombre = '" + puesto + "';";
             int idPuesto;
             try
             {
@@ -371,7 +371,29 @@ namespace negocio
 
             return idPuesto;
         }
-        
+        public List<string> listarPuestos()
+        {
+            AccesoDatos datos = new AccesoDatos();
+            List<string> listado = new List<string>();
+            string query = "SELECT nombre FROM " + Tablas.Puestos + ";";
+
+            try 
+            {
+                datos.setearConsulta(query);
+                datos.ejecutarLectura();
+
+                while(datos.Lector.Read())
+                {
+                    string puesto = (string)datos.Lector["nombre"];
+
+                    listado.Add(puesto);
+                }
+                
+                return listado;
+            }
+            catch (Exception ex) { throw ex; }
+            finally { datos.cerrarConexion(); }
+        }
         public int buscarIdTipoEmpresa(string empresa)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -449,6 +471,20 @@ namespace negocio
                 }
                 return furgon;
             }
+            catch (Exception ex) { throw ex; }
+            finally { datos.cerrarConexion(); }
+        }
+        public void estadoPersona (int dni, bool estado)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            int nEstado = datos.numerarBool(estado);
+            string query = "UPDATE " + Tablas.Personas + " SET estado=" + nEstado + " WHERE dni=" + dni + ";";
+
+            try
+            {
+                datos.setearConsulta(query);
+                datos.ejecutarAccion();
+            } 
             catch (Exception ex) { throw ex; }
             finally { datos.cerrarConexion(); }
         }

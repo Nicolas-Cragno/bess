@@ -142,11 +142,14 @@ namespace presentacion.movimientos
         }
         private void dgvMovimientos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            Movimiento seleccion = (Movimiento)dgvMovimientos.CurrentRow.DataBoundItem;
+            if (e.RowIndex >= 0)
+            {
+                Movimiento seleccion = (Movimiento)dgvMovimientos.CurrentRow.DataBoundItem;
 
-            FrmFichaMovimiento fichaMovimiento = new FrmFichaMovimiento(ficha, seleccion, this);
-            fichaMovimiento.ShowDialog();
-            cargar();
+                FrmFichaMovimiento fichaMovimiento = new FrmFichaMovimiento(ficha, seleccion, this);
+                fichaMovimiento.ShowDialog();
+                cargar();
+            }
         }
 
         // Sin uso

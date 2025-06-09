@@ -133,11 +133,14 @@ namespace presentacion.eventos
         }
         private void dgvEventos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            Evento seleccion = (Evento)dgvEventos.CurrentRow.DataBoundItem;
+            if (e.RowIndex >= 0)
+            {
+                Evento seleccion = (Evento)dgvEventos.CurrentRow.DataBoundItem;
 
-            FrmFichaEvento fichaEvento = new FrmFichaEvento(ficha, seleccion, this);
-            fichaEvento.ShowDialog();
-            cargar();
+                FrmFichaEvento fichaEvento = new FrmFichaEvento(ficha, seleccion, this);
+                fichaEvento.ShowDialog();
+                cargar();
+            }
         }
         private void tbxEventosFiltro_KeyPress(object sender, KeyPressEventArgs e)
         {

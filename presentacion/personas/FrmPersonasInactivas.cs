@@ -267,5 +267,39 @@ namespace presentacion.personas
         {
             Close();
         }
+
+        private void dgvPersonasInactivas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Chofer sChofer = new Chofer();
+            Mecanico sMecanico = new Mecanico();
+            Fletero sFletero = new Fletero();
+            Persona sPersona = new Persona();
+            FrmFichaPersona ficha = null;
+            if(e.RowIndex >= 0)
+            {
+                Object seleccion = (Object)dgvPersonasInactivas.CurrentRow.DataBoundItem;
+                switch (puesto)
+                {
+                    case 1:
+                        sChofer = seleccion as Chofer;
+                        ficha = new FrmFichaPersona(puesto, 'F', sChofer, false);
+                        break;
+                    case 3:
+                        sMecanico = seleccion as Mecanico;
+                        ficha = new FrmFichaPersona(puesto, 'F', sMecanico, false);
+                        break;
+                    case 4:
+                        sFletero = seleccion as Fletero;
+                        ficha = new FrmFichaPersona(puesto, 'F', sFletero, false);
+                        break;
+                    default:
+                        sPersona = seleccion as Persona;
+                        ficha = new FrmFichaPersona(puesto, 'F', sPersona, false);
+                        break;
+                }
+                ficha.ShowDialog();
+                cargar();
+            }
+        }
     }
 }

@@ -16,7 +16,7 @@ namespace negocio
             AccesoDatos datos = new AccesoDatos();
             int idTipo = datos.buscarIdTipoEmpresa(tipo);
             string campos = "SELECT cuit, idTipo, nombre, abreviatura";
-            string database = " FROM " + AccesoDatos.Tablas.Empresas + " WHERE idTipo=" + idTipo + ";";
+            string database = " FROM " + AccesoDatos.Tablas.Empresas + " WHERE idTipo=" + idTipo + " OR idTipo=4;" ;
             string query = campos + database;
 
             try

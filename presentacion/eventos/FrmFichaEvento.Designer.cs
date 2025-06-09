@@ -110,9 +110,9 @@
             this.lblFichaEventoDNI.AutoSize = true;
             this.lblFichaEventoDNI.Location = new System.Drawing.Point(12, 38);
             this.lblFichaEventoDNI.Name = "lblFichaEventoDNI";
-            this.lblFichaEventoDNI.Size = new System.Drawing.Size(37, 13);
+            this.lblFichaEventoDNI.Size = new System.Drawing.Size(45, 13);
             this.lblFichaEventoDNI.TabIndex = 92;
-            this.lblFichaEventoDNI.Text = "chofer";
+            this.lblFichaEventoDNI.Text = "persona";
             // 
             // tbxFichaEventoDetalle
             // 

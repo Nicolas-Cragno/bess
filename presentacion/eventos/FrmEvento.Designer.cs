@@ -39,7 +39,7 @@
             // 
             // btnEventosNuevo
             // 
-            this.btnEventosNuevo.Location = new System.Drawing.Point(355, 93);
+            this.btnEventosNuevo.Location = new System.Drawing.Point(312, 94);
             this.btnEventosNuevo.Name = "btnEventosNuevo";
             this.btnEventosNuevo.Size = new System.Drawing.Size(63, 23);
             this.btnEventosNuevo.TabIndex = 17;
@@ -61,7 +61,7 @@
             // 
             // tbxEventosFiltro
             // 
-            this.tbxEventosFiltro.Location = new System.Drawing.Point(57, 95);
+            this.tbxEventosFiltro.Location = new System.Drawing.Point(14, 96);
             this.tbxEventosFiltro.Name = "tbxEventosFiltro";
             this.tbxEventosFiltro.Size = new System.Drawing.Size(292, 20);
             this.tbxEventosFiltro.TabIndex = 15;
@@ -71,7 +71,7 @@
             // 
             this.lblEventosFiltro.AutoSize = true;
             this.lblEventosFiltro.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEventosFiltro.Location = new System.Drawing.Point(17, 99);
+            this.lblEventosFiltro.Location = new System.Drawing.Point(17, 81);
             this.lblEventosFiltro.Name = "lblEventosFiltro";
             this.lblEventosFiltro.Size = new System.Drawing.Size(34, 12);
             this.lblEventosFiltro.TabIndex = 14;

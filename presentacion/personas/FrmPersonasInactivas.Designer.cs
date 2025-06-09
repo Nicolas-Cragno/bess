@@ -57,6 +57,7 @@
             this.dgvPersonasInactivas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvPersonasInactivas.Size = new System.Drawing.Size(313, 256);
             this.dgvPersonasInactivas.TabIndex = 16;
+            this.dgvPersonasInactivas.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPersonasInactivas_CellDoubleClick);
             // 
             // tbxPersonasInactivasFiltro
             // 

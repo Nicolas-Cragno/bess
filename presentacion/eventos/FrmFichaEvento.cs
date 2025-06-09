@@ -89,13 +89,13 @@ namespace presentacion.eventos
         }
         private void cargarListas() 
         {
-            ChoferNegocio choferNegocio = new ChoferNegocio();
+            PersonaNegocio personaNegocio = new PersonaNegocio();
             TractorNegocio tractorNegocio = new TractorNegocio();
             FurgonNegocio furgonNegocio = new FurgonNegocio();
             EventoNegocio eventoNegocio = new EventoNegocio();
             cbxFichaEventoInterno.DataSource = tractorNegocio.listarInternos(activo);
             cbxFichaEventoFurgon.DataSource = furgonNegocio.listarInternos(activo);
-            cbxFichaEventoChofer.DataSource = choferNegocio.listarNombres(activo, choferL);
+            cbxFichaEventoChofer.DataSource = personaNegocio.listarNombres(1);
             cbxFichaEventoTipo.DataSource = eventoNegocio.listarTipos();
             cbxFichaEventoInterno.SelectedIndex = -1;
             cbxFichaEventoFurgon.SelectedIndex = -1;
