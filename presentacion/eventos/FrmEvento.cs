@@ -25,7 +25,7 @@ namespace presentacion.eventos
         }
         private void FrmEvento_Load(object sender, EventArgs e)
         {
-            cargar();
+          cargar();
         }
         private void cargar()
         {

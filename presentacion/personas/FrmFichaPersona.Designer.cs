@@ -1,6 +1,6 @@
 ﻿namespace presentacion.personas
 {
-    partial class FrmFichaPersona
+    partial class FrmFichaVehiculo
     {
         /// <summary>
         /// Required designer variable.
@@ -274,7 +274,7 @@
             this.btnFichaPersonaAlta.UseVisualStyleBackColor = true;
             this.btnFichaPersonaAlta.Click += new System.EventHandler(this.btnFichaPersonaAlta_Click);
             // 
-            // FrmFichaPersona
+            // FrmFichaVehiculo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -303,7 +303,7 @@
             this.Controls.Add(this.tbxFichaPersonaDNI);
             this.Controls.Add(this.lblFichaPersonaDNI);
             this.Controls.Add(this.lblFichaPersonaTitulo);
-            this.Name = "FrmFichaPersona";
+            this.Name = "FrmFichaVehiculo";
             this.Load += new System.EventHandler(this.FrmFichaPersona_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvFichaPersonaEventos)).EndInit();
             this.ResumeLayout(false);

@@ -317,24 +317,24 @@ namespace presentacion.personas
         }
         private void dgvPersonas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            FrmFichaPersona ficha = null;
+            FrmFichaVehiculo ficha = null;
             switch (puesto)
             {
                 case 1:
                     Chofer chofer = (Chofer)dgvPersonas.CurrentRow.DataBoundItem;
-                    ficha = new FrmFichaPersona(puesto, verFicha, chofer, true, this);
+                    ficha = new FrmFichaVehiculo(puesto, verFicha, chofer, true, this);
                     break;
                 case 3:
                     Mecanico mecanico = (Mecanico)dgvPersonas.CurrentRow.DataBoundItem;
-                    ficha = new FrmFichaPersona(puesto, verFicha, mecanico, true, this);
+                    ficha = new FrmFichaVehiculo(puesto, verFicha, mecanico, true, this);
                     break;
                 case 4:
                     Fletero fletero = (Fletero)dgvPersonas.CurrentRow.DataBoundItem;
-                    ficha = new FrmFichaPersona(puesto, verFicha, fletero, true, this);
+                    ficha = new FrmFichaVehiculo(puesto, verFicha, fletero, true, this);
                     break;
                 default:
                     Persona persona = (Persona)dgvPersonas.CurrentRow.DataBoundItem;
-                    ficha = new FrmFichaPersona(puesto, verFicha, persona, true, this);
+                    ficha = new FrmFichaVehiculo(puesto, verFicha, persona, true, this);
                     break;
             }
             ficha.ShowDialog();
@@ -343,7 +343,7 @@ namespace presentacion.personas
 
         private void btnPersonasAgregar_Click(object sender, EventArgs e)
         {
-            FrmFichaPersona ventana = new FrmFichaPersona(1, 'A', null, true, this);
+            FrmFichaVehiculo ventana = new FrmFichaVehiculo(1, 'A', null, true, this);
             ventana.ShowDialog();
             cargar();
         }

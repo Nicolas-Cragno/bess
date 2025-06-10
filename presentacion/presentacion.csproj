@@ -130,6 +130,12 @@
     <Compile Include="reparaciones\FrmReparaciones.Designer.cs">
       <DependentUpon>FrmReparaciones.cs</DependentUpon>
     </Compile>
+    <Compile Include="vehiculos\FrmFichaVehiculo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vehiculos\FrmFichaVehiculo.Designer.cs">
+      <DependentUpon>FrmFichaVehiculo.cs</DependentUpon>
+    </Compile>
     <Compile Include="vehiculos\furgones\FrmAgregarFurgon.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -239,6 +245,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="reparaciones\FrmReparaciones.resx">
       <DependentUpon>FrmReparaciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vehiculos\FrmFichaVehiculo.resx">
+      <DependentUpon>FrmFichaVehiculo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="vehiculos\furgones\FrmAgregarFurgon.resx">
       <DependentUpon>FrmAgregarFurgon.cs</DependentUpon>

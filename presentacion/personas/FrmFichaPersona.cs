@@ -14,7 +14,7 @@ using presentacion.eventos;
 
 namespace presentacion.personas
 {
-    public partial class FrmFichaPersona : Form
+    public partial class FrmFichaVehiculo : Form
     {
         private Form formularioPadre;
         private List<Evento> eventos = new List<Evento>();
@@ -28,7 +28,7 @@ namespace presentacion.personas
         private bool est;
 
         // Cargas
-        public FrmFichaPersona(int oPuesto, char oModo, object oPersona = null, bool oEst = true, Form padre =null)
+        public FrmFichaVehiculo(int oPuesto, char oModo, object oPersona = null, bool oEst = true, Form padre =null)
         {
             InitializeComponent();
             puesto = oPuesto;
@@ -118,7 +118,6 @@ namespace presentacion.personas
                 tbxFichaPersonaData4.Visible = false;
             }
         }
-
         private void formatoModificar()
         {
             AccesoDatos datos = new AccesoDatos();
@@ -163,19 +162,14 @@ namespace presentacion.personas
             switch (puesto)
             {
                 case 1: // choferes
-                    chofer = obj as Chofer;
-                    break;
+                    return chofer = obj as Chofer;
                 case 3: // mecanicos 
-                    mecanico = obj as Mecanico;
-                    break;
+                    return mecanico = obj as Mecanico;
                 case 4: // fleteros
-                    fletero = obj as Fletero;
-                    break;
+                    return fletero = obj as Fletero;
                 default: // otros
-                    persona = obj as Persona;
-                    break;
+                    return persona = obj as Persona;
             }
-            return persona;
         }
         private void cargarDatos()
         {
@@ -313,20 +307,20 @@ namespace presentacion.personas
                     Close();
                     break;
                 case 'F':
-                    FrmFichaPersona fichaModificar = null;
+                    FrmFichaVehiculo fichaModificar = null;
                     switch (puesto)
                     {
                         case 1:
-                            fichaModificar = new FrmFichaPersona(puesto, 'M', chofer, chofer.Activo, this);
+                            fichaModificar = new FrmFichaVehiculo(puesto, 'M', chofer, chofer.Activo, this);
                             break;
                         case 3:
-                            fichaModificar = new FrmFichaPersona(puesto, 'M', mecanico, mecanico.Activo, this);
+                            fichaModificar = new FrmFichaVehiculo(puesto, 'M', mecanico, mecanico.Activo, this);
                             break;
                         case 4:
-                            fichaModificar = new FrmFichaPersona(puesto, 'M', fletero, fletero.Activo, this);
+                            fichaModificar = new FrmFichaVehiculo(puesto, 'M', fletero, fletero.Activo, this);
                             break;
                         default:
-                            fichaModificar = new FrmFichaPersona(puesto, 'M', persona, persona.Activo, this);
+                            fichaModificar = new FrmFichaVehiculo(puesto, 'M', persona, persona.Activo, this);
                             break;
                     }
                     fichaModificar.ShowDialog();
@@ -558,7 +552,6 @@ namespace presentacion.personas
             }
             return estado;
         }
-
         private void btnFichaPersonaAlta_Click(object sender, EventArgs e)
         {
             AccesoDatos datos = new AccesoDatos();

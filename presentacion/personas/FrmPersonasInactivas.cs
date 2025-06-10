@@ -274,7 +274,7 @@ namespace presentacion.personas
             Mecanico sMecanico = new Mecanico();
             Fletero sFletero = new Fletero();
             Persona sPersona = new Persona();
-            FrmFichaPersona ficha = null;
+            FrmFichaVehiculo ficha = null;
             if(e.RowIndex >= 0)
             {
                 Object seleccion = (Object)dgvPersonasInactivas.CurrentRow.DataBoundItem;
@@ -282,19 +282,19 @@ namespace presentacion.personas
                 {
                     case 1:
                         sChofer = seleccion as Chofer;
-                        ficha = new FrmFichaPersona(puesto, 'F', sChofer, false);
+                        ficha = new FrmFichaVehiculo(puesto, 'F', sChofer, false);
                         break;
                     case 3:
                         sMecanico = seleccion as Mecanico;
-                        ficha = new FrmFichaPersona(puesto, 'F', sMecanico, false);
+                        ficha = new FrmFichaVehiculo(puesto, 'F', sMecanico, false);
                         break;
                     case 4:
                         sFletero = seleccion as Fletero;
-                        ficha = new FrmFichaPersona(puesto, 'F', sFletero, false);
+                        ficha = new FrmFichaVehiculo(puesto, 'F', sFletero, false);
                         break;
                     default:
                         sPersona = seleccion as Persona;
-                        ficha = new FrmFichaPersona(puesto, 'F', sPersona, false);
+                        ficha = new FrmFichaVehiculo(puesto, 'F', sPersona, false);
                         break;
                 }
                 ficha.ShowDialog();
