@@ -13,6 +13,7 @@ namespace dominio
         public string Apellido { get; set; }
         public string Nombres {  get; set; }
         public string Empresa {  get; set; }
+        public string EmpresaAbreviada { get; set; }
         public string Detalle {  get; set; }
         public bool Activo {  get; set; }
         public DateTime Ingreso { get; set; }

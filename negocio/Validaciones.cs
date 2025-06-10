@@ -23,7 +23,6 @@ namespace negocio
             
             return tValido;
         }
-
         public int cbxInt(string nro) // Recibe el numero como String
         {
             int nValido;
@@ -39,7 +38,6 @@ namespace negocio
 
             return nValido;
         }
-
         public DateTime dtpFecha(DateTime fecha, TimeSpan hora)
         {
             DateTime fechaHora;
@@ -48,6 +46,14 @@ namespace negocio
 
             return fechaHora;
         }
-
+        public bool validarCampos(int cant, int validos)
+        {
+            if(cant == validos)
+            {
+                return true;
+            } else {
+                return false;
+            }
+        }
     }
 }

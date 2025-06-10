@@ -82,7 +82,7 @@ namespace presentacion.personas
                     filtroMecanico();
                     break;
                 case 4:
-                    filtroChofer();
+                    filtroFletero();
                     break;
                 default:
                     filtroPersona();
@@ -125,6 +125,23 @@ namespace presentacion.personas
             dgvPersonas.DataSource = listaFiltrada;
             formatoColumnas(listadoMecanicos);
         }   
+        private void filtroFletero() 
+        {
+            List<Fletero> listaFiltrada;
+            string filtro = tbxPersonasFiltro.Text;
+
+            if(filtro != "")
+            {
+                listaFiltrada = listadoFleteros.FindAll(m => m.Dni.ToString().Contains(filtro.ToUpper()) || m.Apellido.ToString().Contains(filtro.ToUpper()) || m.Nombres.ToString().Contains(filtro.ToUpper()) || m.Empresa.ToString().Contains(filtro.ToUpper()) || m.Detalle.ToString().Contains(filtro.ToUpper()));
+            } else
+            {
+                listaFiltrada = listadoFleteros;
+            }
+
+            dgvPersonas.DataSource = null;
+            dgvPersonas.DataSource = listaFiltrada;
+            formatoColumnas(listadoFleteros);
+        }
         private void filtroPersona() 
         {
             List<Persona> listaFiltrada;
@@ -305,19 +322,19 @@ namespace presentacion.personas
             {
                 case 1:
                     Chofer chofer = (Chofer)dgvPersonas.CurrentRow.DataBoundItem;
-                    ficha = new FrmFichaPersona(puesto, verFicha, chofer);
+                    ficha = new FrmFichaPersona(puesto, verFicha, chofer, true, this);
                     break;
                 case 3:
                     Mecanico mecanico = (Mecanico)dgvPersonas.CurrentRow.DataBoundItem;
-                    ficha = new FrmFichaPersona(puesto, verFicha, mecanico);
+                    ficha = new FrmFichaPersona(puesto, verFicha, mecanico, true, this);
                     break;
                 case 4:
                     Fletero fletero = (Fletero)dgvPersonas.CurrentRow.DataBoundItem;
-                    ficha = new FrmFichaPersona(puesto, verFicha, fletero);
+                    ficha = new FrmFichaPersona(puesto, verFicha, fletero, true, this);
                     break;
                 default:
                     Persona persona = (Persona)dgvPersonas.CurrentRow.DataBoundItem;
-                    ficha = new FrmFichaPersona(puesto, verFicha, persona);
+                    ficha = new FrmFichaPersona(puesto, verFicha, persona, true, this);
                     break;
             }
             ficha.ShowDialog();
@@ -326,7 +343,7 @@ namespace presentacion.personas
 
         private void btnPersonasAgregar_Click(object sender, EventArgs e)
         {
-            FrmFichaPersona ventana = new FrmFichaPersona(1, 'A', null);
+            FrmFichaPersona ventana = new FrmFichaPersona(1, 'A', null, true, this);
             ventana.ShowDialog();
             cargar();
         }

@@ -16,22 +16,25 @@ namespace presentacion.personas
 {
     public partial class FrmFichaPersona : Form
     {
-        List<Evento> eventos = new List<Evento>();
-        Persona persona = new Persona();
-        Chofer chofer = new Chofer();
-        Mecanico mecanico = new Mecanico();
-        Fletero fletero = new Fletero();
+        private Form formularioPadre;
+        private List<Evento> eventos = new List<Evento>();
+        private Persona persona = new Persona();
+        private Chofer chofer = new Chofer();
+        private Mecanico mecanico = new Mecanico();
+        private Fletero fletero = new Fletero();
         private int anchoMaximoDgv = 0;
-        int puesto;
-        char modo;
-        bool est;
+        private int puesto;
+        private char modo;
+        private bool est;
+
         // Cargas
-        public FrmFichaPersona(int oPuesto, char oModo, object oPersona = null, bool oEst = true)
+        public FrmFichaPersona(int oPuesto, char oModo, object oPersona = null, bool oEst = true, Form padre =null)
         {
             InitializeComponent();
             puesto = oPuesto;
             modo = oModo;
             est = oEst;
+            formularioPadre = padre;
             determinarObjeto(oPersona);
         }
         private void FrmFichaPersona_Load(object sender, EventArgs e)
@@ -41,20 +44,43 @@ namespace presentacion.personas
         private void configuracion()
         {
             this.ControlBox = false; // oculta el manejo de la ventana superior
+            colgarDerecha();
 
-            if(modo != 'A')
+            switch (modo)
             {
-            cargarDatos();
-            cargarEventos();
-            formatoColumnas();
-            } else
-            {
-                formatoAgregar();
+                case 'F':
+                    cargarDatos();
+                    cargarEventos();
+                    formatoColumnas();
+                    break;
+                case 'A':
+                    formatoAgregar();
+                    break;
+                case 'M':
+                    formatoModificar();
+                    break;
+                default:
+                    cargarDatos();
+                    cargarEventos();
+                    formatoColumnas();
+                    break;
             }
 
             if (est)
             {
                 btnFichaPersonaAlta.Visible = false;
+            }
+        }
+        private void colgarDerecha()
+        {
+            if (formularioPadre != null)
+            {
+                Screen pantalla = Screen.FromControl(formularioPadre);
+                this.StartPosition = FormStartPosition.Manual;
+                this.Location = new Point(
+                    pantalla.WorkingArea.Right - this.Width,
+                    pantalla.WorkingArea.Top
+                );
             }
         }
         private void formatoAgregar()
@@ -66,6 +92,7 @@ namespace presentacion.personas
 
                 // Ocultar partede Eventos
                 this.Size = new Size(358, 436);
+                colgarDerecha();
                 lblFichaPersonaFiltroEventos.Visible = false;
                 tbxFichaPersonaFiltroEventos.Visible = false;
                 btnFichaPersonaEventos.Visible = false;
@@ -89,6 +116,46 @@ namespace presentacion.personas
                 tbxFichaPersonaData1.Visible = false;
                 lblFichaPersonaData4.Visible = false;
                 tbxFichaPersonaData4.Visible = false;
+            }
+        }
+
+        private void formatoModificar()
+        {
+            AccesoDatos datos = new AccesoDatos();
+            if (modo == 'M')
+            {
+                cargarListas();
+                cargarDatos();
+                cargarEventos();
+                formatoColumnas();
+                Persona persona = new Persona();
+                int dni = int.Parse(tbxFichaPersonaDNI.Text);
+                tbxFichaPersonaDNI.ReadOnly = true; // el dni queda bloqueado
+
+                // Etiquetas
+                btnFichaPersonaEditar.Text = "Guardar";
+                lblFichaPersonaData2.Text = "apellido/s";
+                lblFichaPersonaData3.Text = "nombre/s";
+
+                // Información agregada
+                persona = datos.buscarPersonaFull(dni);
+                tbxFichaPersonaData2.Text = persona.Apellido;
+                tbxFichaPersonaData3.Text = persona.Nombres;
+               
+
+                // Habilitar escritura
+                cbxFichaPersonaEmpresa.Enabled = true;
+                tbxFichaPersonaDetalle.ReadOnly = false;
+                tbxFichaPersonaData2.ReadOnly = false;
+                tbxFichaPersonaData3.ReadOnly = false;
+                cbxFichaPersonaPuesto.Enabled = true;
+
+                // Ocultar
+                lblFichaPersonaData1.Visible = false;
+                tbxFichaPersonaData1.Visible = false;
+                lblFichaPersonaData4.Visible = false;
+                tbxFichaPersonaData4.Visible = false;
+                btnFichaPersonaAlta.Visible = false;
             }
         }
         private Object determinarObjeto(Object obj)
@@ -237,11 +304,32 @@ namespace presentacion.personas
             switch (modo)
             {
                 case 'A':
-                    agregar();
-                    Close();
+                    bool accion = agregar();
+                    if (accion)
+                        Close();
                     break;
                 case 'M':
                     modificar();
+                    Close();
+                    break;
+                case 'F':
+                    FrmFichaPersona fichaModificar = null;
+                    switch (puesto)
+                    {
+                        case 1:
+                            fichaModificar = new FrmFichaPersona(puesto, 'M', chofer, chofer.Activo, this);
+                            break;
+                        case 3:
+                            fichaModificar = new FrmFichaPersona(puesto, 'M', mecanico, mecanico.Activo, this);
+                            break;
+                        case 4:
+                            fichaModificar = new FrmFichaPersona(puesto, 'M', fletero, fletero.Activo, this);
+                            break;
+                        default:
+                            fichaModificar = new FrmFichaPersona(puesto, 'M', persona, persona.Activo, this);
+                            break;
+                    }
+                    fichaModificar.ShowDialog();
                     Close();
                     break;
                 default:
@@ -274,7 +362,7 @@ namespace presentacion.personas
         }
         private void dgvFichaPersonaEventos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(e.RowIndex >= 0 && e.ColumnIndex >= 0){
+            if(e.RowIndex >= 0){
                 Evento seleccion = (Evento)dgvFichaPersonaEventos.CurrentRow.DataBoundItem;
 
                 FrmFichaEvento fichaEvento = new FrmFichaEvento('F', seleccion, this);
@@ -344,37 +432,116 @@ namespace presentacion.personas
         }
 
         // Agregar - Modificar
-        private void agregar()
+        private bool agregar()
         {
             PersonaNegocio personaNegocio = new PersonaNegocio();
             Persona auxPersona = new Persona();
+            Validaciones validaciones = new Validaciones();
+            int campos = 3, validos = 0;
 
-            auxPersona.Dni = int.Parse(tbxFichaPersonaDNI.Text);
-            auxPersona.Empresa = cbxFichaPersonaEmpresa.Text;
-            auxPersona.Puesto = cbxFichaPersonaPuesto.Text;
-            auxPersona.Apellido = tbxFichaPersonaData2.Text;
-            auxPersona.Nombres = tbxFichaPersonaData3.Text;
-            auxPersona.Detalle = tbxFichaPersonaDetalle.Text;
+            if(modo == 'A')
+            {
+                // Campos obligatorios = 3
+                if (tbxFichaPersonaDNI.Text != null && tbxFichaPersonaDNI.Text != "")
+                {
+                    auxPersona.Dni = int.Parse(tbxFichaPersonaDNI.Text);
+                    validos++;
+                }
+                if (tbxFichaPersonaData2.Text != null && tbxFichaPersonaData2.Text != "")
+                {
+                    auxPersona.Apellido = tbxFichaPersonaData2.Text;
+                    validos++;
+                }
+                if (tbxFichaPersonaData3.Text != null && tbxFichaPersonaData3.Text != "")
+                {
+                    auxPersona.Nombres = tbxFichaPersonaData3.Text;
+                    validos++;
+                }
 
-            try
-            {
-                personaNegocio.agregar( auxPersona );
-            } 
-            catch (SqlException ex)
-            {
-                if(ex.Number == 2627 || ex.Number == 2601)
+                // Campos que pueden estar sin definir
+                auxPersona.Empresa = cbxFichaPersonaEmpresa.Text;
+                auxPersona.Puesto = cbxFichaPersonaPuesto.Text;
+                auxPersona.Detalle = tbxFichaPersonaDetalle.Text;
+
+                if (validaciones.validarCampos(campos, validos))
                 {
-                    MessageBox.Show("La persona ya se encuentra registrada, revisar inactivos.");
-                } else
+                    try
+                    {
+                        personaNegocio.agregar(auxPersona);
+                        return true;
+                    }
+                    catch (SqlException ex)
+                    {
+                        if (ex.Number == 2627 || ex.Number == 2601)
+                        {
+                            MessageBox.Show("La persona ya se encuentra registrada, revisar inactivos.");
+                            return false;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Error en la carga, verificar datos.");
+                            return false;
+                        }
+                    }
+                }
+                else
                 {
-                    MessageBox.Show("Error en la carga, verificar datos.");
+                    MessageBox.Show("Complete los campos obligatorios");
+                    return false;
                 }
             }
-        }
 
-        private void modificar() 
+            return false;
+        }
+        private bool modificar() 
         {
-            MessageBox.Show("sin codificar.");
+            Persona auxPersona = new Persona();
+            PersonaNegocio personaNegocio = new PersonaNegocio();
+            Validaciones validaciones = new Validaciones();
+            int campos = 2, validos = 0;
+            if (modo == 'M')
+            {
+                auxPersona.Dni = int.Parse(tbxFichaPersonaDNI.Text);
+
+                // Campos obligatorios = 3
+                if (tbxFichaPersonaData2.Text != null && tbxFichaPersonaData2.Text != "")
+                {
+                    auxPersona.Apellido = tbxFichaPersonaData2.Text;
+                    validos++;
+                }
+                if (tbxFichaPersonaData3.Text != null && tbxFichaPersonaData3.Text != "")
+                {
+                    auxPersona.Nombres = tbxFichaPersonaData3.Text;
+                    validos++;
+                }
+
+                // Campos que pueden estar vacios
+                auxPersona.Puesto = cbxFichaPersonaPuesto.Text;
+                auxPersona.Detalle = tbxFichaPersonaDetalle.Text;
+                auxPersona.Empresa = cbxFichaPersonaEmpresa.Text;
+                
+                if (validaciones.validarCampos(campos, validos))
+                {
+                    try
+                    {
+                        personaNegocio.modificar(auxPersona);
+                        MessageBox.Show("Modificado correctamente.");
+                        return true;
+                    }
+                    catch (SqlException ex)
+                    {
+                            MessageBox.Show("Error en la carga, verificar datos.");
+                            return false;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Complete los campos obligatorios");
+                    return false;
+                }
+
+            }
+                return false;
         }
 
 

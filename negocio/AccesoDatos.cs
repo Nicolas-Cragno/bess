@@ -228,8 +228,36 @@ namespace negocio
             }
             finally { datos.cerrarConexion(); }
         }
+        public Persona buscarPersonaFull(int dni)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            string query = "SELECT idPuesto, detalle, apellido, nombres, empresa, estado, ingreso FROM " + Tablas.Personas + " WHERE dni=" + dni + ";";
+            Persona persona = new Persona();
+            try
+            {
+                datos.setearConsulta(query);
+                datos.ejecutarLectura();
 
-
+                if(datos.Lector.Read())
+                {
+                    persona.Dni = dni;
+                    persona.Puesto = buscarPuesto((int)datos.Lector["idPuesto"]);
+                    persona.Detalle = (string)datos.Lector["detalle"];
+                    persona.Apellido = (string)datos.Lector["apellido"];
+                    persona.Nombres = (string)datos.Lector["nombres"];
+                    persona.Empresa = buscarEmpresa((long)datos.Lector["empresa"]);
+                    persona.EmpresaAbreviada = buscarEmpresaAbreviada((long)datos.Lector["empresa"]);
+                    persona.Ingreso = (DateTime)datos.Lector["ingreso"];
+                }
+                else
+                {
+                    persona = null;
+                }
+                return persona;
+            }
+            catch (Exception ex) { throw ex; }
+            finally { datos.cerrarConexion(); }
+        }
         public int buscarDniFull(string nombreCompleto) 
         {
             int dni;

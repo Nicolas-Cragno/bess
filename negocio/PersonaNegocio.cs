@@ -76,5 +76,22 @@ namespace negocio
                 datos.cerrarConexion(); 
             }
         }
+        public void modificar(Persona mdPersona)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            long idEmpresa = datos.buscarCuitEmpresa(mdPersona.Empresa);
+            int idPuesto = datos.buscarIdPuesto(mdPersona.Puesto);
+            string database = "UPDATE " + AccesoDatos.Tablas.Personas;
+            string campos = " SET idPuesto=" + idPuesto + ", detalle='" + mdPersona.Detalle.ToUpper() + "', apellido='" + mdPersona.Apellido.ToUpper() + "', nombres='" + mdPersona.Nombres.ToUpper() + "', empresa=" + idEmpresa;
+            string condicion = " WHERE dni=" + mdPersona.Dni + ";";
+            string query = database + campos + condicion;
+            try
+            {
+                datos.setearConsulta(query);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex) { throw; }
+            finally {  datos.cerrarConexion(); }
+        }
     }
 }
