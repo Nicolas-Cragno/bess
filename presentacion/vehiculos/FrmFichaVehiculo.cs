@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using dominio;
 using negocio;
+using presentacion.eventos;
 
 namespace presentacion.vehiculos
 {
@@ -18,37 +20,36 @@ namespace presentacion.vehiculos
         private Tractor tractor = new Tractor();
         private Furgon furgon = new Furgon();
         private Vehiculo vehiculo = new Vehiculo();
+        private List<Evento> eventos = new List<Evento>();
         private Object stdVehiculo = new Object(); // para el form de editar
         private Form formularioPadre;
+
+        // Cargas
         public FrmFichaVehiculo(char sTipo, char sModo, object sVehiculo, Form padre=null)
         {
             InitializeComponent();
             tipo = sTipo;
             modo = sModo;
             formularioPadre = padre;
-            stdVehiculo = sVehiculo;
             determinarObjeto(sVehiculo);
-        }
 
-        private void FrmFichaVehiculo_Load(object sender, EventArgs e)
-        {
-            configuracion();
         }
-        private void configuracion()
+        private Object determinarObjeto(Object obj)
         {
-            this.ControlBox = false;
-            colgarDerecha();
-
             switch (tipo)
             {
                 case 'T':
-                    cargarTractor();
-                    break;
+                    return tractor = obj as Tractor;
                 case 'F':
-                    break;
+                    return furgon = obj as Furgon;
                 default:
-                    break;
+                    return vehiculo = obj as Vehiculo;
             }
+        }
+        private void FrmFichaVehiculo_Load(object sender, EventArgs e)
+        {
+            configuracion();
+            colgarDerecha();
         }
         private void colgarDerecha()
         {
@@ -62,179 +63,432 @@ namespace presentacion.vehiculos
                 );
             }
         }
-        private Object determinarObjeto(Object obj)
+        private void configuracion()
         {
+            this.ControlBox = false;
+            btnFichaVehiculoNuevoEvento.Visible = false; // ocultar boton de agregar evento
+            switch (modo)
+            {
+                case 'F':
+                    formatoFicha();
+                    break;
+                case 'A':
+                    formatoAgregar();
+                    break;
+                case 'M':
+                    formatoModificar();
+                    break;
+                default:
+                    
+                    break;
+            }
+        }
+        private string textoEstado(bool estado)
+        {
+            string textoEstado;
+            if (estado) 
+            {
+                textoEstado = "ACTIVO";
+            } else
+            {
+                textoEstado = "INACTIVO";
+            }
+            return textoEstado;
+        }
+        private void formatoFicha()
+        {
+            EventoNegocio eventoNegocio = new EventoNegocio();
+            btnFichaVehiculoAlta.Visible = false;
+            switch (tipo)
+            {
+                case 'T': // Tractor
+                    lblFichaVehiculoTitulo.Text = "TRACTOR " + tractor.Interno;
+                    cbxFichaVehiculoTipo.Text = "TRACTOR"; cbxFichaVehiculoTipo.Enabled = false;
+                    cbxFichaVehiculoEmpresa.Text = tractor.Empresa; cbxFichaVehiculoEmpresa.Enabled = false;
+                    tbxFichaVehiculoDominio.Text = tractor.Dominio; tbxFichaVehiculoDominio.ReadOnly = true;
+                    tbxFichaVehiculoMarca.Text = tractor.Marca; tbxFichaVehiculoMarca.ReadOnly = true;
+                    tbxFichaVehiculoModelo.Text = tractor.Modelo.ToString(); tbxFichaVehiculoModelo.ReadOnly = true;
+                    cbxFichaVehiculoTaller.Checked = tractor.OkTaller; cbxFichaVehiculoTaller.Enabled = false;
+                    cbxFichaVehiculoDocumentacion.Checked = tractor.OkDocumentacion; cbxFichaVehiculoDocumentacion.Enabled = false;
+                    tbxFichaVehiculoEstado.Text = textoEstado(tractor.Activo); tbxFichaVehiculoEstado.ReadOnly = true;
+                    tbxFichaVehiculoDetalle.Text = tractor.Detalle; tbxFichaVehiculoDetalle.ReadOnly = true;
+                    eventos = eventoNegocio.listarPorTractor(tractor.Interno);
+                    break;
+                case 'F': // Furgon
+                    lblFichaVehiculoTitulo.Text = "FURGON " + furgon.Interno;
+                    cbxFichaVehiculoTipo.Text = "FURGON"; cbxFichaVehiculoTipo.Enabled = false;
+                    cbxFichaVehiculoEmpresa.Text = furgon.Empresa; cbxFichaVehiculoEmpresa.Enabled = false;
+                    tbxFichaVehiculoDominio.Text = furgon.Dominio; tbxFichaVehiculoDominio.ReadOnly = true;
+                    tbxFichaVehiculoMarca.Visible = false;
+                    tbxFichaVehiculoModelo.Visible = false;
+                    cbxFichaVehiculoTaller.Visible = false;
+                    cbxFichaVehiculoDocumentacion.Checked = furgon.OkDocumentacion; cbxFichaVehiculoDocumentacion.Enabled = false;
+                    tbxFichaVehiculoEstado.Text = textoEstado(furgon.Activo); tbxFichaVehiculoEstado.ReadOnly = true;
+                    tbxFichaVehiculoDetalle.Text = furgon.Detalle; tbxFichaVehiculoDetalle.ReadOnly = true;
+                    lblFichaVehiculoMarca.Visible = false;
+                    lblFichaVehiculoModelo.Visible = false;
+                    eventos = eventoNegocio.listarPorFurgon(furgon.Interno);
+                    break;
+                default: // Por default
+                    lblFichaVehiculoTitulo.Text = "TRACTOR " + tractor.Interno;
+                    cbxFichaVehiculoTipo.Text = "TRACTOR"; cbxFichaVehiculoTipo.Enabled = false;
+                    cbxFichaVehiculoEmpresa.Text = tractor.Empresa; cbxFichaVehiculoEmpresa.Enabled = false;
+                    tbxFichaVehiculoDominio.Text = tractor.Dominio; tbxFichaVehiculoDominio.ReadOnly = true;
+                    tbxFichaVehiculoMarca.Text = tractor.Marca; tbxFichaVehiculoMarca.ReadOnly = true;
+                    tbxFichaVehiculoModelo.Text = tractor.Modelo.ToString(); tbxFichaVehiculoModelo.ReadOnly = true;
+                    cbxFichaVehiculoTaller.Checked = tractor.OkTaller; cbxFichaVehiculoTaller.Enabled = false;
+                    cbxFichaVehiculoDocumentacion.Checked = tractor.OkDocumentacion; cbxFichaVehiculoDocumentacion.Enabled = false;
+                    tbxFichaVehiculoEstado.Text = textoEstado(tractor.Activo); tbxFichaVehiculoEstado.ReadOnly = true;
+                    tbxFichaVehiculoDetalle.Text = tractor.Detalle; tbxFichaVehiculoDetalle.ReadOnly = true;
+                    eventos = eventoNegocio.listarPorTractor(tractor.Interno);
+                    break;
+            }
+            dgvFichaVehiculoEventos.DataSource = eventos;
+        }
+        private void formatoModificar()
+        {
+            EventoNegocio eventoNegocio = new EventoNegocio();
+            cargarListas();
+            btnFichaVehiculoOK.Text = "Guardar";
+            switch (tipo)
+            {
+                case 'T': 
+                    lblFichaVehiculoTitulo.Text = "TRACTOR " + tractor.Interno;
+                    cbxFichaVehiculoTipo.Text = "TRACTOR"; cbxFichaVehiculoTipo.Enabled = false;
+                    cbxFichaVehiculoEmpresa.Text = tractor.Empresa; cbxFichaVehiculoEmpresa.Enabled = true;
+                    tbxFichaVehiculoDominio.Text = tractor.Dominio; tbxFichaVehiculoDominio.ReadOnly = false;
+                    tbxFichaVehiculoMarca.Text = tractor.Marca; tbxFichaVehiculoMarca.ReadOnly = false;
+                    tbxFichaVehiculoModelo.Text = tractor.Modelo.ToString(); tbxFichaVehiculoModelo.ReadOnly = false;
+                    cbxFichaVehiculoTaller.Checked = tractor.OkTaller; cbxFichaVehiculoTaller.Enabled = true;
+                    cbxFichaVehiculoDocumentacion.Checked = tractor.OkDocumentacion; cbxFichaVehiculoDocumentacion.Enabled = true;
+                    tbxFichaVehiculoEstado.Text = textoEstado(tractor.Activo); tbxFichaVehiculoEstado.ReadOnly = true;
+                    tbxFichaVehiculoDetalle.Text = tractor.Detalle; tbxFichaVehiculoDetalle.ReadOnly = false;
+                    eventos = eventoNegocio.listarPorTractor(tractor.Interno);
+                    if (tractor.Activo)
+                        btnFichaVehiculoAlta.Text = "Dar de baja";
+                    break;
+                case 'F':
+                    lblFichaVehiculoTitulo.Text = "FURGON " + furgon.Interno;
+                    cbxFichaVehiculoTipo.Text = "FURGON"; cbxFichaVehiculoTipo.Enabled = false;
+                    cbxFichaVehiculoEmpresa.Text = furgon.Empresa; cbxFichaVehiculoEmpresa.Enabled = true;
+                    tbxFichaVehiculoDominio.Text = furgon.Dominio; tbxFichaVehiculoDominio.ReadOnly = false;
+                    tbxFichaVehiculoMarca.Visible = false;
+                    tbxFichaVehiculoModelo.Visible = false;
+                    cbxFichaVehiculoTaller.Visible = false;
+                    cbxFichaVehiculoDocumentacion.Checked = furgon.OkDocumentacion; cbxFichaVehiculoDocumentacion.Enabled = true;
+                    tbxFichaVehiculoEstado.Text = textoEstado(furgon.Activo); tbxFichaVehiculoEstado.ReadOnly = false;
+                    tbxFichaVehiculoDetalle.Text = furgon.Detalle; tbxFichaVehiculoDetalle.ReadOnly = false;
+                    lblFichaVehiculoMarca.Visible = false;
+                    lblFichaVehiculoModelo.Visible = false;
+                    eventos = eventoNegocio.listarPorFurgon(furgon.Interno);
+                    if (furgon.Activo)
+                        btnFichaVehiculoAlta.Text = "Dar de baja";
+
+                    break;
+                default:
+                    lblFichaVehiculoTitulo.Text = "TRACTOR " + tractor.Interno;
+                    cbxFichaVehiculoTipo.Text = "TRACTOR"; cbxFichaVehiculoTipo.Enabled = false;
+                    cbxFichaVehiculoEmpresa.Text = tractor.Empresa; cbxFichaVehiculoEmpresa.Enabled = true;
+                    tbxFichaVehiculoDominio.Text = tractor.Dominio; tbxFichaVehiculoDominio.ReadOnly = false;
+                    tbxFichaVehiculoMarca.Text = tractor.Marca; tbxFichaVehiculoMarca.ReadOnly = false;
+                    tbxFichaVehiculoModelo.Text = tractor.Modelo.ToString(); tbxFichaVehiculoModelo.ReadOnly = false;
+                    cbxFichaVehiculoTaller.Checked = tractor.OkTaller; cbxFichaVehiculoTaller.Enabled = true;
+                    cbxFichaVehiculoDocumentacion.Checked = tractor.OkDocumentacion; cbxFichaVehiculoDocumentacion.Enabled = true;
+                    tbxFichaVehiculoEstado.Text = textoEstado(tractor.Activo); tbxFichaVehiculoEstado.ReadOnly = false;
+                    tbxFichaVehiculoDetalle.Text = tractor.Detalle; tbxFichaVehiculoDetalle.ReadOnly = true;
+                    eventos = eventoNegocio.listarPorTractor(tractor.Interno);
+                    if (tractor.Activo)
+                        btnFichaVehiculoAlta.Text = "Dar de baja";
+
+                    break;
+            }
+            dgvFichaVehiculoEventos.DataSource = eventos;
+        }
+        private void formatoAgregar()
+        {
+            cargarListas();
+            btnFichaVehiculoOK.Text = "Guardar";
+            btnFichaVehiculoAlta.Visible = false;
+            this.Size = new Size(358, 436);
+
             switch (tipo)
             {
                 case 'T':
-                    return tractor = obj as Tractor;
+                    lblFichaVehiculoTitulo.Text = "NUEVO TRACTOR";
+                    cbxFichaVehiculoTipo.Text = "TRACTOR";
+                    cbxFichaVehiculoTipo.Enabled = false;
+                    cbxFichaVehiculoEmpresa.Enabled = true;
+                    tbxFichaVehiculoDominio.ReadOnly = false;
+                    tbxFichaVehiculoMarca.ReadOnly = false;
+                    tbxFichaVehiculoModelo.ReadOnly = false;
+                    gbxFicahVehiculoEstado.Visible = false;
+                    lblFichaVehiculoEstado.Text = "interno";
+                    tbxFichaVehiculoEstado.ReadOnly = false;
+                    tbxFichaVehiculoDetalle.ReadOnly = false;
+                    break;
                 case 'F':
-                    return furgon = obj as Furgon;
+                    lblFichaVehiculoTitulo.Text = "NUEVO FURGON";
+                    cbxFichaVehiculoTipo.Text = "FURGON"; cbxFichaVehiculoTipo.Enabled = false;
+                    cbxFichaVehiculoEmpresa.Enabled = true;
+                    tbxFichaVehiculoDominio.ReadOnly = false;
+                    tbxFichaVehiculoMarca.Visible = false;
+                    tbxFichaVehiculoModelo.Visible = false;
+                    gbxFicahVehiculoEstado.Visible = true;
+                    lblFichaVehiculoEstado.Text = "interno";
+                    tbxFichaVehiculoEstado.ReadOnly = false;
+                    tbxFichaVehiculoDetalle.ReadOnly = false;
+                    lblFichaVehiculoMarca.Visible = false;
+                    lblFichaVehiculoModelo.Visible = false;
+                    cbxFichaVehiculoTaller.Visible = false;
+                    break;
                 default:
-                    return vehiculo = obj as Vehiculo; 
+                    lblFichaVehiculoTitulo.Text = "NUEVO VEHICULO";
+                    break;
             }
         }
+        private void btnFichaVehiculoOK_Click(object sender, EventArgs e)
+        {
+            TractorNegocio tractorNegocio = new TractorNegocio();
+            FurgonNegocio furgonNegocio = new FurgonNegocio();
+            Validaciones validar = new Validaciones();
+            switch (modo)
+            {
+                case 'F':
+                    FrmFichaVehiculo fichaModificar;
+                    switch (tipo)
+                    {
+                        case 'T':
+                            fichaModificar = new FrmFichaVehiculo(tipo, 'M', tractor, this);
+                            break;
+                        case 'F':
+                            fichaModificar = new FrmFichaVehiculo(tipo, 'M', furgon, this);
+                            break;
+                        default:
+                            fichaModificar = new FrmFichaVehiculo(tipo, 'M', tractor, this);
+                            break;
+                    }
+                    fichaModificar.ShowDialog();
+                    break;
+                case 'A':
+                    switch (tipo)
+                    {
+                        case 'T':
+                            Tractor auxTractor = new Tractor();
+                            auxTractor.Interno = validar.validarInt(tbxFichaVehiculoEstado.Text);
+                            auxTractor.Dominio = validar.validarTexto(tbxFichaVehiculoDominio.Text);
+                            auxTractor.Empresa = cbxFichaVehiculoEmpresa.Text;
+                            auxTractor.Marca = validar.validarTexto(tbxFichaVehiculoMarca.Text);
+                            auxTractor.Modelo = validar.validarInt(tbxFichaVehiculoModelo.Text);
+                            auxTractor.Detalle = validar.validarTexto(tbxFichaVehiculoDetalle.Text);
 
+                            try
+                            {
+                                tractorNegocio.agregar(auxTractor);
+                                MessageBox.Show("Tractor agregado.");
+                                Close();
+                            }
+                            catch (SqlException ex)
+                            {
+                                if(ex.Number == 2627 || ex.Number == 2601)
+                                {
+                                    MessageBox.Show("El interno " + auxTractor.Interno.ToString() + " ya está registrado.");
+                                }
+                            }
+                            break;
+                        case 'F':
+                            Furgon auxFurgon = new Furgon();
+                            auxFurgon.Interno = validar.validarInt(tbxFichaVehiculoEstado.Text);
+                            auxFurgon.Dominio = validar.validarTexto(tbxFichaVehiculoDominio.Text);
+                            auxFurgon.Empresa = cbxFichaVehiculoEmpresa.Text;
+                            auxFurgon.Detalle = validar.validarTexto(tbxFichaVehiculoDetalle.Text) ;
+                            try
+                            {
+                                furgonNegocio.agregar(auxFurgon);
+                                MessageBox.Show("Furgon agregado.");
+                                Close();
+                            }
+                            catch (SqlException ex)
+                            {
+                                if (ex.Number == 2627 || ex.Number == 2601)
+                                {
+                                    MessageBox.Show("El interno " + auxFurgon.Interno.ToString() + " ya está registrado.");
+                                }
+                            }
+                            break;
+                        default:
+                            MessageBox.Show("Agregar vehiculo.");
+                            break;
+                    }
+                    break;
+                case 'M':
+                    switch (tipo)
+                    {
+                        case 'T':
+                            Tractor auxTractor = new Tractor();
+                            auxTractor.Interno = tractor.Interno;
+                            auxTractor.Empresa = cbxFichaVehiculoEmpresa.Text;
+                            auxTractor.Dominio = validar.validarTexto(tbxFichaVehiculoDominio.Text);
+                            auxTractor.Marca = validar.validarTexto(tbxFichaVehiculoMarca.Text);
+                            auxTractor.Modelo = validar.validarInt(tbxFichaVehiculoModelo.Text);
+                            auxTractor.OkTaller = cbxFichaVehiculoTaller.Checked;
+                            auxTractor.OkDocumentacion = cbxFichaVehiculoDocumentacion.Checked;
+                            auxTractor.Detalle = validar.validarTexto(tbxFichaVehiculoDetalle.Text);
+
+                            tractorNegocio.modificar(auxTractor);
+                            MessageBox.Show("Cambios guardados.");
+                            break;
+                        case 'F':
+                            Furgon auxFurgon = new Furgon();
+                            auxFurgon.Interno = furgon.Interno;
+                            auxFurgon.Dominio = validar.validarTexto(tbxFichaVehiculoDominio.Text);
+                            auxFurgon.Empresa = cbxFichaVehiculoEmpresa.Text;
+                            auxFurgon.Detalle = validar.validarTexto(tbxFichaVehiculoDetalle.Text);
+
+                            furgonNegocio.modificar(auxFurgon);
+                            MessageBox.Show("Cambios guardados.");
+                            break;
+                        default:
+
+                            break;
+                    }
+                    break;
+                default:
+                    MessageBox.Show("Error");
+                    break;
+            }
+            
+            Close();
+        }
         private void cargarListas()
         {
             VehiculoNegocio vehiculoNegocio = new VehiculoNegocio();
             EmpresaNegocio empresaNegocio = new EmpresaNegocio();
-
-            List<string> vehiculos = vehiculoNegocio.listarTipos();
+            List<string> tiposVehiculos = vehiculoNegocio.listarTipos();
             List<string> empresas = empresaNegocio.listaNombres("PROPIA");
 
-            cbxFichaVehiculoTipo.DataSource = vehiculos;
+            cbxFichaVehiculoTipo.DataSource = tiposVehiculos;
             cbxFichaVehiculoEmpresa.DataSource = empresas;
+
         }
+        private void dgvFichaVehiculoEventos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(e.RowIndex >= 0)
+            {
+                Evento seleccion = (Evento)dgvFichaVehiculoEventos.CurrentRow.DataBoundItem;
+
+                FrmFichaEvento fichaEvento = new FrmFichaEvento('F', seleccion, this);
+                fichaEvento.ShowDialog();
+                configuracion();
+            }
+        }
+
+        // Botones y clicks
         private void btnFichaVehiculoCerrar_Click(object sender, EventArgs e)
         {
             Close();
         }
 
-        // Tractores
-        private void cargarTractor()
+        private void tbxFichaVehiculoFiltro_KeyPress(object sender, KeyPressEventArgs e)
         {
-
-            switch (modo)
-            {
-                case 'F': // Ficha
-                    formatoFichaT();
-                    break;
-                case 'A': // Agregar
-                    formatoAgregarT();
-                    break;
-                case 'M': // Modificar
-                    formatoModificarT();
-                    break;
-                default:
-                    break;
-            }
+            filtrar();
         }
-        private void formatoFichaT()
-        {
-            lblFichaVehiculoTitulo.Text = "TRACTOR " + tractor.Interno;
-            cbxFichaVehiculoTipo.Text = "TRACTOR";
-            cbxFichaVehiculoEmpresa.Text = tractor.Empresa;
-            tbxFichaVehiculoDominio.Text = tractor.Dominio;
-            tbxFichaVehiculoMarca.Text = tractor.Marca;
-            tbxFichaVehiculoModelo.Text = tractor.Modelo.ToString();
-            cbxFichaVehiculoTaller.Checked = tractor.OkTaller;
-            cbxFichaVehiculoDocumentacion.Checked = tractor.OkDocumentacion;
-            if (tractor.Activo)
-            {
-                tbxFichaVehiculoEstado.Text = "ACTIVO";
-            }
-            else
-            {
-                tbxFichaVehiculoEstado.Text = "INACTIVO";
-            }
-            tbxFichaVehiculoDetalle.Text = tractor.Detalle;
-
-            // bloquear escritura
-            cbxFichaVehiculoTipo.Enabled = false;
-            cbxFichaVehiculoEmpresa.Enabled = false;
-            cbxFichaVehiculoTaller.Enabled = false;
-            cbxFichaVehiculoDocumentacion.Enabled = false;
-            tbxFichaVehiculoDominio.ReadOnly = true;
-            tbxFichaVehiculoMarca.ReadOnly = true;
-            tbxFichaVehiculoModelo.ReadOnly = true;
-            tbxFichaVehiculoEstado.ReadOnly = true;
-            tbxFichaVehiculoDetalle.ReadOnly = true;
-
-            // Ocultar
-            btnFichaVehiculoAlta.Visible = false;
-        }
-        private void formatoAgregarT()
-        {
-            cargarListas();
-            lblFichaVehiculoTitulo.Text = "NUEVO TRACTOR";
-
-            // Ocultar parte de Eventos
-            this.Size = new Size(358, 436);
-            colgarDerecha();
-
-            // Habilitar escritura
-            cbxFichaVehiculoTipo.Enabled = true;
-            cbxFichaVehiculoEmpresa.Enabled = true;
-            tbxFichaVehiculoDominio.ReadOnly = false;
-            tbxFichaVehiculoMarca.ReadOnly = false;
-            tbxFichaVehiculoModelo.ReadOnly = false;
-            tbxFichaVehiculoDetalle.ReadOnly = false;
-
-            // Modificar campo
-            lblFichaVehiculoEstado.Text = "interno";
-            tbxFichaVehiculoEstado.ReadOnly = false;
-            btnFichaVehiculoOK.Text = "Guardar";
-
-            // Oculto
-            gbxFicahVehiculoEstado.Visible = false;
-            cbxFichaVehiculoTaller.Visible = false;
-            cbxFichaVehiculoDocumentacion.Visible = false;
-            btnFichaVehiculoAlta.Visible = false;
-        }
-
-        private void btnFichaVehiculoOK_Click(object sender, EventArgs e)
-        {
-            switch (modo)
-            {
-                case 'F': // Ficha
-                    FrmFichaVehiculo editarVehiculo = new FrmFichaVehiculo(tipo, 'M', stdVehiculo, this);
-                    editarVehiculo.ShowDialog();
-                    Close();
-                    break;
-                case 'A': // Agregar
-                    MessageBox.Show("agregar");
-                    break;
-                case 'M': // Modificar
-                    MessageBox.Show("modificar");
-                    break;
-                default:
-                    break;
-            }
-        }
-
         private void btnFichaVehiculoAlta_Click(object sender, EventArgs e)
         {
-
+            TractorNegocio tractorNegocio = new TractorNegocio();
+            FurgonNegocio furgonNegocio = new FurgonNegocio();
+            switch (tipo)
+            {
+                case 'T':
+                    tractorNegocio.cambiarEstado(tractor.Interno, tractor.Activo);
+                    if (tractor.Activo)
+                    {
+                        MessageBox.Show("Tractor dado de baja");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Tractor dado de alta");
+                    }
+                    break;
+                case 'F':
+                    furgonNegocio.cambiarEstado(furgon.Interno, furgon.Activo);
+                    if (furgon.Activo)
+                    {
+                        MessageBox.Show("Furgon dado de baja");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Furgon dado de alta");
+                    }
+                    break;
+                default:
+                    break;
+            }
+            Close();
         }
 
-        private void formatoModificarT()
+        // Data grid view
+        private void filtrar()
         {
-            cargarListas();
+            List<Evento> listaFiltrada;
+            string filtro = tbxFichaVehiculoFiltro.Text;
 
-            lblFichaVehiculoTitulo.Text = "TRACTOR " + tractor.Interno;
-            cbxFichaVehiculoTipo.Text = "TRACTOR";
-            cbxFichaVehiculoEmpresa.Text = tractor.Empresa;
-            tbxFichaVehiculoDominio.Text = tractor.Dominio;
-            tbxFichaVehiculoMarca.Text = tractor.Marca;
-            tbxFichaVehiculoModelo.Text = tractor.Modelo.ToString();
-            cbxFichaVehiculoTaller.Checked = tractor.OkTaller;
-            cbxFichaVehiculoDocumentacion.Checked = tractor.OkDocumentacion;
-            if (tractor.Activo)
+            if (filtro != "")
             {
-                tbxFichaVehiculoEstado.Text = "ACTIVO";
-                btnFichaVehiculoAlta.Text = "Dar baja";
+                listaFiltrada = eventos.FindAll(ev => ev.Tipo.ToString().Contains(filtro.ToUpper()) || ev.Fecha.ToString().Contains(filtro.ToUpper()) || ev.Persona.ToString().Contains(filtro.ToUpper()) || ev.Tractor.ToString().Contains(filtro.ToUpper()) || ev.Furgon.ToString().Contains(filtro.ToUpper()));
             }
             else
             {
-                tbxFichaVehiculoEstado.Text = "INACTIVO";
-                btnFichaVehiculoAlta.Text = "Dar alta";
+                listaFiltrada = eventos;
             }
-            tbxFichaVehiculoDetalle.Text = tractor.Detalle;
 
-            // bloquear escritura
-            cbxFichaVehiculoTipo.Enabled = true;
-            cbxFichaVehiculoEmpresa.Enabled = true;
-            cbxFichaVehiculoTaller.Enabled = true;
-            cbxFichaVehiculoDocumentacion.Enabled = true;
-            tbxFichaVehiculoDominio.ReadOnly = false;
-            tbxFichaVehiculoMarca.ReadOnly = false;
-            tbxFichaVehiculoModelo.ReadOnly = false;
-            tbxFichaVehiculoDetalle.ReadOnly = false;
+            dgvFichaVehiculoEventos.DataSource = null;
+            dgvFichaVehiculoEventos.DataSource = listaFiltrada;
+            formatoColumnas();
+        }
+        private void formatoColumnas()
+        {
+            nombrarColumnas();
+            ocultarColumnas();
+            ordenarColumnas();
+            anchoColumnas();
+        }
+        private void nombrarColumnas()
+        {
+            dgvFichaVehiculoEventos.Columns["Tipo"].HeaderText = "";
+            dgvFichaVehiculoEventos.Columns["Tractor"].HeaderText = "TRACTOR";
+            dgvFichaVehiculoEventos.Columns["Furgon"].HeaderText = "FURGON";
+            dgvFichaVehiculoEventos.Columns["Fecha"].HeaderText = "FECHA";
+        }
+        private void ocultarColumnas()
+        {
+            dgvFichaVehiculoEventos.Columns["Id"].Visible = false;
+            dgvFichaVehiculoEventos.Columns["DniPersona"].Visible = false;
+            dgvFichaVehiculoEventos.Columns["Persona"].Visible = false;
+            dgvFichaVehiculoEventos.Columns["Detalle"].Visible = false;
+        }
+        private void ordenarColumnas()
+        {
+            dgvFichaVehiculoEventos.Columns["Tipo"].DisplayIndex = 0;
+            dgvFichaVehiculoEventos.Columns["Fecha"].DisplayIndex = 1;
+            dgvFichaVehiculoEventos.Columns["Tractor"].DisplayIndex = 2;
+            dgvFichaVehiculoEventos.Columns["Furgon"].DisplayIndex = 3;
+        }
+        private void anchoColumnas()
+        {
+            dgvFichaVehiculoEventos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgvFichaVehiculoEventos.AutoResizeColumns();
+            foreach (DataGridViewColumn column in dgvFichaVehiculoEventos.Columns)
+            {
+                column.Width += 15;
+            }
+            dgvFichaVehiculoEventos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
         }
 
-        // Furgones
 
-        // Otros
+        // Sin uso
+        private void dgvFichaVehiculoEventos_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
     }
 }

@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using presentacion.eventos;
 using presentacion.movimientos;
-using presentacion.utilitarios;
 using presentacion.vehiculos;
 using presentacion.viajes;
 using presentacion.empresas;
@@ -23,6 +22,8 @@ namespace presentacion
     public partial class FrmPrincipal : Form
     {
         int sector;
+
+        // Cargas
         public FrmPrincipal()
         {
             InitializeComponent();
@@ -34,24 +35,17 @@ namespace presentacion
             // Inicializarlo maximizado
             this.Bounds = Screen.FromControl(this).WorkingArea;
             this.WindowState = FormWindowState.Maximized;
+
+            funcionesDeshabilitadas();
         }
-        private void cerrarVentanas() // cerrar ventanas al abrir otras para navegar.
+
+        // Opciones del menu
+        private void stockToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            foreach(Form v in this.MdiChildren)
-            {
-                v.Close();
-                this.DoubleBuffered = true; // evitar parpaderos
-            }
-        }
-        private void choferesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            cerrarVentanas();
-            //FrmChoferes ventana = new FrmChoferes();
-            FrmPersonas ventana = new FrmPersonas(1);
+            FrmRepuestos ventana = new FrmRepuestos();
             ventana.MdiParent = this;
             ventana.WindowState = FormWindowState.Maximized;
             ventana.Show();
-
         }
         private void tsmMovimientos_Click(object sender, EventArgs e)
         {
@@ -69,18 +63,38 @@ namespace presentacion
             ventana.WindowState = FormWindowState.Maximized;
             ventana.Show();
         }
-        private void tsmViajes_Click(object sender, EventArgs e)
+        private void tsmReparacionesCamiones_Click(object sender, EventArgs e)
         {
             cerrarVentanas();
-            FrmViajes ventana = new FrmViajes();
+            sector = AccesoDatos.Sectores.TallerCamiones;
+            FrmReparaciones ventana = new FrmReparaciones(sector);
             ventana.MdiParent = this;
             ventana.WindowState = FormWindowState.Maximized;
             ventana.Show();
         }
-        private void otrosVehiculosToolStripMenuItem_Click(object sender, EventArgs e)
+        private void choferesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             cerrarVentanas();
-            FrmUtilitarios ventana = new FrmUtilitarios();
+            //FrmChoferes ventana = new FrmChoferes();
+            FrmPersonas ventana = new FrmPersonas(1);
+            ventana.MdiParent = this;
+            ventana.WindowState = FormWindowState.Maximized;
+            ventana.Show();
+
+        }
+        private void fleterosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            cerrarVentanas();
+            FrmPersonas ventana = new FrmPersonas(4);
+            ventana.MdiParent = this;
+            ventana.WindowState = FormWindowState.Maximized;
+            ventana.Show();
+        }
+        private void mecanicosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            cerrarVentanas();
+            //FrmMecanicos ventana = new FrmMecanicos();
+            FrmPersonas ventana = new FrmPersonas(3);
             ventana.MdiParent = this;
             ventana.WindowState = FormWindowState.Maximized;
             ventana.Show();
@@ -88,7 +102,26 @@ namespace presentacion
         private void tsmVehiculos_Click(object sender, EventArgs e)
         {
             cerrarVentanas();
-            FrmVehiculos ventana = new FrmVehiculos();
+            FrmVehiculos ventana = new FrmVehiculos('T');
+            ventana.MdiParent = this;
+            ventana.WindowState = FormWindowState.Maximized;
+            ventana.Show();
+        }
+        private void tsmFurgones_Click(object sender, EventArgs e)
+        {
+            cerrarVentanas();
+            FrmVehiculos ventana = new FrmVehiculos('F');
+            ventana.MdiParent = this;
+            ventana.WindowState = FormWindowState.Maximized;
+            ventana.Show();
+        }
+
+
+        // Opciones del menu OCULTAS
+        private void tsmViajes_Click(object sender, EventArgs e)
+        {
+            cerrarVentanas();
+            FrmViajes ventana = new FrmViajes();
             ventana.MdiParent = this;
             ventana.WindowState = FormWindowState.Maximized;
             ventana.Show();
@@ -109,31 +142,6 @@ namespace presentacion
             ventana.WindowState = FormWindowState.Maximized;
             ventana.Show();
         }
-        private void mecanicosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            cerrarVentanas();
-            //FrmMecanicos ventana = new FrmMecanicos();
-            FrmPersonas ventana = new FrmPersonas(3);
-            ventana.MdiParent = this;
-            ventana.WindowState = FormWindowState.Maximized;
-            ventana.Show();
-        }
-        private void tsmReparacionesCamiones_Click(object sender, EventArgs e)
-        {
-            cerrarVentanas();
-            sector = AccesoDatos.Sectores.TallerCamiones;
-            FrmReparaciones ventana = new FrmReparaciones(sector);
-            ventana.MdiParent = this;
-            ventana.WindowState = FormWindowState.Maximized;
-            ventana.Show();
-        }
-        private void tsmRepuestosCamiones_Click(object sender, EventArgs e)
-        {
-            FrmRepuestos ventana = new FrmRepuestos();
-            ventana.MdiParent = this;
-            ventana.WindowState = FormWindowState.Maximized;
-            ventana.Show();
-        }
         private void tsmReparacionesFurgones_Click(object sender, EventArgs e)
         {
             cerrarVentanas();
@@ -144,6 +152,23 @@ namespace presentacion
             ventana.Show();
         }
 
+        // Funciones
+        private void cerrarVentanas() // cerrar ventanas al abrir otras para navegar.
+        {
+            foreach(Form v in this.MdiChildren)
+            {
+                v.Close();
+                this.DoubleBuffered = true; // evitar parpaderos
+            }
+        }
+        private void funcionesDeshabilitadas()
+        {
+            tsmOtros.Visible = false;
+            tsmEmpresas.Visible = false;
+            tsmClientes.Visible = false;
+            tsmTallerCamionesFurgones.Visible = false;
+        } // Opciones del menu ocultas
+
         // SIN USO
         private void reparacionesToolStripMenuItem1_Click(object sender, EventArgs e)
         {
@@ -153,13 +178,10 @@ namespace presentacion
         {
             
         }
-        private void fleterosToolStripMenuItem_Click(object sender, EventArgs e)
+
+        private void tsmRepuestosCamiones_Click(object sender, EventArgs e)
         {
-            cerrarVentanas();
-            FrmPersonas ventana = new FrmPersonas(4);
-            ventana.MdiParent = this;
-            ventana.WindowState = FormWindowState.Maximized;
-            ventana.Show();
+            
         }
     }
 }

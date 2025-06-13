@@ -55,7 +55,16 @@ namespace negocio
             List<Evento> eventos = listar();
             return eventos.Where(e => e.DniPersona == dni).ToList(); 
         }
-
+        public List<Evento> listarPorTractor(int dominio)
+        {
+            List<Evento> eventos = listar();
+            return eventos.Where(e => e.Tractor == dominio).ToList();
+        }
+        public List<Evento> listarPorFurgon(int dominio)
+        {
+            List<Evento> eventos = listar();
+            return eventos.Where(e => e.Furgon == dominio).ToList();
+        }
         public List<Evento> listarEventos(char tipo, int parametro) 
         {
             AccesoDatos datos = new AccesoDatos();
@@ -106,7 +115,6 @@ namespace negocio
             }
             finally { datos.cerrarConexion(); }
         } // lista dependiendo si es persona, tractor o furgon
-
         public List<string> listarTipos()
         {
             AccesoDatos datos = new AccesoDatos();
@@ -154,7 +162,6 @@ namespace negocio
             }
             finally { datos.cerrarConexion(); }
         }
-
         public void modificar(Evento evento)
         {
             AccesoDatos datos = new AccesoDatos();

@@ -43,13 +43,65 @@ namespace negocio
             }
             finally { datos.cerrarConexion(); } 
         }
-
         public List<int> listarInternos(int estado)
         {
             List<Furgon> furgones = listar(estado);
             List<int> internos = furgones.Select(f => f.Interno).ToList();
             return internos;
         }
+        public void agregar (Furgon furgon) 
+        {
+            AccesoDatos datos = new AccesoDatos();
+            long cuitEmpresa = datos.buscarCuitEmpresa(furgon.Empresa);
+            string database = "INSERT INTO " + AccesoDatos.Tablas.Furgones;
+            string campos = "(intFurgon, cuitEmpresa, dominio)";
+            string valores = " VALUES (" + furgon.Interno + ", " + cuitEmpresa + ", '" + furgon.Dominio.ToUpper() + "');";
+            string query = database + campos + valores;
 
+            try 
+            {
+                datos.setearConsulta(query);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex) { throw ex; }
+            finally { datos.cerrarConexion(); }
+        }
+        public void modificar (Furgon furgon) 
+        {
+            AccesoDatos datos = new AccesoDatos ();
+            long cuitEmpresa = datos.buscarCuitEmpresa(furgon.Empresa);
+            string database = "UPDATE " + AccesoDatos.Tablas.Furgones;
+            string valores = " SET cuitEmpresa=" + cuitEmpresa + ", dominio='" + furgon.Dominio.ToUpper() + "', detalle='" + furgon.Detalle.ToUpper() + "'";
+            string condicion = " WHERE intFurgon=" + furgon.Interno + ";";
+            string query = database + valores + condicion;
+
+            try 
+            {
+                datos.setearConsulta(query);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex) { throw ex; }
+            finally { datos.cerrarConexion(); }
+        }
+        public void cambiarEstado(int interno, bool estado)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            int intEstado;
+            if (estado)
+            {
+                intEstado = 0;
+            } else
+            {
+                intEstado = 1;
+            }
+                string query = "UPDATE " + AccesoDatos.Tablas.Furgones + " SET activo=" + intEstado + " WHERE intFurgon=" + interno + ";";
+            try
+            {
+                datos.setearConsulta(query);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex) { throw ex; }
+            finally { datos.cerrarConexion(); }
+        }
     }
 }

@@ -34,7 +34,7 @@
             this.btnFichaVehiculoNuevoEvento = new System.Windows.Forms.Button();
             this.tbxFichaVehiculoFiltro = new System.Windows.Forms.TextBox();
             this.lblFichaVehiculoFiltro = new System.Windows.Forms.Label();
-            this.dgvFichaPersonaEventos = new System.Windows.Forms.DataGridView();
+            this.dgvFichaVehiculoEventos = new System.Windows.Forms.DataGridView();
             this.btnFichaVehiculoOK = new System.Windows.Forms.Button();
             this.tbxFichaVehiculoDetalle = new System.Windows.Forms.TextBox();
             this.lblFichaVehiculoDetalle = new System.Windows.Forms.Label();
@@ -53,7 +53,7 @@
             this.tbxFichaVehiculoEstado = new System.Windows.Forms.TextBox();
             this.lblFichaVehiculoEstado = new System.Windows.Forms.Label();
             this.gbxFicahVehiculoEstado = new System.Windows.Forms.GroupBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvFichaPersonaEventos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvFichaVehiculoEventos)).BeginInit();
             this.gbxFicahVehiculoEstado.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -102,6 +102,7 @@
             this.tbxFichaVehiculoFiltro.Name = "tbxFichaVehiculoFiltro";
             this.tbxFichaVehiculoFiltro.Size = new System.Drawing.Size(217, 20);
             this.tbxFichaVehiculoFiltro.TabIndex = 95;
+            this.tbxFichaVehiculoFiltro.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxFichaVehiculoFiltro_KeyPress);
             // 
             // lblFichaVehiculoFiltro
             // 
@@ -113,16 +114,18 @@
             this.lblFichaVehiculoFiltro.TabIndex = 94;
             this.lblFichaVehiculoFiltro.Text = "Filtro";
             // 
-            // dgvFichaPersonaEventos
+            // dgvFichaVehiculoEventos
             // 
-            this.dgvFichaPersonaEventos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvFichaPersonaEventos.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dgvFichaPersonaEventos.Location = new System.Drawing.Point(403, 87);
-            this.dgvFichaPersonaEventos.MultiSelect = false;
-            this.dgvFichaPersonaEventos.Name = "dgvFichaPersonaEventos";
-            this.dgvFichaPersonaEventos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvFichaPersonaEventos.Size = new System.Drawing.Size(381, 271);
-            this.dgvFichaPersonaEventos.TabIndex = 93;
+            this.dgvFichaVehiculoEventos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvFichaVehiculoEventos.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dgvFichaVehiculoEventos.Location = new System.Drawing.Point(403, 87);
+            this.dgvFichaVehiculoEventos.MultiSelect = false;
+            this.dgvFichaVehiculoEventos.Name = "dgvFichaVehiculoEventos";
+            this.dgvFichaVehiculoEventos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvFichaVehiculoEventos.Size = new System.Drawing.Size(381, 271);
+            this.dgvFichaVehiculoEventos.TabIndex = 93;
+            this.dgvFichaVehiculoEventos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvFichaVehiculoEventos_CellDoubleClick);
+            this.dgvFichaVehiculoEventos.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dgvFichaVehiculoEventos_KeyPress);
             // 
             // btnFichaVehiculoOK
             // 
@@ -303,7 +306,7 @@
             this.Controls.Add(this.btnFichaVehiculoNuevoEvento);
             this.Controls.Add(this.tbxFichaVehiculoFiltro);
             this.Controls.Add(this.lblFichaVehiculoFiltro);
-            this.Controls.Add(this.dgvFichaPersonaEventos);
+            this.Controls.Add(this.dgvFichaVehiculoEventos);
             this.Controls.Add(this.btnFichaVehiculoOK);
             this.Controls.Add(this.tbxFichaVehiculoDetalle);
             this.Controls.Add(this.lblFichaVehiculoDetalle);
@@ -318,7 +321,7 @@
             this.Controls.Add(this.lblFichaVehiculoTitulo);
             this.Name = "FrmFichaVehiculo";
             this.Load += new System.EventHandler(this.FrmFichaVehiculo_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvFichaPersonaEventos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvFichaVehiculoEventos)).EndInit();
             this.gbxFicahVehiculoEstado.ResumeLayout(false);
             this.gbxFicahVehiculoEstado.PerformLayout();
             this.ResumeLayout(false);
@@ -334,7 +337,7 @@
         private System.Windows.Forms.Button btnFichaVehiculoNuevoEvento;
         private System.Windows.Forms.TextBox tbxFichaVehiculoFiltro;
         private System.Windows.Forms.Label lblFichaVehiculoFiltro;
-        private System.Windows.Forms.DataGridView dgvFichaPersonaEventos;
+        private System.Windows.Forms.DataGridView dgvFichaVehiculoEventos;
         private System.Windows.Forms.Button btnFichaVehiculoOK;
         private System.Windows.Forms.TextBox tbxFichaVehiculoDetalle;
         private System.Windows.Forms.Label lblFichaVehiculoDetalle;

@@ -16,11 +16,13 @@ namespace presentacion.vehiculos
     {
         private List<Tractor> listadoTractores;
         private List<Furgon> listadoFurgones;
-        
+        private char tipo;
+
         // Cargas
-        public FrmVehiculos()
+        public FrmVehiculos(char tTipo)
         {
             InitializeComponent();
+            tipo = tTipo;
         }
         private void FrmVehiculos_Load(object sender, EventArgs e)
         {
@@ -30,17 +32,53 @@ namespace presentacion.vehiculos
         private void configuracion()
         {
             this.ControlBox = false;
-            cargarT();
-            cargarF();
+            TractorNegocio tractorNegocio = new TractorNegocio();
+            FurgonNegocio furgonNegocio = new FurgonNegocio();
+            switch (tipo)
+            {
+                case 'T': // Tractores
+                    listadoTractores = tractorNegocio.listar(1);
+                    dgvVehiculos.DataSource = listadoTractores;
+                    formatoColumnas(listadoTractores);
+                    lblVehiculosTitulo.Text = "TRACTORES";
+                    break;
+                case 'F': // Furgones
+                    listadoFurgones = furgonNegocio.listar(1);
+                    dgvVehiculos.DataSource = listadoFurgones;
+                    formatoColumnas(listadoFurgones);
+                    lblVehiculosTitulo.Text = "FURGONES";
+                    break;
+                default: // Por defecto tractores
+                    listadoTractores = tractorNegocio.listar(1);
+                    dgvVehiculos.DataSource = listadoTractores;
+                    formatoColumnas(listadoTractores);
+                    lblVehiculosTitulo.Text = "VEHICULOS";
+                    break;
+            }
         }
 
-        // Filtros
-        private void filtrarT() 
+        // Data Grid View
+        private void filtrar() 
+        {
+            switch (tipo)
+            {
+                case 'T': // Tractores
+                    filtroTractor();
+                    break;
+                case 'F': // Furgones
+                    filtroFurgon();
+                    break;
+                default: // Por defecto tractores
+                    filtroTractor();
+                    break;
+            }
+        }
+        private void filtroTractor() 
         {
             List<Tractor> listaFiltrada;
-            string filtro = tbxVehiculosT.Text;
+            string filtro = tbxVehiculos.Text;
 
-            if(filtro != "")
+            if (filtro != "")
             {
                 listaFiltrada = listadoTractores.FindAll(tr => tr.Interno.ToString().Contains(filtro.ToUpper()) || tr.Dominio.ToString().Contains(filtro.ToUpper()) || tr.Marca.ToString().Contains(filtro.ToUpper()) || tr.Modelo.ToString().Contains(filtro.ToUpper()));
             }
@@ -49,138 +87,146 @@ namespace presentacion.vehiculos
                 listaFiltrada = listadoTractores;
             }
 
-            dgvVehiculosT.DataSource = null;
-            dgvVehiculosT.DataSource = listaFiltrada;
-            formatoColumnasT();
+            dgvVehiculos.DataSource = null;
+            dgvVehiculos.DataSource = listaFiltrada;
+            formatoColumnas(listadoTractores);
         }
-        private void tbxVehiculosT_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            filtrarT();
-        }
-        private void filtrarF() 
+        private void filtroFurgon() 
         {
             List<Furgon> listaFiltrada;
-            string filtro = tbxVehiculosF.Text;
+            string filtro = tbxVehiculos.Text;
 
             if (filtro != "")
             {
-                // no contempla marca por el momento, abajo listado que SI la contempla
-                listaFiltrada = listadoFurgones.FindAll(fg => fg.Interno.ToString().Contains(filtro.ToUpper()) || fg.Dominio.ToString().Contains(filtro.ToUpper()) || fg.Modelo.ToString().Contains(filtro.ToUpper()));
-                
-               // listaFiltrada = listadoFurgones.FindAll(fg => fg.Interno.ToString().Contains(filtro.ToUpper()) || fg.Dominio.ToString().Contains(filtro.ToUpper()) || fg.Marca.ToString().Contains(filtro.ToUpper()) || fg.Modelo.ToString().Contains(filtro.ToUpper()));
+                listaFiltrada = listadoFurgones.FindAll(fg => fg.Interno.ToString().Contains(filtro.ToUpper()) || fg.Dominio.ToString().Contains(filtro.ToUpper()));
             }
             else
             {
                 listaFiltrada = listadoFurgones;
             }
 
-            dgvVehiculosF.DataSource = null;
-            dgvVehiculosF.DataSource = listaFiltrada;
-            formatoColumnasF();
+            dgvVehiculos.DataSource = null;
+            dgvVehiculos.DataSource = listaFiltrada;
+            formatoColumnas(listadoFurgones);
         }
-        private void tbxVehiculosF_KeyPress(object sender, KeyPressEventArgs e)
+        private void tbxVehiculosT_KeyPress(object sender, KeyPressEventArgs e)
         {
-            filtrarF();
+            filtrar();
         }
-
-        // Tabla tractores
-        private void cargarT()
+        private void formatoColumnas(object lista)
         {
-            int estadoT = 1;
-            TractorNegocio negocio = new TractorNegocio();
-            listadoTractores = negocio.listar(estadoT);
-            dgvVehiculosT.DataSource = listadoTractores;
-            formatoColumnasT();
+            ocultarColumnas();
+            nombrarColumnas();
+            anchoColumnas(lista);
+            ordenarColumnas();
         }
-        private void formatoColumnasT()
+        private void ocultarColumnas()
         {
-            ocultarColumnasT();
-            nombrarColumnasT();
-            anchoColumnasT();
-        }
-        private void ocultarColumnasT()
-        {
-            dgvVehiculosT.Columns["Empresa"].Visible = false;
-            dgvVehiculosT.Columns["Detalle"].Visible = false;
-            dgvVehiculosT.Columns["OkTaller"].Visible = false;
-            dgvVehiculosT.Columns["OkDocumentacion"].Visible = false;
-            dgvVehiculosT.Columns["Activo"].Visible = false;
-            dgvVehiculosT.Columns["Color"].Visible = false;
-        }
-        private void nombrarColumnasT()
-        {
-            dgvVehiculosT.Columns["Interno"].HeaderText = "INT";
-            dgvVehiculosT.Columns["Dominio"].HeaderText = "DOMINIO";
-            dgvVehiculosT.Columns["Marca"].HeaderText = "MARCA";
-            dgvVehiculosT.Columns["Modelo"].HeaderText = "AÑO";
-        }
-        private void anchoColumnasT()
-        {
-            dgvVehiculosT.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            dgvVehiculosT.AutoResizeColumns();
-            foreach (DataGridViewColumn column in dgvVehiculosT.Columns)
+           dgvVehiculos.Columns["Marca"].Visible = false;
+           dgvVehiculos.Columns["Modelo"].Visible = false;
+           dgvVehiculos.Columns["Activo"].Visible = false;
+           dgvVehiculos.Columns["OkDocumentacion"].Visible = false;
+           dgvVehiculos.Columns["Detalle"].Visible = false;
+            if (tipo == 'T')
             {
-                column.Width += 5;
-            }
-            dgvVehiculosT.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
-        }
-
-        // Tabla furgones
-        private void cargarF()
-        {
-            int estadoF = 1;
-            FurgonNegocio negocio = new FurgonNegocio();
-            listadoFurgones = negocio.listar(estadoF);
-            dgvVehiculosF.DataSource = listadoFurgones;
-            formatoColumnasF();
-        }
-        private void formatoColumnasF()
-        {
-            ocultarColumnasF();
-            nombrarColumnasF();
-            anchoColumnasF();
-        }
-        private void ocultarColumnasF()
-        {
-            dgvVehiculosF.Columns["Empresa"].Visible = false;
-            dgvVehiculosF.Columns["Caracteristicas"].Visible = false;
-            dgvVehiculosF.Columns["Detalle"].Visible = false;
-            dgvVehiculosF.Columns["OkDocumentacion"].Visible = false;
-            dgvVehiculosF.Columns["Activo"].Visible = false;
-        }
-        private void nombrarColumnasF()
-        {
-            dgvVehiculosF.Columns["Interno"].HeaderText = "INT";
-            dgvVehiculosF.Columns["Dominio"].HeaderText = "DOMINIO";
-            dgvVehiculosF.Columns["Marca"].HeaderText = "MARCA";
-            dgvVehiculosF.Columns["Modelo"].HeaderText = "AÑO";
-        }
-        private void anchoColumnasF()
-        {
-            dgvVehiculosF.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            dgvVehiculosF.AutoResizeColumns();
-            foreach (DataGridViewColumn column in dgvVehiculosF.Columns)
+                dgvVehiculos.Columns["OkTaller"].Visible = false;
+                dgvVehiculos.Columns["Color"].Visible = false;
+            }else if (tipo == 'F')
             {
-                column.Width += 15;
+                dgvVehiculos.Columns["Caracteristicas"].Visible = false;
             }
-            dgvVehiculosF.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+        }
+        private void nombrarColumnas()
+        {
+            dgvVehiculos.Columns["Interno"].HeaderText = "INT";
+            dgvVehiculos.Columns["Dominio"].HeaderText = "DOMINIO";
+            dgvVehiculos.Columns["Empresa"].HeaderText = "";
+            if (tipo == 'T')
+            {
+                dgvVehiculos.Columns["Marca"].HeaderText = "MARCA";
+                dgvVehiculos.Columns["Modelo"].HeaderText = "AÑO";
+            }
+        }
+        private void anchoColumnas(object listaOriginal)
+        {
+            if (listaOriginal == null) return;
+
+            var lista = listaOriginal as IEnumerable<object>;
+            if (lista == null) return;
+
+            using (Graphics g = dgvVehiculos.CreateGraphics())
+            {
+                foreach (DataGridViewColumn column in dgvVehiculos.Columns)
+                {
+                    int maxWidth = 0;
+
+                    // Medir encabezado
+                    SizeF headerSize = g.MeasureString(column.HeaderText, dgvVehiculos.Font);
+                    maxWidth = (int)Math.Ceiling(headerSize.Width);
+
+                    // Medir en toda la lista original (no filtrada)
+                    foreach (var item in lista)
+                    {
+                        var prop = item.GetType().GetProperty(column.DataPropertyName);
+                        if (prop != null)
+                        {
+                            object value = prop.GetValue(item);
+                            if (value != null)
+                            {
+                                SizeF cellSize = g.MeasureString(value.ToString(), dgvVehiculos.Font);
+                                maxWidth = Math.Max(maxWidth, (int)Math.Ceiling(cellSize.Width));
+                            }
+                        }
+                    }
+
+                    column.Width = maxWidth + 5;
+                }
+            }
+        }
+        private void ordenarColumnas()
+        {
+            dgvVehiculos.Columns["Interno"].DisplayIndex = 0;
+            dgvVehiculos.Columns["Dominio"].DisplayIndex = 1;
+            dgvVehiculos.Columns["Empresa"].DisplayIndex = 2;
+            if (tipo == 'T')
+            {
+            dgvVehiculos.Columns["Marca"].DisplayIndex = 3;
+                dgvVehiculos.Columns["Modelo"].DisplayIndex = 4;
+            }
         }
 
         private void dgvVehiculosT_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if(e.RowIndex >= 0)
             {
-                Tractor seleccion = (Tractor)dgvVehiculosT.CurrentRow.DataBoundItem;
-
-                FrmFichaVehiculo fichaVehiculo = new FrmFichaVehiculo('T', 'F', seleccion, this);
-                fichaVehiculo.ShowDialog();
-                configuracion();
+                if (tipo == 'T')
+                {
+                    abrirFichaTractor();
+                } else if ( tipo == 'F')
+                {
+                    abrirFichaFurgon();
+                }
             }
         }
+        private void abrirFichaTractor()
+        {
+            Tractor seleccion = (Tractor)dgvVehiculos.CurrentRow.DataBoundItem;
 
+            FrmFichaVehiculo fichaVehiculo = new FrmFichaVehiculo('T', 'F', seleccion, this);
+            fichaVehiculo.ShowDialog();
+            configuracion();
+        }
+        private void abrirFichaFurgon()
+        {
+            Furgon seleccion = (Furgon)dgvVehiculos.CurrentRow.DataBoundItem;
+
+            FrmFichaVehiculo fichaVehiculo = new FrmFichaVehiculo('F', 'F', seleccion, this);
+            fichaVehiculo.ShowDialog();
+            configuracion();
+        }
         private void btnVehiculosT_Click(object sender, EventArgs e)
         {
-            FrmFichaVehiculo nuevoTractor = new FrmFichaVehiculo('T', 'A', null, this);
+            FrmFichaVehiculo nuevoTractor = new FrmFichaVehiculo(tipo, 'A', null, this);
             nuevoTractor.ShowDialog();
             configuracion();
         }

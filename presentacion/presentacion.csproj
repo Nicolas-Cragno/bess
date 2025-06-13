@@ -136,24 +136,6 @@
     <Compile Include="vehiculos\FrmFichaVehiculo.Designer.cs">
       <DependentUpon>FrmFichaVehiculo.cs</DependentUpon>
     </Compile>
-    <Compile Include="vehiculos\furgones\FrmAgregarFurgon.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="vehiculos\furgones\FrmAgregarFurgon.Designer.cs">
-      <DependentUpon>FrmAgregarFurgon.cs</DependentUpon>
-    </Compile>
-    <Compile Include="vehiculos\furgones\FrmFichaFurgon.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="vehiculos\furgones\FrmFichaFurgon.Designer.cs">
-      <DependentUpon>FrmFichaFurgon.cs</DependentUpon>
-    </Compile>
-    <Compile Include="vehiculos\furgones\FrmModificarFurgon.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="vehiculos\furgones\FrmModificarFurgon.Designer.cs">
-      <DependentUpon>FrmModificarFurgon.cs</DependentUpon>
-    </Compile>
     <Compile Include="movimientos\FrmFichaMovimiento.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -168,30 +150,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="vehiculos\tractores\FrmAgregarTractor.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="vehiculos\tractores\FrmAgregarTractor.Designer.cs">
-      <DependentUpon>FrmAgregarTractor.cs</DependentUpon>
-    </Compile>
-    <Compile Include="vehiculos\tractores\FrmFichaTractor.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="vehiculos\tractores\FrmFichaTractor.Designer.cs">
-      <DependentUpon>FrmFichaTractor.cs</DependentUpon>
-    </Compile>
-    <Compile Include="vehiculos\tractores\FrmModificarTractor.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="vehiculos\tractores\FrmModificarTractor.Designer.cs">
-      <DependentUpon>FrmModificarTractor.cs</DependentUpon>
-    </Compile>
-    <Compile Include="vehiculos\utilitarios\FrmUtilitarios.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="vehiculos\utilitarios\FrmUtilitarios.Designer.cs">
-      <DependentUpon>FrmUtilitarios.cs</DependentUpon>
-    </Compile>
     <Compile Include="vehiculos\FrmVehiculos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -249,15 +207,6 @@
     <EmbeddedResource Include="vehiculos\FrmFichaVehiculo.resx">
       <DependentUpon>FrmFichaVehiculo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="vehiculos\furgones\FrmAgregarFurgon.resx">
-      <DependentUpon>FrmAgregarFurgon.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="vehiculos\furgones\FrmFichaFurgon.resx">
-      <DependentUpon>FrmFichaFurgon.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="vehiculos\furgones\FrmModificarFurgon.resx">
-      <DependentUpon>FrmModificarFurgon.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="movimientos\FrmFichaMovimiento.resx">
       <DependentUpon>FrmFichaMovimiento.cs</DependentUpon>
     </EmbeddedResource>
@@ -273,20 +222,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="vehiculos\tractores\FrmAgregarTractor.resx">
-      <DependentUpon>FrmAgregarTractor.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="vehiculos\tractores\FrmFichaTractor.resx">
-      <DependentUpon>FrmFichaTractor.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="vehiculos\tractores\FrmModificarTractor.resx">
-      <DependentUpon>FrmModificarTractor.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="vehiculos\FrmVehiculos.resx">
       <DependentUpon>FrmVehiculos.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="vehiculos\utilitarios\FrmUtilitarios.resx">
-      <DependentUpon>FrmUtilitarios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="viajes\FrmViajes.resx">
       <DependentUpon>FrmViajes.cs</DependentUpon>

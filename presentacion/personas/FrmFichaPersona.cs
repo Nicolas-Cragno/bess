@@ -45,7 +45,7 @@ namespace presentacion.personas
         {
             this.ControlBox = false; // oculta el manejo de la ventana superior
             colgarDerecha();
-
+            btnFichaPersonaEventos.Visible = false; // ocultar boton de agregar evento
             switch (modo)
             {
                 case 'F':
@@ -348,7 +348,7 @@ namespace presentacion.personas
 
             dgvFichaPersonaEventos.DataSource = null;
             dgvFichaPersonaEventos.DataSource = listaFiltrada;
-            //formatoColumnas();
+            formatoColumnas();
         }
         private void tbxFichaPersonaFiltroEventos_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -567,6 +567,11 @@ namespace presentacion.personas
             }
 
             Close();
+        }
+
+        private void btnFichaPersonaEventos_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

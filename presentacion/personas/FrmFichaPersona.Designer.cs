@@ -74,6 +74,7 @@
             this.btnFichaPersonaEventos.TabIndex = 72;
             this.btnFichaPersonaEventos.Text = "Agregar Evento";
             this.btnFichaPersonaEventos.UseVisualStyleBackColor = true;
+            this.btnFichaPersonaEventos.Click += new System.EventHandler(this.btnFichaPersonaEventos_Click);
             // 
             // tbxFichaPersonaFiltroEventos
             // 

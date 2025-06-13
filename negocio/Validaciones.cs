@@ -55,5 +55,36 @@ namespace negocio
                 return false;
             }
         }
+        public string validarTexto(string texto)
+        {
+            string txt;
+
+            if(texto == "" || texto is null)
+            {
+                txt = "";
+            } else
+            {
+                txt = texto;
+            }
+
+            return txt;
+        }
+        public int validarInt(string numero)
+        {
+            int nro;
+
+            if (string.IsNullOrWhiteSpace(numero))
+            {
+                nro = 0;
+            } else if(!int.TryParse(numero, out nro)) // verifico que no hayan ingresado letras
+            {
+                nro = int.Parse(numero);
+            }
+
+            if (nro < 0)
+                nro = 0;
+
+            return nro;
+        }
     }
 }

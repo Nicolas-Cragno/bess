@@ -15,16 +15,9 @@ C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\presentacion\obj\Debug\present
 C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\presentacion\obj\Debug\presentacion.pdb
 C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\presentacion\obj\Debug\presentacion.eventos.FrmEvento.resources
 C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\presentacion\obj\Debug\presentacion.eventos.FrmFichaEvento.resources
-C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\presentacion\obj\Debug\presentacion.furgones.FrmAgregarFurgon.resources
-C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\presentacion\obj\Debug\presentacion.furgones.FrmFichaFurgon.resources
-C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\presentacion\obj\Debug\presentacion.furgones.FrmModificarFurgon.resources
 C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\presentacion\obj\Debug\presentacion.movimientos.FrmFichaMovimiento.resources
 C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\presentacion\obj\Debug\presentacion.movimientos.FrmMovimientos.resources
-C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\presentacion\obj\Debug\presentacion.tractores.FrmAgregarTractor.resources
-C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\presentacion\obj\Debug\presentacion.tractores.FrmFichaTractor.resources
-C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\presentacion\obj\Debug\presentacion.tractores.FrmModificarTractor.resources
 C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\presentacion\obj\Debug\presentacion.vehiculos.FrmVehiculos.resources
-C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\presentacion\obj\Debug\presentacion.utilitarios.FrmUtilitarios.resources
 C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\presentacion\obj\Debug\presentacion.empresas.FrmEmpresas.resources
 C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\presentacion\obj\Debug\presentacion.empresas.FrmClientes.resources
 C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\presentacion\obj\Debug\presentacion.viajes.FrmViajes.resources

@@ -36,19 +36,19 @@
             this.tsmTaller = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmTallerCamiones = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmReparacionesCamiones = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmRepuestosCamiones = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmTallerCamionesFurgones = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmReparacionesFurgones = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmRepuestosFurgones = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmViajes = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmRecursos = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmChoferes = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmFleteros = new System.Windows.Forms.ToolStripMenuItem();
             this.mecanicosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmVehiculos = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmTractores = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmFurgones = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmOtros = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmEmpresas = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmClientes = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmStock = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuPrincipal.SuspendLayout();
             this.SuspendLayout();
@@ -112,10 +112,9 @@
             // tsmTallerCamiones
             // 
             this.tsmTallerCamiones.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmReparacionesCamiones,
-            this.tsmRepuestosCamiones});
+            this.tsmReparacionesCamiones});
             this.tsmTallerCamiones.Name = "tsmTallerCamiones";
-            this.tsmTallerCamiones.Size = new System.Drawing.Size(176, 28);
+            this.tsmTallerCamiones.Size = new System.Drawing.Size(180, 28);
             this.tsmTallerCamiones.Text = "Camiones";
             // 
             // tsmReparacionesCamiones
@@ -125,20 +124,12 @@
             this.tsmReparacionesCamiones.Text = "Reparaciones";
             this.tsmReparacionesCamiones.Click += new System.EventHandler(this.tsmReparacionesCamiones_Click);
             // 
-            // tsmRepuestosCamiones
-            // 
-            this.tsmRepuestosCamiones.Name = "tsmRepuestosCamiones";
-            this.tsmRepuestosCamiones.Size = new System.Drawing.Size(224, 28);
-            this.tsmRepuestosCamiones.Text = "Repuestos";
-            this.tsmRepuestosCamiones.Click += new System.EventHandler(this.tsmRepuestosCamiones_Click);
-            // 
             // tsmTallerCamionesFurgones
             // 
             this.tsmTallerCamionesFurgones.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmReparacionesFurgones,
-            this.tsmRepuestosFurgones});
+            this.tsmReparacionesFurgones});
             this.tsmTallerCamionesFurgones.Name = "tsmTallerCamionesFurgones";
-            this.tsmTallerCamionesFurgones.Size = new System.Drawing.Size(176, 28);
+            this.tsmTallerCamionesFurgones.Size = new System.Drawing.Size(180, 28);
             this.tsmTallerCamionesFurgones.Text = "Furgones";
             // 
             // tsmReparacionesFurgones
@@ -147,12 +138,6 @@
             this.tsmReparacionesFurgones.Size = new System.Drawing.Size(224, 28);
             this.tsmReparacionesFurgones.Text = "Reparaciones";
             this.tsmReparacionesFurgones.Click += new System.EventHandler(this.tsmReparacionesFurgones_Click);
-            // 
-            // tsmRepuestosFurgones
-            // 
-            this.tsmRepuestosFurgones.Name = "tsmRepuestosFurgones";
-            this.tsmRepuestosFurgones.Size = new System.Drawing.Size(224, 28);
-            this.tsmRepuestosFurgones.Text = "Repuestos";
             // 
             // tsmViajes
             // 
@@ -167,10 +152,12 @@
             this.tsmChoferes,
             this.tsmFleteros,
             this.mecanicosToolStripMenuItem,
-            this.tsmVehiculos,
+            this.tsmTractores,
+            this.tsmFurgones,
             this.tsmOtros,
             this.tsmEmpresas,
-            this.tsmClientes});
+            this.tsmClientes,
+            this.tsmStock});
             this.tsmRecursos.Name = "tsmRecursos";
             this.tsmRecursos.Size = new System.Drawing.Size(118, 28);
             this.tsmRecursos.Text = "Recursos";
@@ -196,19 +183,25 @@
             this.mecanicosToolStripMenuItem.Text = "Mecanicos";
             this.mecanicosToolStripMenuItem.Click += new System.EventHandler(this.mecanicosToolStripMenuItem_Click);
             // 
-            // tsmVehiculos
+            // tsmTractores
             // 
-            this.tsmVehiculos.Name = "tsmVehiculos";
-            this.tsmVehiculos.Size = new System.Drawing.Size(260, 28);
-            this.tsmVehiculos.Text = "Vehiculos";
-            this.tsmVehiculos.Click += new System.EventHandler(this.tsmVehiculos_Click);
+            this.tsmTractores.Name = "tsmTractores";
+            this.tsmTractores.Size = new System.Drawing.Size(260, 28);
+            this.tsmTractores.Text = "Tractores";
+            this.tsmTractores.Click += new System.EventHandler(this.tsmVehiculos_Click);
+            // 
+            // tsmFurgones
+            // 
+            this.tsmFurgones.Name = "tsmFurgones";
+            this.tsmFurgones.Size = new System.Drawing.Size(260, 28);
+            this.tsmFurgones.Text = "Furgones";
+            this.tsmFurgones.Click += new System.EventHandler(this.tsmFurgones_Click);
             // 
             // tsmOtros
             // 
             this.tsmOtros.Name = "tsmOtros";
             this.tsmOtros.Size = new System.Drawing.Size(260, 28);
             this.tsmOtros.Text = "Otros vehiculos";
-            this.tsmOtros.Click += new System.EventHandler(this.otrosVehiculosToolStripMenuItem_Click);
             // 
             // tsmEmpresas
             // 
@@ -223,6 +216,13 @@
             this.tsmClientes.Size = new System.Drawing.Size(260, 28);
             this.tsmClientes.Text = "Clientes";
             this.tsmClientes.Click += new System.EventHandler(this.tsmClientes_Click);
+            // 
+            // tsmStock
+            // 
+            this.tsmStock.Name = "tsmStock";
+            this.tsmStock.Size = new System.Drawing.Size(260, 28);
+            this.tsmStock.Text = "Stock";
+            this.tsmStock.Click += new System.EventHandler(this.stockToolStripMenuItem_Click);
             // 
             // FrmPrincipal
             // 
@@ -252,7 +252,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmViajes;
         private System.Windows.Forms.ToolStripMenuItem tsmRecursos;
         private System.Windows.Forms.ToolStripMenuItem tsmChoferes;
-        private System.Windows.Forms.ToolStripMenuItem tsmVehiculos;
+        private System.Windows.Forms.ToolStripMenuItem tsmTractores;
         private System.Windows.Forms.ToolStripMenuItem tsmOtros;
         private System.Windows.Forms.ToolStripMenuItem tsmEmpresas;
         private System.Windows.Forms.ToolStripMenuItem tsmClientes;
@@ -260,10 +260,10 @@
         private System.Windows.Forms.ToolStripMenuItem mecanicosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tsmTallerCamiones;
         private System.Windows.Forms.ToolStripMenuItem tsmReparacionesCamiones;
-        private System.Windows.Forms.ToolStripMenuItem tsmRepuestosCamiones;
         private System.Windows.Forms.ToolStripMenuItem tsmTallerCamionesFurgones;
         private System.Windows.Forms.ToolStripMenuItem tsmReparacionesFurgones;
-        private System.Windows.Forms.ToolStripMenuItem tsmRepuestosFurgones;
         private System.Windows.Forms.ToolStripMenuItem tsmFleteros;
+        private System.Windows.Forms.ToolStripMenuItem tsmFurgones;
+        private System.Windows.Forms.ToolStripMenuItem tsmStock;
     }
 }

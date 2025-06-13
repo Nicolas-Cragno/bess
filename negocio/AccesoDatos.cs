@@ -128,9 +128,9 @@ namespace negocio
 
                 comando.ExecuteNonQuery();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
         public void cerrarConexion()
