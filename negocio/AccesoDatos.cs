@@ -25,6 +25,7 @@ namespace negocio
             private const string db = "cantarini.dbo";
 
             // EMPLEADOS / PERSONAS
+            public static readonly string Usuarios = db + ".usuarios";
             public static readonly string Personas = db + ".personas";
             public static readonly string Puestos = db + ".puestos";
             public static readonly string AsignacionesTractores = ".asignaciones_tractores";
@@ -141,7 +142,6 @@ namespace negocio
             }
             conexion.Close();
         }
-
         public int ejecutarScalar()
         {
             comando.Connection = conexion;
@@ -165,6 +165,37 @@ namespace negocio
                 cerrarConexion();
             }
         } // obtiene el id de la ultima carga a base de datos
+
+        public bool verificarIngreso(string usuario, string clave)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            string query = "SELECT usuario, clave FROM " + Tablas.Usuarios + " WHERE usuario='" + usuario + "';";
+            try 
+            {
+                datos.setearConsulta(query);
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    if ((string)datos.Lector["clave"] == clave)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                } else
+                {
+                    return false;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            finally { cerrarConexion(); }
+        } 
 
         // funciones para empleados
         public Chofer buscarDatosChofer(int dni)

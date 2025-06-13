@@ -48,13 +48,8 @@
             this.lblFichaVehiculoTipo = new System.Windows.Forms.Label();
             this.lblFichaVehiculoTitulo = new System.Windows.Forms.Label();
             this.cbxFichaVehiculoTipo = new System.Windows.Forms.ComboBox();
-            this.cbxFichaVehiculoDocumentacion = new System.Windows.Forms.CheckBox();
-            this.cbxFichaVehiculoTaller = new System.Windows.Forms.CheckBox();
             this.tbxFichaVehiculoEstado = new System.Windows.Forms.TextBox();
-            this.lblFichaVehiculoEstado = new System.Windows.Forms.Label();
-            this.gbxFicahVehiculoEstado = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFichaVehiculoEventos)).BeginInit();
-            this.gbxFicahVehiculoEstado.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnFichaVehiculoAlta
@@ -71,7 +66,7 @@
             // cbxFichaVehiculoEmpresa
             // 
             this.cbxFichaVehiculoEmpresa.FormattingEnabled = true;
-            this.cbxFichaVehiculoEmpresa.Location = new System.Drawing.Point(122, 76);
+            this.cbxFichaVehiculoEmpresa.Location = new System.Drawing.Point(122, 87);
             this.cbxFichaVehiculoEmpresa.Name = "cbxFichaVehiculoEmpresa";
             this.cbxFichaVehiculoEmpresa.Size = new System.Drawing.Size(216, 21);
             this.cbxFichaVehiculoEmpresa.TabIndex = 98;
@@ -140,17 +135,17 @@
             // 
             // tbxFichaVehiculoDetalle
             // 
-            this.tbxFichaVehiculoDetalle.Location = new System.Drawing.Point(14, 231);
+            this.tbxFichaVehiculoDetalle.Location = new System.Drawing.Point(14, 185);
             this.tbxFichaVehiculoDetalle.Multiline = true;
             this.tbxFichaVehiculoDetalle.Name = "tbxFichaVehiculoDetalle";
             this.tbxFichaVehiculoDetalle.ReadOnly = true;
-            this.tbxFichaVehiculoDetalle.Size = new System.Drawing.Size(324, 127);
+            this.tbxFichaVehiculoDetalle.Size = new System.Drawing.Size(324, 173);
             this.tbxFichaVehiculoDetalle.TabIndex = 91;
             // 
             // lblFichaVehiculoDetalle
             // 
             this.lblFichaVehiculoDetalle.AutoSize = true;
-            this.lblFichaVehiculoDetalle.Location = new System.Drawing.Point(20, 215);
+            this.lblFichaVehiculoDetalle.Location = new System.Drawing.Point(20, 169);
             this.lblFichaVehiculoDetalle.Name = "lblFichaVehiculoDetalle";
             this.lblFichaVehiculoDetalle.Size = new System.Drawing.Size(40, 13);
             this.lblFichaVehiculoDetalle.TabIndex = 90;
@@ -158,7 +153,7 @@
             // 
             // tbxFichaVehiculoModelo
             // 
-            this.tbxFichaVehiculoModelo.Location = new System.Drawing.Point(238, 122);
+            this.tbxFichaVehiculoModelo.Location = new System.Drawing.Point(238, 133);
             this.tbxFichaVehiculoModelo.Name = "tbxFichaVehiculoModelo";
             this.tbxFichaVehiculoModelo.ReadOnly = true;
             this.tbxFichaVehiculoModelo.Size = new System.Drawing.Size(100, 20);
@@ -167,7 +162,7 @@
             // lblFichaVehiculoModelo
             // 
             this.lblFichaVehiculoModelo.AutoSize = true;
-            this.lblFichaVehiculoModelo.Location = new System.Drawing.Point(244, 106);
+            this.lblFichaVehiculoModelo.Location = new System.Drawing.Point(244, 117);
             this.lblFichaVehiculoModelo.Name = "lblFichaVehiculoModelo";
             this.lblFichaVehiculoModelo.Size = new System.Drawing.Size(41, 13);
             this.lblFichaVehiculoModelo.TabIndex = 88;
@@ -175,7 +170,7 @@
             // 
             // tbxFichaVehiculoMarca
             // 
-            this.tbxFichaVehiculoMarca.Location = new System.Drawing.Point(122, 122);
+            this.tbxFichaVehiculoMarca.Location = new System.Drawing.Point(122, 133);
             this.tbxFichaVehiculoMarca.Name = "tbxFichaVehiculoMarca";
             this.tbxFichaVehiculoMarca.ReadOnly = true;
             this.tbxFichaVehiculoMarca.Size = new System.Drawing.Size(100, 20);
@@ -184,7 +179,7 @@
             // lblFichaVehiculoMarca
             // 
             this.lblFichaVehiculoMarca.AutoSize = true;
-            this.lblFichaVehiculoMarca.Location = new System.Drawing.Point(128, 106);
+            this.lblFichaVehiculoMarca.Location = new System.Drawing.Point(128, 117);
             this.lblFichaVehiculoMarca.Name = "lblFichaVehiculoMarca";
             this.lblFichaVehiculoMarca.Size = new System.Drawing.Size(36, 13);
             this.lblFichaVehiculoMarca.TabIndex = 86;
@@ -192,7 +187,7 @@
             // 
             // tbxFichaVehiculoDominio
             // 
-            this.tbxFichaVehiculoDominio.Location = new System.Drawing.Point(14, 122);
+            this.tbxFichaVehiculoDominio.Location = new System.Drawing.Point(14, 133);
             this.tbxFichaVehiculoDominio.Name = "tbxFichaVehiculoDominio";
             this.tbxFichaVehiculoDominio.ReadOnly = true;
             this.tbxFichaVehiculoDominio.Size = new System.Drawing.Size(100, 20);
@@ -201,7 +196,7 @@
             // lblFichaVehiculoDominio
             // 
             this.lblFichaVehiculoDominio.AutoSize = true;
-            this.lblFichaVehiculoDominio.Location = new System.Drawing.Point(20, 106);
+            this.lblFichaVehiculoDominio.Location = new System.Drawing.Point(20, 117);
             this.lblFichaVehiculoDominio.Name = "lblFichaVehiculoDominio";
             this.lblFichaVehiculoDominio.Size = new System.Drawing.Size(43, 13);
             this.lblFichaVehiculoDominio.TabIndex = 84;
@@ -210,7 +205,7 @@
             // lblFichaVehiculoEmpresa
             // 
             this.lblFichaVehiculoEmpresa.AutoSize = true;
-            this.lblFichaVehiculoEmpresa.Location = new System.Drawing.Point(128, 60);
+            this.lblFichaVehiculoEmpresa.Location = new System.Drawing.Point(128, 71);
             this.lblFichaVehiculoEmpresa.Name = "lblFichaVehiculoEmpresa";
             this.lblFichaVehiculoEmpresa.Size = new System.Drawing.Size(47, 13);
             this.lblFichaVehiculoEmpresa.TabIndex = 80;
@@ -219,7 +214,7 @@
             // lblFichaVehiculoTipo
             // 
             this.lblFichaVehiculoTipo.AutoSize = true;
-            this.lblFichaVehiculoTipo.Location = new System.Drawing.Point(20, 60);
+            this.lblFichaVehiculoTipo.Location = new System.Drawing.Point(20, 71);
             this.lblFichaVehiculoTipo.Name = "lblFichaVehiculoTipo";
             this.lblFichaVehiculoTipo.Size = new System.Drawing.Size(24, 13);
             this.lblFichaVehiculoTipo.TabIndex = 78;
@@ -238,67 +233,26 @@
             // cbxFichaVehiculoTipo
             // 
             this.cbxFichaVehiculoTipo.FormattingEnabled = true;
-            this.cbxFichaVehiculoTipo.Location = new System.Drawing.Point(14, 76);
+            this.cbxFichaVehiculoTipo.Location = new System.Drawing.Point(14, 87);
             this.cbxFichaVehiculoTipo.Name = "cbxFichaVehiculoTipo";
             this.cbxFichaVehiculoTipo.Size = new System.Drawing.Size(100, 21);
             this.cbxFichaVehiculoTipo.TabIndex = 101;
             // 
-            // cbxFichaVehiculoDocumentacion
-            // 
-            this.cbxFichaVehiculoDocumentacion.AutoSize = true;
-            this.cbxFichaVehiculoDocumentacion.Location = new System.Drawing.Point(90, 19);
-            this.cbxFichaVehiculoDocumentacion.Name = "cbxFichaVehiculoDocumentacion";
-            this.cbxFichaVehiculoDocumentacion.Size = new System.Drawing.Size(101, 17);
-            this.cbxFichaVehiculoDocumentacion.TabIndex = 168;
-            this.cbxFichaVehiculoDocumentacion.Text = "Documentacion";
-            this.cbxFichaVehiculoDocumentacion.UseVisualStyleBackColor = true;
-            // 
-            // cbxFichaVehiculoTaller
-            // 
-            this.cbxFichaVehiculoTaller.AutoSize = true;
-            this.cbxFichaVehiculoTaller.Location = new System.Drawing.Point(23, 19);
-            this.cbxFichaVehiculoTaller.Name = "cbxFichaVehiculoTaller";
-            this.cbxFichaVehiculoTaller.Size = new System.Drawing.Size(52, 17);
-            this.cbxFichaVehiculoTaller.TabIndex = 167;
-            this.cbxFichaVehiculoTaller.Text = "Taller";
-            this.cbxFichaVehiculoTaller.UseVisualStyleBackColor = true;
-            // 
             // tbxFichaVehiculoEstado
             // 
-            this.tbxFichaVehiculoEstado.Location = new System.Drawing.Point(238, 168);
+            this.tbxFichaVehiculoEstado.Location = new System.Drawing.Point(14, 47);
             this.tbxFichaVehiculoEstado.Name = "tbxFichaVehiculoEstado";
             this.tbxFichaVehiculoEstado.ReadOnly = true;
             this.tbxFichaVehiculoEstado.Size = new System.Drawing.Size(100, 20);
             this.tbxFichaVehiculoEstado.TabIndex = 170;
-            // 
-            // lblFichaVehiculoEstado
-            // 
-            this.lblFichaVehiculoEstado.AutoSize = true;
-            this.lblFichaVehiculoEstado.Location = new System.Drawing.Point(244, 152);
-            this.lblFichaVehiculoEstado.Name = "lblFichaVehiculoEstado";
-            this.lblFichaVehiculoEstado.Size = new System.Drawing.Size(39, 13);
-            this.lblFichaVehiculoEstado.TabIndex = 169;
-            this.lblFichaVehiculoEstado.Text = "estado";
-            // 
-            // gbxFicahVehiculoEstado
-            // 
-            this.gbxFicahVehiculoEstado.Controls.Add(this.cbxFichaVehiculoTaller);
-            this.gbxFicahVehiculoEstado.Controls.Add(this.cbxFichaVehiculoDocumentacion);
-            this.gbxFicahVehiculoEstado.Location = new System.Drawing.Point(14, 152);
-            this.gbxFicahVehiculoEstado.Name = "gbxFicahVehiculoEstado";
-            this.gbxFicahVehiculoEstado.Size = new System.Drawing.Size(208, 48);
-            this.gbxFicahVehiculoEstado.TabIndex = 171;
-            this.gbxFicahVehiculoEstado.TabStop = false;
-            this.gbxFicahVehiculoEstado.Text = "Estado físico y administrativo";
+            this.tbxFichaVehiculoEstado.TextChanged += new System.EventHandler(this.tbxFichaVehiculoEstado_TextChanged);
             // 
             // FrmFichaVehiculo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(799, 397);
-            this.Controls.Add(this.gbxFicahVehiculoEstado);
             this.Controls.Add(this.tbxFichaVehiculoEstado);
-            this.Controls.Add(this.lblFichaVehiculoEstado);
             this.Controls.Add(this.cbxFichaVehiculoTipo);
             this.Controls.Add(this.btnFichaVehiculoAlta);
             this.Controls.Add(this.cbxFichaVehiculoEmpresa);
@@ -322,8 +276,6 @@
             this.Name = "FrmFichaVehiculo";
             this.Load += new System.EventHandler(this.FrmFichaVehiculo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvFichaVehiculoEventos)).EndInit();
-            this.gbxFicahVehiculoEstado.ResumeLayout(false);
-            this.gbxFicahVehiculoEstado.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -351,10 +303,6 @@
         private System.Windows.Forms.Label lblFichaVehiculoTipo;
         private System.Windows.Forms.Label lblFichaVehiculoTitulo;
         private System.Windows.Forms.ComboBox cbxFichaVehiculoTipo;
-        private System.Windows.Forms.CheckBox cbxFichaVehiculoDocumentacion;
-        private System.Windows.Forms.CheckBox cbxFichaVehiculoTaller;
         private System.Windows.Forms.TextBox tbxFichaVehiculoEstado;
-        private System.Windows.Forms.Label lblFichaVehiculoEstado;
-        private System.Windows.Forms.GroupBox gbxFicahVehiculoEstado;
     }
 }

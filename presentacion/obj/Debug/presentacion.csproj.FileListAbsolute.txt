@@ -31,3 +31,4 @@ C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\presentacion\obj\Debug\present
 C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\presentacion\obj\Debug\presentacion.personas.FrmPersonasInactivas.resources
 C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\presentacion\obj\Debug\presentacion.personas.FrmFichaVehiculo.resources
 C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\presentacion\obj\Debug\presentacion.vehiculos.FrmFichaVehiculo.resources
+C:\Users\NIcolas Cragno\Desktop\aplicaciones\Bess\presentacion\obj\Debug\presentacion.FrmIngreso.resources

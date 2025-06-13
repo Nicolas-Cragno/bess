@@ -17,6 +17,7 @@ namespace presentacion.vehiculos
         private List<Tractor> listadoTractores;
         private List<Furgon> listadoFurgones;
         private char tipo;
+        private int anchoMaximoDgv = 0;
 
         // Cargas
         public FrmVehiculos(char tTipo)
@@ -119,6 +120,7 @@ namespace presentacion.vehiculos
             nombrarColumnas();
             anchoColumnas(lista);
             ordenarColumnas();
+            ajustarDgv(dgvVehiculos);
         }
         private void ocultarColumnas()
         {
@@ -194,7 +196,27 @@ namespace presentacion.vehiculos
                 dgvVehiculos.Columns["Modelo"].DisplayIndex = 4;
             }
         }
+        private void ajustarDgv(DataGridView dgv)
+        {
+            if (anchoMaximoDgv == 0)
+            {
+                int anchoTotal = dgv.RowHeadersVisible ? dgv.RowHeadersWidth : 0;
 
+                foreach (DataGridViewColumn col in dgv.Columns)
+                {
+                    if (col.Visible)
+                        anchoTotal += col.Width + 1;
+                }
+
+                // Si hay scroll vertical (más filas que alto disponible), lo sumamos. Si no, no.
+                if (dgv.DisplayedRowCount(false) < dgv.RowCount)
+                    anchoTotal += SystemInformation.VerticalScrollBarWidth;
+
+                anchoMaximoDgv = anchoTotal;
+            }
+
+            dgv.Width = anchoMaximoDgv;
+        }
         private void dgvVehiculosT_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if(e.RowIndex >= 0)

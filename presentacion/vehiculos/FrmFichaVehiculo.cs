@@ -108,8 +108,6 @@ namespace presentacion.vehiculos
                     tbxFichaVehiculoDominio.Text = tractor.Dominio; tbxFichaVehiculoDominio.ReadOnly = true;
                     tbxFichaVehiculoMarca.Text = tractor.Marca; tbxFichaVehiculoMarca.ReadOnly = true;
                     tbxFichaVehiculoModelo.Text = tractor.Modelo.ToString(); tbxFichaVehiculoModelo.ReadOnly = true;
-                    cbxFichaVehiculoTaller.Checked = tractor.OkTaller; cbxFichaVehiculoTaller.Enabled = false;
-                    cbxFichaVehiculoDocumentacion.Checked = tractor.OkDocumentacion; cbxFichaVehiculoDocumentacion.Enabled = false;
                     tbxFichaVehiculoEstado.Text = textoEstado(tractor.Activo); tbxFichaVehiculoEstado.ReadOnly = true;
                     tbxFichaVehiculoDetalle.Text = tractor.Detalle; tbxFichaVehiculoDetalle.ReadOnly = true;
                     eventos = eventoNegocio.listarPorTractor(tractor.Interno);
@@ -121,8 +119,6 @@ namespace presentacion.vehiculos
                     tbxFichaVehiculoDominio.Text = furgon.Dominio; tbxFichaVehiculoDominio.ReadOnly = true;
                     tbxFichaVehiculoMarca.Visible = false;
                     tbxFichaVehiculoModelo.Visible = false;
-                    cbxFichaVehiculoTaller.Visible = false;
-                    cbxFichaVehiculoDocumentacion.Checked = furgon.OkDocumentacion; cbxFichaVehiculoDocumentacion.Enabled = false;
                     tbxFichaVehiculoEstado.Text = textoEstado(furgon.Activo); tbxFichaVehiculoEstado.ReadOnly = true;
                     tbxFichaVehiculoDetalle.Text = furgon.Detalle; tbxFichaVehiculoDetalle.ReadOnly = true;
                     lblFichaVehiculoMarca.Visible = false;
@@ -136,8 +132,6 @@ namespace presentacion.vehiculos
                     tbxFichaVehiculoDominio.Text = tractor.Dominio; tbxFichaVehiculoDominio.ReadOnly = true;
                     tbxFichaVehiculoMarca.Text = tractor.Marca; tbxFichaVehiculoMarca.ReadOnly = true;
                     tbxFichaVehiculoModelo.Text = tractor.Modelo.ToString(); tbxFichaVehiculoModelo.ReadOnly = true;
-                    cbxFichaVehiculoTaller.Checked = tractor.OkTaller; cbxFichaVehiculoTaller.Enabled = false;
-                    cbxFichaVehiculoDocumentacion.Checked = tractor.OkDocumentacion; cbxFichaVehiculoDocumentacion.Enabled = false;
                     tbxFichaVehiculoEstado.Text = textoEstado(tractor.Activo); tbxFichaVehiculoEstado.ReadOnly = true;
                     tbxFichaVehiculoDetalle.Text = tractor.Detalle; tbxFichaVehiculoDetalle.ReadOnly = true;
                     eventos = eventoNegocio.listarPorTractor(tractor.Interno);
@@ -159,8 +153,6 @@ namespace presentacion.vehiculos
                     tbxFichaVehiculoDominio.Text = tractor.Dominio; tbxFichaVehiculoDominio.ReadOnly = false;
                     tbxFichaVehiculoMarca.Text = tractor.Marca; tbxFichaVehiculoMarca.ReadOnly = false;
                     tbxFichaVehiculoModelo.Text = tractor.Modelo.ToString(); tbxFichaVehiculoModelo.ReadOnly = false;
-                    cbxFichaVehiculoTaller.Checked = tractor.OkTaller; cbxFichaVehiculoTaller.Enabled = true;
-                    cbxFichaVehiculoDocumentacion.Checked = tractor.OkDocumentacion; cbxFichaVehiculoDocumentacion.Enabled = true;
                     tbxFichaVehiculoEstado.Text = textoEstado(tractor.Activo); tbxFichaVehiculoEstado.ReadOnly = true;
                     tbxFichaVehiculoDetalle.Text = tractor.Detalle; tbxFichaVehiculoDetalle.ReadOnly = false;
                     eventos = eventoNegocio.listarPorTractor(tractor.Interno);
@@ -174,8 +166,6 @@ namespace presentacion.vehiculos
                     tbxFichaVehiculoDominio.Text = furgon.Dominio; tbxFichaVehiculoDominio.ReadOnly = false;
                     tbxFichaVehiculoMarca.Visible = false;
                     tbxFichaVehiculoModelo.Visible = false;
-                    cbxFichaVehiculoTaller.Visible = false;
-                    cbxFichaVehiculoDocumentacion.Checked = furgon.OkDocumentacion; cbxFichaVehiculoDocumentacion.Enabled = true;
                     tbxFichaVehiculoEstado.Text = textoEstado(furgon.Activo); tbxFichaVehiculoEstado.ReadOnly = false;
                     tbxFichaVehiculoDetalle.Text = furgon.Detalle; tbxFichaVehiculoDetalle.ReadOnly = false;
                     lblFichaVehiculoMarca.Visible = false;
@@ -192,8 +182,6 @@ namespace presentacion.vehiculos
                     tbxFichaVehiculoDominio.Text = tractor.Dominio; tbxFichaVehiculoDominio.ReadOnly = false;
                     tbxFichaVehiculoMarca.Text = tractor.Marca; tbxFichaVehiculoMarca.ReadOnly = false;
                     tbxFichaVehiculoModelo.Text = tractor.Modelo.ToString(); tbxFichaVehiculoModelo.ReadOnly = false;
-                    cbxFichaVehiculoTaller.Checked = tractor.OkTaller; cbxFichaVehiculoTaller.Enabled = true;
-                    cbxFichaVehiculoDocumentacion.Checked = tractor.OkDocumentacion; cbxFichaVehiculoDocumentacion.Enabled = true;
                     tbxFichaVehiculoEstado.Text = textoEstado(tractor.Activo); tbxFichaVehiculoEstado.ReadOnly = false;
                     tbxFichaVehiculoDetalle.Text = tractor.Detalle; tbxFichaVehiculoDetalle.ReadOnly = true;
                     eventos = eventoNegocio.listarPorTractor(tractor.Interno);
@@ -221,8 +209,6 @@ namespace presentacion.vehiculos
                     tbxFichaVehiculoDominio.ReadOnly = false;
                     tbxFichaVehiculoMarca.ReadOnly = false;
                     tbxFichaVehiculoModelo.ReadOnly = false;
-                    gbxFicahVehiculoEstado.Visible = false;
-                    lblFichaVehiculoEstado.Text = "interno";
                     tbxFichaVehiculoEstado.ReadOnly = false;
                     tbxFichaVehiculoDetalle.ReadOnly = false;
                     break;
@@ -233,13 +219,10 @@ namespace presentacion.vehiculos
                     tbxFichaVehiculoDominio.ReadOnly = false;
                     tbxFichaVehiculoMarca.Visible = false;
                     tbxFichaVehiculoModelo.Visible = false;
-                    gbxFicahVehiculoEstado.Visible = true;
-                    lblFichaVehiculoEstado.Text = "interno";
                     tbxFichaVehiculoEstado.ReadOnly = false;
                     tbxFichaVehiculoDetalle.ReadOnly = false;
                     lblFichaVehiculoMarca.Visible = false;
                     lblFichaVehiculoModelo.Visible = false;
-                    cbxFichaVehiculoTaller.Visible = false;
                     break;
                 default:
                     lblFichaVehiculoTitulo.Text = "NUEVO VEHICULO";
@@ -330,8 +313,6 @@ namespace presentacion.vehiculos
                             auxTractor.Dominio = validar.validarTexto(tbxFichaVehiculoDominio.Text);
                             auxTractor.Marca = validar.validarTexto(tbxFichaVehiculoMarca.Text);
                             auxTractor.Modelo = validar.validarInt(tbxFichaVehiculoModelo.Text);
-                            auxTractor.OkTaller = cbxFichaVehiculoTaller.Checked;
-                            auxTractor.OkDocumentacion = cbxFichaVehiculoDocumentacion.Checked;
                             auxTractor.Detalle = validar.validarTexto(tbxFichaVehiculoDetalle.Text);
 
                             tractorNegocio.modificar(auxTractor);
@@ -482,6 +463,19 @@ namespace presentacion.vehiculos
                 column.Width += 15;
             }
             dgvFichaVehiculoEventos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+        }
+
+        private void tbxFichaVehiculoEstado_TextChanged(object sender, EventArgs e)
+        {
+            string texto = tbxFichaVehiculoEstado.Text.ToUpper();
+
+            if (texto == "ACTIVO")
+            {
+                tbxFichaVehiculoEstado.BackColor = Color.Green;
+            } else if(texto == "INACTIVO")
+            {
+                tbxFichaVehiculoEstado.BackColor = Color.Red;
+            }
         }
 
 
