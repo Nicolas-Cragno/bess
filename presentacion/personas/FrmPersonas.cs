@@ -22,13 +22,14 @@ namespace presentacion.personas
         // private List<Administrativo> listadoAdministrativos;
         private int anchoMaximoDgv = 0;
         char verFicha = 'F', modificar = 'M', agregar = 'A';
+        public int TipoPersona { get; private set; }
 
         // Cargas
         public FrmPersonas(int pPuesto)
         {
             InitializeComponent();
             puesto = pPuesto;
-
+            TipoPersona = pPuesto; // uso para el abrir/cerrar ventanas
             AccesoDatos datos = new AccesoDatos();
             lblPersonasTitulo.Text = datos.buscarPuesto(puesto);
             //lblPersonasTitulo.Left = (this.ClientSize.Width - lblPersonasTitulo.Width) / 2;

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPrincipal));
+            System.Windows.Forms.PictureBox pbxLogo;
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.menuPrincipal = new System.Windows.Forms.MenuStrip();
             this.tsmMovimientos = new System.Windows.Forms.ToolStripMenuItem();
@@ -49,16 +50,20 @@
             this.tsmEmpresas = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmClientes = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmStock = new System.Windows.Forms.ToolStripMenuItem();
+            pbxLogo = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuPrincipal.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(pbxLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
             // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(0, 297);
+            this.pictureBox1.Location = new System.Drawing.Point(163, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(160, 153);
+            this.pictureBox1.Size = new System.Drawing.Size(302, 199);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 9;
             this.pictureBox1.TabStop = false;
@@ -114,7 +119,7 @@
             this.tsmTallerCamiones.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmReparacionesCamiones});
             this.tsmTallerCamiones.Name = "tsmTallerCamiones";
-            this.tsmTallerCamiones.Size = new System.Drawing.Size(180, 28);
+            this.tsmTallerCamiones.Size = new System.Drawing.Size(176, 28);
             this.tsmTallerCamiones.Text = "Camiones";
             // 
             // tsmReparacionesCamiones
@@ -129,7 +134,7 @@
             this.tsmTallerCamionesFurgones.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmReparacionesFurgones});
             this.tsmTallerCamionesFurgones.Name = "tsmTallerCamionesFurgones";
-            this.tsmTallerCamionesFurgones.Size = new System.Drawing.Size(180, 28);
+            this.tsmTallerCamionesFurgones.Size = new System.Drawing.Size(176, 28);
             this.tsmTallerCamionesFurgones.Text = "Furgones";
             // 
             // tsmReparacionesFurgones
@@ -224,11 +229,25 @@
             this.tsmStock.Text = "Stock";
             this.tsmStock.Click += new System.EventHandler(this.stockToolStripMenuItem_Click);
             // 
+            // pbxLogo
+            // 
+            pbxLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            pbxLogo.BackColor = System.Drawing.SystemColors.Control;
+            pbxLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            pbxLogo.Image = ((System.Drawing.Image)(resources.GetObject("pbxLogo.Image")));
+            pbxLogo.Location = new System.Drawing.Point(12, 341);
+            pbxLogo.Name = "pbxLogo";
+            pbxLogo.Size = new System.Drawing.Size(134, 97);
+            pbxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            pbxLogo.TabIndex = 11;
+            pbxLogo.TabStop = false;
+            // 
             // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(pbxLogo);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.menuPrincipal);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -238,6 +257,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.menuPrincipal.ResumeLayout(false);
             this.menuPrincipal.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(pbxLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

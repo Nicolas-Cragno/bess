@@ -13,9 +13,11 @@ namespace presentacion
 {
     public partial class FrmIngreso : Form
     {
+        bool claveVisible = false;
         public FrmIngreso()
         {
             InitializeComponent();
+            lblRecuperar.Visible = false; // todavia no lo configure
         }
 
         private void btnIngresar_Click(object sender, EventArgs e)
@@ -35,11 +37,35 @@ namespace presentacion
             if(ingreso)
             {
                 FrmPrincipal aplicacion = new FrmPrincipal();
-                aplicacion.Show();
-            } else
+                aplicacion.ShowDialog();
+                this.Close();
+            }
+            else
             {
                 MessageBox.Show("Usuario y/o contraseña invalido/s.");
             }
+        }
+
+        private void FrmIngreso_Load(object sender, EventArgs e)
+        {
+            tbxClave.UseSystemPasswordChar = true;
+        }
+
+        private void btnClave_Click(object sender, EventArgs e)
+        {
+            if (claveVisible)
+            {
+                tbxClave.UseSystemPasswordChar = true;
+                btnClave.Text = "👁";
+                claveVisible = false;
+            }
+            else
+            {
+                tbxClave.UseSystemPasswordChar = false;
+                btnClave.Text = "❌";
+                claveVisible = true;
+            }
+            
         }
     }
 }

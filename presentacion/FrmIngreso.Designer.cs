@@ -36,12 +36,13 @@
             this.btnIngresar = new System.Windows.Forms.Button();
             this.lblRecuperar = new System.Windows.Forms.Label();
             this.pbxLogo = new System.Windows.Forms.PictureBox();
+            this.btnClave = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbxLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // tbxUsuario
             // 
-            this.tbxUsuario.Location = new System.Drawing.Point(95, 73);
+            this.tbxUsuario.Location = new System.Drawing.Point(113, 176);
             this.tbxUsuario.Name = "tbxUsuario";
             this.tbxUsuario.Size = new System.Drawing.Size(159, 20);
             this.tbxUsuario.TabIndex = 87;
@@ -49,7 +50,7 @@
             // lblUsuario
             // 
             this.lblUsuario.AutoSize = true;
-            this.lblUsuario.Location = new System.Drawing.Point(33, 76);
+            this.lblUsuario.Location = new System.Drawing.Point(51, 179);
             this.lblUsuario.Name = "lblUsuario";
             this.lblUsuario.Size = new System.Drawing.Size(56, 13);
             this.lblUsuario.TabIndex = 86;
@@ -57,15 +58,15 @@
             // 
             // tbxClave
             // 
-            this.tbxClave.Location = new System.Drawing.Point(95, 109);
+            this.tbxClave.Location = new System.Drawing.Point(113, 212);
             this.tbxClave.Name = "tbxClave";
-            this.tbxClave.Size = new System.Drawing.Size(159, 20);
+            this.tbxClave.Size = new System.Drawing.Size(133, 20);
             this.tbxClave.TabIndex = 89;
             // 
             // lblClave
             // 
             this.lblClave.AutoSize = true;
-            this.lblClave.Location = new System.Drawing.Point(48, 112);
+            this.lblClave.Location = new System.Drawing.Point(66, 215);
             this.lblClave.Name = "lblClave";
             this.lblClave.Size = new System.Drawing.Size(41, 13);
             this.lblClave.TabIndex = 88;
@@ -74,7 +75,7 @@
             // btnIngresar
             // 
             this.btnIngresar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnIngresar.Location = new System.Drawing.Point(235, 330);
+            this.btnIngresar.Location = new System.Drawing.Point(235, 260);
             this.btnIngresar.Name = "btnIngresar";
             this.btnIngresar.Size = new System.Drawing.Size(75, 23);
             this.btnIngresar.TabIndex = 93;
@@ -85,7 +86,7 @@
             // lblRecuperar
             // 
             this.lblRecuperar.AutoSize = true;
-            this.lblRecuperar.Location = new System.Drawing.Point(12, 335);
+            this.lblRecuperar.Location = new System.Drawing.Point(12, 265);
             this.lblRecuperar.Name = "lblRecuperar";
             this.lblRecuperar.Size = new System.Drawing.Size(106, 13);
             this.lblRecuperar.TabIndex = 94;
@@ -94,18 +95,30 @@
             // pbxLogo
             // 
             this.pbxLogo.Image = ((System.Drawing.Image)(resources.GetObject("pbxLogo.Image")));
-            this.pbxLogo.Location = new System.Drawing.Point(12, 157);
+            this.pbxLogo.Location = new System.Drawing.Point(12, 12);
             this.pbxLogo.Name = "pbxLogo";
             this.pbxLogo.Size = new System.Drawing.Size(298, 153);
             this.pbxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbxLogo.TabIndex = 95;
             this.pbxLogo.TabStop = false;
             // 
+            // btnClave
+            // 
+            this.btnClave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnClave.Location = new System.Drawing.Point(252, 212);
+            this.btnClave.Name = "btnClave";
+            this.btnClave.Size = new System.Drawing.Size(20, 20);
+            this.btnClave.TabIndex = 96;
+            this.btnClave.Text = "👁";
+            this.btnClave.UseVisualStyleBackColor = true;
+            this.btnClave.Click += new System.EventHandler(this.btnClave_Click);
+            // 
             // FrmIngreso
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(322, 362);
+            this.ClientSize = new System.Drawing.Size(322, 295);
+            this.Controls.Add(this.btnClave);
             this.Controls.Add(this.pbxLogo);
             this.Controls.Add(this.lblRecuperar);
             this.Controls.Add(this.btnIngresar);
@@ -113,8 +126,9 @@
             this.Controls.Add(this.lblClave);
             this.Controls.Add(this.tbxUsuario);
             this.Controls.Add(this.lblUsuario);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmIngreso";
-            this.Text = "FrmIngreso";
+            this.Load += new System.EventHandler(this.FrmIngreso_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbxLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -130,5 +144,6 @@
         private System.Windows.Forms.Button btnIngresar;
         private System.Windows.Forms.Label lblRecuperar;
         private System.Windows.Forms.PictureBox pbxLogo;
+        private System.Windows.Forms.Button btnClave;
     }
 }

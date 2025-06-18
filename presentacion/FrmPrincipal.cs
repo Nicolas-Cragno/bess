@@ -16,6 +16,7 @@ using presentacion.reparaciones;
 using presentacion.articulos;
 using negocio;
 using presentacion.personas;
+using System.Diagnostics;
 
 namespace presentacion
 {
@@ -37,119 +38,85 @@ namespace presentacion
             this.WindowState = FormWindowState.Maximized;
 
             funcionesDeshabilitadas();
+            fondo();
+        }
+
+        private void fondo()
+        {
+            foreach (Control ctl in this.Controls)
+            {
+                if (ctl is MdiClient client)
+                {
+                    // Redimensionar la imagen al tamaño del MdiClient
+                    Bitmap imagenRedimensionada = new Bitmap(pictureBox1.Image, client.Size);
+
+                    // Asignar la imagen redimensionada como fondo
+                    client.BackgroundImage = imagenRedimensionada;
+                    client.BackgroundImageLayout = ImageLayout.None; // No aplicar layout adicional
+
+                    // Ocultar el PictureBox original
+                    pictureBox1.Visible = false;
+
+                    break;
+                }
+            }
         }
 
         // Opciones del menu
         private void stockToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmRepuestos ventana = new FrmRepuestos();
-            ventana.MdiParent = this;
-            ventana.WindowState = FormWindowState.Maximized;
-            ventana.Show();
+            abrirVentanaUnica<FrmRepuestos>();
         }
         private void tsmMovimientos_Click(object sender, EventArgs e)
         {
-            cerrarVentanas();
-            FrmMovimientos ventana = new FrmMovimientos();
-            ventana.MdiParent = this;
-            ventana.WindowState = FormWindowState.Maximized;
-            ventana.Show();
+            abrirVentanaUnica<FrmMovimientos>();
         }
         private void tsmEventos_Click(object sender, EventArgs e)
         {
-            cerrarVentanas();
-            FrmEvento ventana = new FrmEvento();
-            ventana.MdiParent = this;
-            ventana.WindowState = FormWindowState.Maximized;
-            ventana.Show();
+            abrirVentanaUnica<FrmEvento>();
         }
         private void tsmReparacionesCamiones_Click(object sender, EventArgs e)
         {
-            cerrarVentanas();
-            sector = AccesoDatos.Sectores.TallerCamiones;
-            FrmReparaciones ventana = new FrmReparaciones(sector);
-            ventana.MdiParent = this;
-            ventana.WindowState = FormWindowState.Maximized;
-            ventana.Show();
+            abrirVentanaUnica<FrmReparaciones>(sector);
         }
         private void choferesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            cerrarVentanas();
-            //FrmChoferes ventana = new FrmChoferes();
-            FrmPersonas ventana = new FrmPersonas(1);
-            ventana.MdiParent = this;
-            ventana.WindowState = FormWindowState.Maximized;
-            ventana.Show();
-
+            abrirVentanaUnica<FrmPersonas>(1);
         }
         private void fleterosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            cerrarVentanas();
-            FrmPersonas ventana = new FrmPersonas(4);
-            ventana.MdiParent = this;
-            ventana.WindowState = FormWindowState.Maximized;
-            ventana.Show();
+            abrirVentanaUnica<FrmPersonas>(4);
         }
         private void mecanicosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            cerrarVentanas();
-            //FrmMecanicos ventana = new FrmMecanicos();
-            FrmPersonas ventana = new FrmPersonas(3);
-            ventana.MdiParent = this;
-            ventana.WindowState = FormWindowState.Maximized;
-            ventana.Show();
+            abrirVentanaUnica<FrmPersonas>(3);
         }
         private void tsmVehiculos_Click(object sender, EventArgs e)
         {
-            cerrarVentanas();
-            FrmVehiculos ventana = new FrmVehiculos('T');
-            ventana.MdiParent = this;
-            ventana.WindowState = FormWindowState.Maximized;
-            ventana.Show();
+            abrirVentanaUnica<FrmVehiculos>('T');
         }
         private void tsmFurgones_Click(object sender, EventArgs e)
         {
-            cerrarVentanas();
-            FrmVehiculos ventana = new FrmVehiculos('F');
-            ventana.MdiParent = this;
-            ventana.WindowState = FormWindowState.Maximized;
-            ventana.Show();
+            abrirVentanaUnica<FrmVehiculos>('F');
         }
 
 
         // Opciones del menu OCULTAS
         private void tsmViajes_Click(object sender, EventArgs e)
         {
-            cerrarVentanas();
-            FrmViajes ventana = new FrmViajes();
-            ventana.MdiParent = this;
-            ventana.WindowState = FormWindowState.Maximized;
-            ventana.Show();
+            abrirVentanaUnica<FrmViajes>();
         }
         private void tsmEmpresas_Click(object sender, EventArgs e)
         {
-            cerrarVentanas();
-            FrmEmpresas ventana = new FrmEmpresas();
-            ventana.MdiParent = this;
-            ventana.WindowState = FormWindowState.Maximized;
-            ventana.Show();
+            abrirVentanaUnica<FrmEmpresas>();
         }
         private void tsmClientes_Click(object sender, EventArgs e)
         {
-            cerrarVentanas();
-            FrmClientes ventana = new FrmClientes();
-            ventana.MdiParent = this;
-            ventana.WindowState = FormWindowState.Maximized;
-            ventana.Show();
+            abrirVentanaUnica<FrmClientes>();
         }
         private void tsmReparacionesFurgones_Click(object sender, EventArgs e)
         {
-            cerrarVentanas();
-            sector = AccesoDatos.Sectores.TallerFurgones;
-            FrmReparaciones ventana = new FrmReparaciones(sector);
-            ventana.MdiParent = this;
-            ventana.WindowState = FormWindowState.Maximized;
-            ventana.Show();
+            abrirVentanaUnica<FrmReparaciones>(sector);
         }
 
         // Funciones
@@ -167,7 +134,58 @@ namespace presentacion
             tsmEmpresas.Visible = false;
             tsmClientes.Visible = false;
             tsmTallerCamionesFurgones.Visible = false;
-        } // Opciones del menu ocultas
+        }
+
+        private void abrirVentanaUnica<T>(params object[] args) where T : Form
+        {
+            // Si es FrmPersonas y tiene parámetro, buscamos si ya está abierto con ese mismo tipo
+            if (typeof(T) == typeof(FrmPersonas) && args.Length > 0 && args[0] is int tipoBuscado)
+            {
+                foreach (Form f in this.MdiChildren)
+                {
+                    if (f is FrmPersonas fp)
+                    {
+                        if (fp.TipoPersona == tipoBuscado)
+                        {
+                            // Ya está abierto con el mismo tipo => lo cierro y no abro otro
+                            fp.Close();
+                            return;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                // Para formularios sin parámetros o sin comparación especial
+                foreach (Form f in this.MdiChildren)
+                {
+                    if (f is T)
+                    {
+                        f.Close(); // Si ya hay uno, lo cierro
+                        return;
+                    }
+                }
+            }
+
+            // Cierro TODOS los demás formularios hijos abiertos antes de abrir el nuevo
+            foreach (Form f in this.MdiChildren)
+            {
+                f.Close();
+            }
+
+            // Creo nueva instancia con o sin argumentos
+            Form nuevaVentana = (Form)(args.Length == 0
+                ? Activator.CreateInstance(typeof(T))
+                : Activator.CreateInstance(typeof(T), args));
+
+            nuevaVentana.MdiParent = this;
+            nuevaVentana.WindowState = FormWindowState.Maximized;
+            nuevaVentana.Show();
+        }
+
+
+
+        // Opciones del menu ocultas
 
         // SIN USO
         private void reparacionesToolStripMenuItem1_Click(object sender, EventArgs e)
