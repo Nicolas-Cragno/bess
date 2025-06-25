@@ -30,7 +30,7 @@ namespace negocio
                     Articulo auxArticulo = new Articulo();
 
                     auxArticulo.Id = (int)datos.Lector["idArticulo"];
-                    auxArticulo.CodigoProveedor = (long)datos.Lector["codigoProveedor"];
+                    auxArticulo.CodigoProveedor = (string)datos.Lector["codigoProveedor"];
                     auxArticulo.Nombre = (string)datos.Lector["nombre"];
                     auxArticulo.Marca = (string)datos.Lector["marca"];
                     auxArticulo.Detalle = (string)datos.Lector["detalle"];
@@ -81,6 +81,66 @@ namespace negocio
             }
             catch (Exception ex) { throw ex; }
             finally { datos.cerrarConexion(); };
+        }
+
+        public List<string> listarUnidades()
+        {
+            AccesoDatos datos = new AccesoDatos();
+            List<string> listado = new List<string>();
+            string query = "SELECT detalle FROM " + AccesoDatos.Tablas.Unidades + ";";
+
+            try
+            {
+                datos.setearConsulta(query);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    string aux = (string)datos.Lector["detalle"];
+
+                    listado.Add(aux);
+                }
+
+                return listado;
+            }
+            catch (Exception ex) { throw ex; }
+            finally { datos.cerrarConexion(); }
+        }
+
+        public void agregar(Articulo nvAr, int sector) 
+        {
+            AccesoDatos datos = new AccesoDatos();
+            int unidad = datos.buscarIdUnidadMedida(nvAr.Unidad);
+            string database = "INSERT INTO " + AccesoDatos.Tablas.Articulos;
+            string campos = "(codigoProveedor, nombre, marca, detalle, stock, idSector, idUnidad)";
+            string valores = " VALUES ('" + nvAr.CodigoProveedor.ToUpper() + "', '" + nvAr.Nombre.ToUpper() + "', '" + nvAr.Marca.ToUpper() + "', '" + nvAr.Detalle.ToUpper() + "', " + nvAr.Stock + ", " + sector + ", " + unidad + ");";
+            string query = database + campos + valores;
+
+            try
+            {
+                datos.setearConsulta(query);
+                datos.ejecutarAccion();
+            } 
+            catch (Exception ex) { throw ex; }
+            finally { datos.cerrarConexion(); }
+        }
+
+        public void modificar (Articulo mdAr, int sector) 
+        {
+            AccesoDatos datos = new AccesoDatos();
+            int unidad = datos.buscarIdUnidadMedida(mdAr.Unidad);
+            string database = "UPDATE " + AccesoDatos.Tablas.Articulos;
+            string campos = " SET codigoProveedor='" + mdAr.CodigoProveedor.ToUpper() + "', nombre='" + mdAr.Nombre.ToUpper() + "', marca='" + mdAr.Marca.ToUpper() + "', detalle='" + mdAr.Detalle.ToUpper() + "', stock=" + mdAr.Stock + ", idSector=" + sector + ", idUnidad=" + unidad;
+            string condicion = " WHERE idArticulo=" + mdAr.Id + ";";
+            string query = database + campos + condicion;
+
+            try
+            {
+                datos.setearConsulta(query);
+                datos.ejecutarAccion();
+            } 
+            catch (Exception ex) { throw ex; }
+            finally { datos.cerrarConexion(); }
         }
     }
 }

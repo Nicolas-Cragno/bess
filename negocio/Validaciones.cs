@@ -86,5 +86,24 @@ namespace negocio
 
             return nro;
         }
+
+        public float validarFloat(string numero)
+        {
+            float nro;
+
+            if (string.IsNullOrWhiteSpace(numero))
+            {
+                nro = 0;
+            }
+            else if (!float.TryParse(numero, out nro)) // verifico que no hayan ingresado letras
+            {
+                nro = float.Parse(numero);
+            }
+
+            if (nro < 0)
+                nro = 0;
+
+            return nro;
+        }
     }
 }

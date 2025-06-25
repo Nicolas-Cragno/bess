@@ -130,10 +130,19 @@ namespace presentacion
         }
         private void funcionesDeshabilitadas()
         {
+            tsmTallerCamionesFurgones.Visible = false;
+            tsmMovimientos.Visible = false;
+            tsmEventos.Visible = false;
+            tsmViajes.Visible = false;
+
+            // recursos
+            tsmChoferes.Visible = false;
+            tsmFleteros.Visible = false;
+            tsmTractores.Visible = false;
+            tsmFurgones.Visible = false;
             tsmOtros.Visible = false;
             tsmEmpresas.Visible = false;
             tsmClientes.Visible = false;
-            tsmTallerCamionesFurgones.Visible = false;
         }
 
         private void abrirVentanaUnica<T>(params object[] args) where T : Form

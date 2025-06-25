@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPrincipal));
             System.Windows.Forms.PictureBox pbxLogo;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPrincipal));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.menuPrincipal = new System.Windows.Forms.MenuStrip();
             this.tsmMovimientos = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,10 +51,23 @@
             this.tsmClientes = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmStock = new System.Windows.Forms.ToolStripMenuItem();
             pbxLogo = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(pbxLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuPrincipal.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(pbxLogo)).BeginInit();
             this.SuspendLayout();
+            // 
+            // pbxLogo
+            // 
+            pbxLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            pbxLogo.BackColor = System.Drawing.SystemColors.Control;
+            pbxLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            pbxLogo.Image = ((System.Drawing.Image)(resources.GetObject("pbxLogo.Image")));
+            pbxLogo.Location = new System.Drawing.Point(12, 370);
+            pbxLogo.Name = "pbxLogo";
+            pbxLogo.Size = new System.Drawing.Size(78, 68);
+            pbxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            pbxLogo.TabIndex = 11;
+            pbxLogo.TabStop = false;
             // 
             // pictureBox1
             // 
@@ -229,19 +242,6 @@
             this.tsmStock.Text = "Stock";
             this.tsmStock.Click += new System.EventHandler(this.stockToolStripMenuItem_Click);
             // 
-            // pbxLogo
-            // 
-            pbxLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            pbxLogo.BackColor = System.Drawing.SystemColors.Control;
-            pbxLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            pbxLogo.Image = ((System.Drawing.Image)(resources.GetObject("pbxLogo.Image")));
-            pbxLogo.Location = new System.Drawing.Point(12, 341);
-            pbxLogo.Name = "pbxLogo";
-            pbxLogo.Size = new System.Drawing.Size(134, 97);
-            pbxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            pbxLogo.TabIndex = 11;
-            pbxLogo.TabStop = false;
-            // 
             // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -254,10 +254,10 @@
             this.IsMdiContainer = true;
             this.Name = "FrmPrincipal";
             this.Load += new System.EventHandler(this.FrmPrincipal_Load);
+            ((System.ComponentModel.ISupportInitialize)(pbxLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.menuPrincipal.ResumeLayout(false);
             this.menuPrincipal.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(pbxLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

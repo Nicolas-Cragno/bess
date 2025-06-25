@@ -628,6 +628,31 @@ namespace negocio
             finally { datos.cerrarConexion(); }
         }
 
+        public int buscarIdUnidadMedida(string nombre)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            int idUnidad;
+            string query = "SELECT id FROM " + Tablas.Unidades + " WHERE nombre='" + nombre + "';";
+
+            try
+            {
+                datos.setearConsulta(query);
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    idUnidad = (int)datos.Lector["id"];
+                } else
+                {
+                    idUnidad = 1; // "unidades" por default
+                }
+
+                return idUnidad;
+            }
+            catch(Exception ex) { throw ex; }
+            finally { datos.cerrarConexion(); }
+        }
+
         public string buscarUnidadMedidaDetalle(int idArticulo)
         {
             AccesoDatos datos = new AccesoDatos();

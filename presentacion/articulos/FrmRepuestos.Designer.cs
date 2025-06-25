@@ -44,6 +44,7 @@
             this.btnRepuestosNuevo.TabIndex = 19;
             this.btnRepuestosNuevo.Text = "Nuevo";
             this.btnRepuestosNuevo.UseVisualStyleBackColor = true;
+            this.btnRepuestosNuevo.Click += new System.EventHandler(this.btnRepuestosNuevo_Click);
             // 
             // dgvRepuestos
             // 
@@ -55,6 +56,7 @@
             this.dgvRepuestos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvRepuestos.Size = new System.Drawing.Size(684, 557);
             this.dgvRepuestos.TabIndex = 18;
+            this.dgvRepuestos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRepuestos_CellDoubleClick);
             // 
             // tbxRepuestosFiltro
             // 
@@ -62,6 +64,7 @@
             this.tbxRepuestosFiltro.Name = "tbxRepuestosFiltro";
             this.tbxRepuestosFiltro.Size = new System.Drawing.Size(292, 20);
             this.tbxRepuestosFiltro.TabIndex = 17;
+            this.tbxRepuestosFiltro.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxRepuestosFiltro_KeyPress);
             // 
             // lblRepuestosFiltro
             // 

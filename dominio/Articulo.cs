@@ -9,7 +9,7 @@ namespace dominio
     public class Articulo
     {
         public int Id { get; set; }
-        public long CodigoProveedor { get; set; }
+        public string CodigoProveedor { get; set; }
         public string Nombre { get; set; }
         public string Detalle {  get; set; }
         public string Marca { get; set; }

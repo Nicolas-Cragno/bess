@@ -32,6 +32,11 @@ namespace presentacion.articulos
             ArticuloNegocio articuloNegocio = new ArticuloNegocio();
             listadoArticulos = articuloNegocio.listar(sector);
             dgvRepuestos.DataSource = listadoArticulos;
+            formatoColumnas();
+        }
+
+        private void formatoColumnas()
+        {
             ordenarColumnas();
             nombrarColumnas();
             ocultarColumnas();
@@ -70,6 +75,44 @@ namespace presentacion.articulos
             dgvRepuestos.Columns["Detalle"].HeaderText = "DESCRIPCION";
             dgvRepuestos.Columns["Marca"].HeaderText = "MARCA";
             dgvRepuestos.Columns["Stock"].HeaderText = "STOCK";
+        }
+
+        private void tbxRepuestosFiltro_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            filtrar();
+        }
+
+        private void filtrar()
+        {
+            List<Articulo> listaFiltrada;
+            string filtro = tbxRepuestosFiltro.Text.ToUpper();
+
+            if(filtro != "")
+            {
+                listaFiltrada = listadoArticulos.FindAll(rp => rp.Nombre.ToString().Contains(filtro) || rp.Marca.ToString().Contains(filtro) || rp.CodigoProveedor.ToString().Contains(filtro) || rp.Detalle.ToString().Contains(filtro));
+            } else
+            {
+                listaFiltrada = listadoArticulos;
+            }
+
+            dgvRepuestos.DataSource = null;
+            dgvRepuestos.DataSource = listaFiltrada;
+            formatoColumnas();
+        }
+
+        private void dgvRepuestos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Articulo art = (Articulo)dgvRepuestos.CurrentRow.DataBoundItem;
+            FrmFichaArticulo ficha = new FrmFichaArticulo('F', 4, art, this);
+            ficha.ShowDialog();
+            cargar();
+        }
+
+        private void btnRepuestosNuevo_Click(object sender, EventArgs e)
+        {
+            FrmFichaArticulo ficha = new FrmFichaArticulo('N', 4, null, this);
+            ficha.ShowDialog();
+            cargar();
         }
     }
 }
