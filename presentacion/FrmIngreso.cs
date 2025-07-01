@@ -25,6 +25,7 @@ namespace presentacion
             ingreso();
         }
 
+
         private void ingreso()
         {
             try
@@ -73,6 +74,24 @@ namespace presentacion
                 btnClave.Text = "❌";
                 claveVisible = true;
             }
+            
+        }
+        private void tbxClave_KeyDown(object sender, KeyEventArgs e) // ingreso al apretar ENTER sobre la contraseña
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                ingreso();
+            }
+        }
+
+        // Sin uso
+        private void FrmIngreso_Enter(object sender, EventArgs e)
+        {
+            
+        }
+        private void tbxClave_Enter(object sender, EventArgs e)
+        {
             
         }
     }

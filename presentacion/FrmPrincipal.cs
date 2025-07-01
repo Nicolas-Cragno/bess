@@ -76,7 +76,7 @@ namespace presentacion
         }
         private void tsmReparacionesCamiones_Click(object sender, EventArgs e)
         {
-            abrirVentanaUnica<FrmReparaciones>(sector);
+            abrirVentanaUnica<FrmReparaciones>(4);
         }
         private void choferesToolStripMenuItem_Click(object sender, EventArgs e)
         {

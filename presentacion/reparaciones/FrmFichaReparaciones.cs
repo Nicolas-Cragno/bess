@@ -14,7 +14,9 @@ namespace presentacion.reparaciones
 {
     public partial class FrmFichaReparaciones : Form
     {
+        private Form formularioPadre;
         private char modo;
+        private int sector;
         private Reparacion reparacion;
         private List<Articulo> listadoRepuestos;
         private List<Articulo> listadoRepuestosAgregados;
@@ -23,19 +25,23 @@ namespace presentacion.reparaciones
         string tallerCamiones = "TALLER CAMIONES", tallerFurgones= "TALLER FURGONES";
 
         // Cargas
-        public FrmFichaReparaciones(char rModo, Reparacion rReparacion = null)
+        public FrmFichaReparaciones(int rSector, char rModo, Form padre = null, Reparacion rReparacion = null)
         {
             InitializeComponent();
+            sector = rSector;
             modo = rModo;
             reparacion = rReparacion;
+            formularioPadre = padre;
         }
         private void FrmFichaReparaciones_Load(object sender, EventArgs e)
         {
+            colgarDerecha();
             configuracion(modo);
         }
         private void configuracion (char rSelect)
         {
-            this.ControlBox = false; // oculta la barra de control superior
+            this.ControlBox = false; // oculta el manejo de la ventana superior
+            
             tabulaciones();
             switch (rSelect)
             {
@@ -71,6 +77,18 @@ namespace presentacion.reparaciones
             dgvFichaReparacionesRepuestos.TabIndex = 9;
             dgvFichaReparacionesRepuestos.TabIndex = 10;
         }
+        private void colgarDerecha()
+        {
+            if (formularioPadre != null)
+            {
+                Screen pantalla = Screen.FromControl(formularioPadre);
+                this.StartPosition = FormStartPosition.Manual;
+                this.Location = new Point(
+                    pantalla.WorkingArea.Right - this.Width,
+                    pantalla.WorkingArea.Top
+                );
+            }
+        }
         private void cargarListas()
         {
             VehiculoNegocio vehiculoNegocio = new VehiculoNegocio();
@@ -79,8 +97,18 @@ namespace presentacion.reparaciones
             ReparacionNegocio reparacionNegocio = new ReparacionNegocio();
             MecanicoNegocio mecanicoNegocio = new MecanicoNegocio();
             AccesoDatos datos = new AccesoDatos();
+
             cbxFichaReparacionesTipo.DataSource = vehiculoNegocio.listarTipos();
-            cbxFichaReparacionesTipo.SelectedIndexChanged += cbxFichaReparacionesTipo_SelectedIndexChanged; // depende la selección se captura el tipo y se listan los internos en la funcion de abajo
+            switch (sector)
+            {
+                case 4: // Tractores
+                    cbxFichaReparacionesTipo.SelectedItem = "TRACTOR";
+                    cbxFichaReparacionesTipo.Enabled = false;
+                    break;
+                default:
+                    cbxFichaReparacionesTipo.SelectedIndexChanged += cbxFichaReparacionesTipo_SelectedIndexChanged; // depende la selección se captura el tipo y se listan los internos en la funcion de abajo
+                    break;
+            }
             cbxFichaReparacionesTipoTrabajo.DataSource = reparacionNegocio.listarTipos() ;
             cbxFichaReparacionesChofer.DataSource = choferNegocio.listarNombres(activo, choferL);
             cbxFichaReparacionesMecanico.DataSource = mecanicoNegocio.listarNombres(activo, mecanico);

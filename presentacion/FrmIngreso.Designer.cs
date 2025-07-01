@@ -62,6 +62,8 @@
             this.tbxClave.Name = "tbxClave";
             this.tbxClave.Size = new System.Drawing.Size(133, 20);
             this.tbxClave.TabIndex = 89;
+            this.tbxClave.Enter += new System.EventHandler(this.tbxClave_Enter);
+            this.tbxClave.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbxClave_KeyDown);
             // 
             // lblClave
             // 
@@ -129,6 +131,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmIngreso";
             this.Load += new System.EventHandler(this.FrmIngreso_Load);
+            this.Enter += new System.EventHandler(this.FrmIngreso_Enter);
             ((System.ComponentModel.ISupportInitialize)(this.pbxLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

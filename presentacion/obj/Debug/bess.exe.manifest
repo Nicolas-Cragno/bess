@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="bess.exe" size="1539048">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="bess.exe" size="1540072">
       <assemblyIdentity name="bess" version="1.0.0.1" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>D3Pjiv1pOxtCyEsCBQ3P3NWvHMMkwXpJe/71eecyTGs=</dsig:DigestValue>
+        <dsig:DigestValue>419jhvJTGnbxzR2e7dWURqmMm/eGGk/FSxr5m5lO6Xc=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

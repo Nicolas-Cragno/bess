@@ -14,20 +14,23 @@ namespace presentacion.reparaciones
 {
     public partial class FrmHistoriaReparacion : Form
     {
+        private Form formularioPadre;
         private Reparacion reparacion;
         private List<UsoStock> listaRepuestos;
         int activo = 1, choferL = 1, mecanico = 3;
         char modo; 
 
         // Cargas
-        public FrmHistoriaReparacion(Reparacion hReparacion, char rModo = 'F')
+        public FrmHistoriaReparacion(Reparacion hReparacion, char rModo = 'F', Form padre = null)
         {
             InitializeComponent();
             reparacion = hReparacion;
             modo = rModo;
+            formularioPadre = padre;
         }
         private void cargar()
         {
+            colgarDerecha();
             tabulaciones();
             this.ControlBox = false; // oculta el manejo de la ventana superior
             AccesoDatos datos = new AccesoDatos();
@@ -48,7 +51,7 @@ namespace presentacion.reparaciones
                     break;
                 case 'F': // Finalizado
                     btnHistoriaReparacionFinalizar.Visible = false;
-                    lblHistoriaReparacionEstado.Text = "Finalizado el " + reparacion.Fecha.ToString("dd/MM/yyyy") +".";
+                    lblHistoriaReparacionEstado.Text = "Finalizado el " + reparacion.Fecha.ToString("dd/MM/yyyy") + ".";
                     break;
                 default:
                     break;
@@ -57,6 +60,18 @@ namespace presentacion.reparaciones
             listaRepuestos = usoStockNegocio.listar(reparacion.Id);
             dgvHistoriaReparacionRepuestos.DataSource = listaRepuestos;
             formatoColumnas();
+        }
+        private void colgarDerecha()
+        {
+            if (formularioPadre != null)
+            {
+                Screen pantalla = Screen.FromControl(formularioPadre);
+                this.StartPosition = FormStartPosition.Manual;
+                this.Location = new Point(
+                    pantalla.WorkingArea.Right - this.Width,
+                    pantalla.WorkingArea.Top
+                );
+            }
         }
         private void tabulaciones()
         {
@@ -123,8 +138,9 @@ namespace presentacion.reparaciones
         }
         private void btnHistoriaReparacionOK_Click(object sender, EventArgs e)
         {
-            FrmFichaReparaciones editarReparacion = new FrmFichaReparaciones('M', reparacion);
+            FrmFichaReparaciones editarReparacion = new FrmFichaReparaciones(0, 'M', this, reparacion);
             editarReparacion.ShowDialog();
+            Close();
         }
     }
 }

@@ -56,7 +56,7 @@ namespace presentacion.reparaciones
         // Botones - clicks
         private void btnReparacionesNuevo_Click(object sender, EventArgs e)
         {
-            FrmFichaReparaciones ventana = new FrmFichaReparaciones(agregar);
+            FrmFichaReparaciones ventana = new FrmFichaReparaciones(sector, agregar, this);
             ventana.ShowDialog();
             cargar();
         }
@@ -206,7 +206,7 @@ namespace presentacion.reparaciones
 
             //FrmFichaReparaciones fichaReparacion = new FrmFichaReparaciones(ficha, seleccion);
             //fichaReparacion.ShowDialog();
-            FrmHistoriaReparacion historiaReparacion = new FrmHistoriaReparacion(seleccion, pendiente);
+            FrmHistoriaReparacion historiaReparacion = new FrmHistoriaReparacion(seleccion, pendiente, this);
             historiaReparacion.ShowDialog();
             cargar();
         }
@@ -215,7 +215,7 @@ namespace presentacion.reparaciones
             Reparacion seleccion = (Reparacion)dgvReparacionesFinalizadas.CurrentRow.DataBoundItem;
             char finalizado = 'F';
 
-            FrmHistoriaReparacion historiaReparacion = new FrmHistoriaReparacion(seleccion, finalizado);
+            FrmHistoriaReparacion historiaReparacion = new FrmHistoriaReparacion(seleccion, finalizado, this);
             historiaReparacion.ShowDialog();
             cargar();
         }
