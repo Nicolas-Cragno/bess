@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3AA9A0CC-D927-4840-90EB-946BEABCBB64}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>bess</RootNamespace>
+    <AssemblyName>bess</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>C:\Users\NIcolas Cragno\Desktop\BessApp\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <AutorunEnabled>true</AutorunEnabled>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>
+    </ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>62355BC610305C1483B58CF7774F359F10D275B4</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>bess_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="articulos\FrmFichaArticulo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="articulos\FrmFichaArticulo.Designer.cs">
+      <DependentUpon>FrmFichaArticulo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="articulos\FrmRepuestos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="articulos\FrmRepuestos.Designer.cs">
+      <DependentUpon>FrmRepuestos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="empresas\FrmClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="empresas\FrmClientes.Designer.cs">
+      <DependentUpon>FrmClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="empresas\FrmEmpresas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="empresas\FrmEmpresas.Designer.cs">
+      <DependentUpon>FrmEmpresas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="eventos\FrmEvento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="eventos\FrmEvento.Designer.cs">
+      <DependentUpon>FrmEvento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="eventos\FrmFichaEvento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="eventos\FrmFichaEvento.Designer.cs">
+      <DependentUpon>FrmFichaEvento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmIngreso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmIngreso.Designer.cs">
+      <DependentUpon>FrmIngreso.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmPrincipal.Designer.cs">
+      <DependentUpon>FrmPrincipal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="personas\FrmFichaPersona.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="personas\FrmFichaPersona.Designer.cs">
+      <DependentUpon>FrmFichaPersona.cs</DependentUpon>
+    </Compile>
+    <Compile Include="personas\FrmPersonas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="personas\FrmPersonas.Designer.cs">
+      <DependentUpon>FrmPersonas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="personas\FrmPersonasInactivas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="personas\FrmPersonasInactivas.Designer.cs">
+      <DependentUpon>FrmPersonasInactivas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="reparaciones\FrmArticuloCantidad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="reparaciones\FrmArticuloCantidad.Designer.cs">
+      <DependentUpon>FrmArticuloCantidad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="reparaciones\FrmFichaReparaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="reparaciones\FrmFichaReparaciones.Designer.cs">
+      <DependentUpon>FrmFichaReparaciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="reparaciones\FrmFinalizar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="reparaciones\FrmFinalizar.Designer.cs">
+      <DependentUpon>FrmFinalizar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="reparaciones\FrmHistoriaReparacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="reparaciones\FrmHistoriaReparacion.Designer.cs">
+      <DependentUpon>FrmHistoriaReparacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="reparaciones\FrmReparaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="reparaciones\FrmReparaciones.Designer.cs">
+      <DependentUpon>FrmReparaciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vehiculos\FrmFichaVehiculo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vehiculos\FrmFichaVehiculo.Designer.cs">
+      <DependentUpon>FrmFichaVehiculo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="movimientos\FrmFichaMovimiento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="movimientos\FrmFichaMovimiento.Designer.cs">
+      <DependentUpon>FrmFichaMovimiento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="movimientos\FrmMovimientos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="movimientos\FrmMovimientos.Designer.cs">
+      <DependentUpon>FrmMovimientos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="vehiculos\FrmVehiculos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vehiculos\FrmVehiculos.Designer.cs">
+      <DependentUpon>FrmVehiculos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="viajes\FrmViajes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="viajes\FrmViajes.Designer.cs">
+      <DependentUpon>FrmViajes.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="articulos\FrmFichaArticulo.resx">
+      <DependentUpon>FrmFichaArticulo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="articulos\FrmRepuestos.resx">
+      <DependentUpon>FrmRepuestos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="empresas\FrmClientes.resx">
+      <DependentUpon>FrmClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="empresas\FrmEmpresas.resx">
+      <DependentUpon>FrmEmpresas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="eventos\FrmEvento.resx">
+      <DependentUpon>FrmEvento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="eventos\FrmFichaEvento.resx">
+      <DependentUpon>FrmFichaEvento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmIngreso.resx">
+      <DependentUpon>FrmIngreso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmPrincipal.resx">
+      <DependentUpon>FrmPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="personas\FrmFichaPersona.resx">
+      <DependentUpon>FrmFichaPersona.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="personas\FrmPersonas.resx">
+      <DependentUpon>FrmPersonas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="personas\FrmPersonasInactivas.resx">
+      <DependentUpon>FrmPersonasInactivas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="reparaciones\FrmArticuloCantidad.resx">
+      <DependentUpon>FrmArticuloCantidad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="reparaciones\FrmFichaReparaciones.resx">
+      <DependentUpon>FrmFichaReparaciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="reparaciones\FrmFinalizar.resx">
+      <DependentUpon>FrmFinalizar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="reparaciones\FrmHistoriaReparacion.resx">
+      <DependentUpon>FrmHistoriaReparacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="reparaciones\FrmReparaciones.resx">
+      <DependentUpon>FrmReparaciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vehiculos\FrmFichaVehiculo.resx">
+      <DependentUpon>FrmFichaVehiculo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="movimientos\FrmFichaMovimiento.resx">
+      <DependentUpon>FrmFichaMovimiento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="movimientos\FrmMovimientos.resx">
+      <DependentUpon>FrmMovimientos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="vehiculos\FrmVehiculos.resx">
+      <DependentUpon>FrmVehiculos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="viajes\FrmViajes.resx">
+      <DependentUpon>FrmViajes.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="bess_TemporaryKey.pfx" />
+    <None Include="Properties\app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\dominio\dominio.csproj">
+      <Project>{6e4cff34-4484-4aae-b96b-1341a7f331d4}</Project>
+      <Name>dominio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\negocio\negocio.csproj">
+      <Project>{7461d29e-0ec4-4ccd-b12a-78d365c3264f}</Project>
+      <Name>negocio</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="appLogo-_1_.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 y x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

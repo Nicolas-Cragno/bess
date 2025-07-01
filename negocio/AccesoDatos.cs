@@ -16,8 +16,9 @@ namespace negocio
         private SqlConnection conexion;
         private SqlCommand comando;
         private SqlDataReader lector;
-        string cadenaConexion = "server=.\\SQLEXPRESS; database=cantarini; integrated security=true";
+        string cadenaConexion = "server=192.168.0.52,1433; database=cantarini; user id=usuarioSQL; password=123456789;";
 
+        //string cadenaConexion = "server=192.168.0.52\\SQLEXPRESS; database=cantarini; integrated security=true;";
 
         // funciones de acceso a datos
         public static class Tablas
@@ -170,7 +171,7 @@ namespace negocio
         {
             AccesoDatos datos = new AccesoDatos();
             string query = "SELECT usuario, clave FROM " + Tablas.Usuarios + " WHERE usuario='" + usuario + "';";
-            try 
+            try
             {
                 datos.setearConsulta(query);
                 datos.ejecutarLectura();
@@ -185,7 +186,8 @@ namespace negocio
                     {
                         return false;
                     }
-                } else
+                }
+                else
                 {
                     return false;
                 }
@@ -195,7 +197,8 @@ namespace negocio
                 return false;
             }
             finally { cerrarConexion(); }
-        } 
+        }
+
 
         // funciones para empleados
         public Chofer buscarDatosChofer(int dni)

@@ -22,13 +22,12 @@ namespace presentacion
 {
     public partial class FrmPrincipal : Form
     {
-        int sector;
+        private int sector;
 
         // Cargas
         public FrmPrincipal()
         {
             InitializeComponent();
-
             tsmViajes.Visible = false; // todavia no lo defini
         }
         private void FrmPrincipal_Load(object sender, EventArgs e)

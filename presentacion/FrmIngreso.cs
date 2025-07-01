@@ -27,24 +27,32 @@ namespace presentacion
 
         private void ingreso()
         {
-            AccesoDatos datos = new AccesoDatos();
-            string usuario = tbxUsuario.Text;
-            string contraseña = tbxClave.Text;
-            bool ingreso;
-
-            ingreso = datos.verificarIngreso(usuario, contraseña);
-
-            if(ingreso)
+            try
             {
-                FrmPrincipal aplicacion = new FrmPrincipal();
-                aplicacion.ShowDialog();
-                this.Close();
+                AccesoDatos datos = new AccesoDatos();
+                string usuario = tbxUsuario.Text;
+                string contraseña = tbxClave.Text;
+                bool ingreso;
+
+                ingreso = datos.verificarIngreso(usuario, contraseña);
+
+                if (ingreso)
+                {
+                    FrmPrincipal aplicacion = new FrmPrincipal();
+                    aplicacion.ShowDialog();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("❌ Usuario y/o contraseña inválido/s.");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Usuario y/o contraseña invalido/s.");
+                MessageBox.Show("⚠️ Error de conexión: " + ex.Message);
             }
         }
+
 
         private void FrmIngreso_Load(object sender, EventArgs e)
         {
